@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/routes/dashboard._index.tsx"],
+  "sourcesContent": ["export default function () {\r\n  return (\r\n    <div>\r\n      <h1>Dashboard</h1>\r\n    </div>\r\n  )\r\n}"],
+  "mappings": ";;;;;;;;AAGM;AAHS,SAAR,0BAAoB;AACzB,SACE,mDAAC,SACC,6DAAC,QAAG,yBAAJ;AAAA;AAAA;AAAA;AAAA,SAAa,KADf;AAAA;AAAA;AAAA;AAAA,SAEA;AAEJ;",
+  "names": []
+}

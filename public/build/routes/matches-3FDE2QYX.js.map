@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/routes/matches.tsx"],
+  "sourcesContent": ["const matchesCount = 5;\r\n\r\nexport default function Matches() {\r\n  return (\r\n    <div>\r\n      <h2>\r\n        You have {matchesCount} matches.\r\n      </h2>\r\n      <div>\r\n        List of matches here.\r\n      </div>\r\n    </div>\r\n  )\r\n}"],
+  "mappings": ";;;;;;;;AAKM;AALN,IAAM,eAAe;AAEN,SAAR,UAA2B;AAChC,SACE,mDAAC,SACC;AAAA,uDAAC,QAAG;AAAA;AAAA,MACQ;AAAA,MAAa;AAAA,SADzB;AAAA;AAAA;AAAA;AAAA,WAEA;AAAA,IACA,mDAAC,SAAI,qCAAL;AAAA;AAAA;AAAA;AAAA,WAEA;AAAA,OANF;AAAA;AAAA;AAAA;AAAA,SAOA;AAEJ;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/routes/profile.personal.tsx"],
+  "sourcesContent": ["import ProfilePersonal from \"~/modules/profile/Personal\";\r\n\r\nexport default function () {\r\n  return (\r\n    <ProfilePersonal />\r\n  )\r\n}"],
+  "mappings": ";;;;;;;;;;;;AAII;AAFW,SAAR,2BAAoB;AACzB,SACE,mDAAC,sBAAD;AAAA;AAAA;AAAA;AAAA,SAAiB;AAErB;",
+  "names": []
+}
