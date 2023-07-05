@@ -1,9 +1,4 @@
 import {
-  Bars3Icon_default,
-  ChevronDownIcon_default,
-  XMarkIcon_default
-} from "/build/_shared/chunk-JEAMCC3A.js";
-import {
   FaFacebook,
   FaLinkedin,
   GenIcon
@@ -15,19 +10,23 @@ import {
   require_session
 } from "/build/_shared/chunk-WLTRNBV5.js";
 import {
-  useOptionalUser
-} from "/build/_shared/chunk-XIBNGEOM.js";
+  Bars3Icon_default,
+  ChevronDownIcon_default,
+  XMarkIcon_default
+} from "/build/_shared/chunk-JEAMCC3A.js";
 import {
   require_react_dom
 } from "/build/_shared/chunk-YUUU2RAQ.js";
 import {
+  Form,
   Link,
   Links,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration
+  ScrollRestoration,
+  useLoaderData
 } from "/build/_shared/chunk-SGSFRA2X.js";
 import {
   require_jsx_dev_runtime,
@@ -37,14 +36,14 @@ import {
   __toESM
 } from "/build/_shared/chunk-IU43IUTG.js";
 
-// css-bundle-update-plugin-ns:D:\spaces\BioSolver\bs-web\node_modules\@remix-run\css-bundle\dist\esm\index.js
+// css-bundle-update-plugin-ns:D:\spaces\BioSolver\code\bs-web\node_modules\@remix-run\css-bundle\dist\esm\index.js
 var cssBundleHref = false ? void 0 : void 0;
 
 // app/root.tsx
 var import_session = __toESM(require_session());
 
 // app/tailwind.css
-var tailwind_default = "/build/_assets/tailwind-5XGGCDFD.css";
+var tailwind_default = "/build/_assets/tailwind-YDMVJD6G.css";
 
 // app/layout/Navbar.tsx
 var import_react36 = __toESM(require_react());
@@ -2545,11 +2544,10 @@ function Navbar() {
             },
             this
           ),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
+          /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(Form, { action: "/logout", method: "post", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
             ve.Button,
             {
-              as: "a",
-              href: "logout",
+              type: "submit",
               className: "block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800",
               children: "Sign out"
             },
@@ -2557,11 +2555,15 @@ function Navbar() {
             false,
             {
               fileName: "app/layout/Navbar.tsx",
-              lineNumber: 200,
-              columnNumber: 17
+              lineNumber: 201,
+              columnNumber: 19
             },
             this
-          )
+          ) }, void 0, false, {
+            fileName: "app/layout/Navbar.tsx",
+            lineNumber: 200,
+            columnNumber: 17
+          }, this)
         ] }, void 0, true, {
           fileName: "app/layout/Navbar.tsx",
           lineNumber: 185,
@@ -2589,7 +2591,7 @@ function Navbar() {
 }
 
 // app/layout/anon/Header.tsx
-var import_react38 = __toESM(require_react());
+var import_react39 = __toESM(require_react());
 
 // node_modules/@heroicons/react/20/solid/esm/PhoneIcon.js
 var React = __toESM(require_react(), 1);
@@ -2658,7 +2660,7 @@ var company = [
   { name: "Blog", href: "#", description: "Read our latest announcements and get perspectives from our team" }
 ];
 function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = (0, import_react38.useState)(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = (0, import_react39.useState)(false);
   return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("header", { className: "bg-white", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("nav", { className: "mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8", "aria-label": "Global", children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "flex lg:flex-1", children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Link, { to: "/", className: "-m-1.5 p-1.5", children: [
@@ -2740,7 +2742,7 @@ function Header() {
           /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(
             $e3,
             {
-              as: import_react38.Fragment,
+              as: import_react39.Fragment,
               enter: "transition ease-out duration-200",
               enterFrom: "opacity-0 translate-y-1",
               enterTo: "opacity-100 translate-y-0",
@@ -3297,102 +3299,102 @@ var links = () => [
   ...cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []
 ];
 function App() {
-  const user = useOptionalUser();
+  const { user } = useLoaderData();
   return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("html", { lang: "en", className: "h-full", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("head", { children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("meta", { charSet: "utf-8" }, void 0, false, {
         fileName: "app/root.tsx",
-        lineNumber: 34,
+        lineNumber: 36,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("meta", { name: "viewport", content: "width=device-width,initial-scale=1" }, void 0, false, {
         fileName: "app/root.tsx",
-        lineNumber: 35,
+        lineNumber: 37,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Meta, {}, void 0, false, {
         fileName: "app/root.tsx",
-        lineNumber: 36,
+        lineNumber: 38,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Links, {}, void 0, false, {
         fileName: "app/root.tsx",
-        lineNumber: 37,
+        lineNumber: 39,
         columnNumber: 9
       }, this)
     ] }, void 0, true, {
       fileName: "app/root.tsx",
-      lineNumber: 33,
+      lineNumber: 35,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("body", { className: "w-full h-full", children: [
       user ? /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Navbar, {}, void 0, false, {
           fileName: "app/root.tsx",
-          lineNumber: 42,
+          lineNumber: 44,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "w-full h-auto max-w-7xl p-10 mx-auto", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "bg-white shadow-sm", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Outlet, {}, void 0, false, {
           fileName: "app/root.tsx",
-          lineNumber: 45,
+          lineNumber: 47,
           columnNumber: 17
         }, this) }, void 0, false, {
           fileName: "app/root.tsx",
-          lineNumber: 44,
+          lineNumber: 46,
           columnNumber: 15
         }, this) }, void 0, false, {
           fileName: "app/root.tsx",
-          lineNumber: 43,
+          lineNumber: 45,
           columnNumber: 13
         }, this)
       ] }, void 0, true, {
         fileName: "app/root.tsx",
-        lineNumber: 41,
+        lineNumber: 43,
         columnNumber: 16
       }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "font-display max-w-7xl mx-auto w-full", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Header, {}, void 0, false, {
           fileName: "app/root.tsx",
-          lineNumber: 50,
+          lineNumber: 52,
           columnNumber: 15
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Outlet, {}, void 0, false, {
           fileName: "app/root.tsx",
-          lineNumber: 51,
+          lineNumber: 53,
           columnNumber: 15
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Footer, {}, void 0, false, {
           fileName: "app/root.tsx",
-          lineNumber: 52,
+          lineNumber: 54,
           columnNumber: 15
         }, this)
       ] }, void 0, true, {
         fileName: "app/root.tsx",
-        lineNumber: 49,
+        lineNumber: 51,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(ScrollRestoration, {}, void 0, false, {
         fileName: "app/root.tsx",
-        lineNumber: 56,
+        lineNumber: 58,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Scripts, {}, void 0, false, {
         fileName: "app/root.tsx",
-        lineNumber: 57,
+        lineNumber: 59,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(LiveReload, {}, void 0, false, {
         fileName: "app/root.tsx",
-        lineNumber: 58,
+        lineNumber: 60,
         columnNumber: 9
       }, this)
     ] }, void 0, true, {
       fileName: "app/root.tsx",
-      lineNumber: 39,
+      lineNumber: 41,
       columnNumber: 7
     }, this)
   ] }, void 0, true, {
     fileName: "app/root.tsx",
-    lineNumber: 32,
+    lineNumber: 34,
     columnNumber: 5
   }, this);
 }
@@ -3414,4 +3416,4 @@ export {
    * @license MIT
    *)
 */
-//# sourceMappingURL=/build/root-DL7QGEGO.js.map
+//# sourceMappingURL=/build/root-SHWTGQXS.js.map

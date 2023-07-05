@@ -8,6 +8,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
 
 import { getUser } from "~/session.server";
@@ -23,11 +24,12 @@ export const links: LinksFunction = () => [
 ];
 
 export const loader = async ({ request }: LoaderArgs) => {
+  console.log({ user: await getUser(request) })
   return json({ user: await getUser(request) });
 };
 
 export default function App() {
-  const user = useOptionalUser()
+  const {user} = useLoaderData();
   return (
     <html lang="en" className="h-full">
       <head>

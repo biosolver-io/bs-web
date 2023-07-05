@@ -39,8 +39,8 @@ export default function ContactUsPage() {
                   <EnvelopeIcon className="h-7 w-6 text-gray-400" aria-hidden="true" />
                 </dt>
                 <dd>
-                  <a className="hover:text-gray-900" href="mailto:hello@example.com">
-                    sagar@bio-solver.com
+                  <a className="hover:text-gray-900" href="mailto:info@biosolver.io">
+                    info@biosolver.io
                   </a>
                 </dd>
               </div>

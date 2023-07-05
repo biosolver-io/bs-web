@@ -11,8 +11,7 @@ export default function Index() {
   const user = useOptionalUser();
   return (
     <div className="p-10">
-      <HeroSection />
-      <CategoriesSection />
+      <HeroSection />      
       <div className='w-full h-auto p-10 text-white rounded-lg mt-10 flex flex-row gap-5'>
         <div className="w-full lg:w-1/2 bg-[url('assets/images/backgrounds/expert.jpg')] bg-cover bg-center">
           <div className='w-full h-full backdrop-brightness-50 p-10 flex flex-col'>
@@ -33,6 +32,7 @@ export default function Index() {
           </div>
         </div>
       </div>
+      <CategoriesSection />
     </div>
   );
 }

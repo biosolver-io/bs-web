@@ -1,6 +1,7 @@
 import {
   require_user
 } from "/build/_shared/chunk-CMWXK6I4.js";
+import "/build/_shared/chunk-XIBNGEOM.js";
 import {
   FaGoogle,
   FaLinkedin
@@ -11,7 +12,6 @@ import {
 import {
   require_session
 } from "/build/_shared/chunk-WLTRNBV5.js";
-import "/build/_shared/chunk-XIBNGEOM.js";
 import {
   Form,
   Link,
@@ -533,4 +533,4 @@ export {
   Register as default,
   meta
 };
-//# sourceMappingURL=/build/routes/register-W65FRCH4.js.map
+//# sourceMappingURL=/build/routes/register-ZKI7ZHBB.js.map

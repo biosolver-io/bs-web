@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
       <p>We may update this Privacy Policy from time to time. Users will be notified of any changes by posting the updated policy on our website.</p>
 
       <h2 className="mt-10 font-semibold text-lg">Contact Us</h2>
-      <p>If you have any questions or concerns about this Privacy Policy or our use of personal information, please contact us at <a href="mailto:sagar@bio-solver.com">sagar@bio-solver.com</a>.</p>
+      <p>If you have any questions or concerns about this Privacy Policy or our use of personal information, please contact us at <a href="mailto:info@biosolver.io">info@biosolver.io</a>.</p>
 
       <p className="text-sm mt-10 text-end">Date of last revision: 05.07.2023</p>
     </div>

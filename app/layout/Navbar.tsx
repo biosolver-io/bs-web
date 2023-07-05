@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { HiBars3, HiBell, HiXMark } from 'react-icons/hi2'
 import logoPng from '~/assets/images/logos/base.png'
-import { useMatches } from '@remix-run/react'
+import { Form, useMatches } from '@remix-run/react'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -197,13 +197,15 @@ export default function Navbar() {
                 >
                   Settings
                 </Disclosure.Button>
-                <Disclosure.Button
-                  as="a"
-                  href="logout"
-                  className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
-                >
-                  Sign out
-                </Disclosure.Button>
+                <Form action="/logout" method="post">
+                  <Disclosure.Button
+                    type='submit'
+                    className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+                  >
+                    Sign out
+                  </Disclosure.Button>
+                </Form>
+
               </div>
             </div>
           </Disclosure.Panel>
