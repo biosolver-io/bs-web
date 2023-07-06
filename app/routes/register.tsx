@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import { FaGoogle, FaLinkedin } from "react-icons/fa";
 import logoPng from "~/assets/images/logos/base.png";
 
-import { createUser, getUserByEmail } from "~/models/user.server";
+import { createUser, getUserByEmail, updateUserById } from "~/models/user.server";
 import { createRoles } from "~/models/userRole.server";
 import { createUserSession, getUserId } from "~/session.server";
 import { safeRedirect, validateEmail } from "~/utils";
@@ -23,6 +23,7 @@ export const action = async ({ request }: ActionArgs) => {
   const email = formData.get("email");
   const password = formData.get("password");
   const roles = formData.getAll("roles");
+  const referralCode = formData.get("referralCode");
   const redirectTo = safeRedirect(formData.get("redirectTo"), "/dashboard");
 
   console.log(email, password, roles)
@@ -62,6 +63,9 @@ export const action = async ({ request }: ActionArgs) => {
   }
 
   const user = await createUser(email, password);
+  if (referralCode && typeof referralCode === 'string') {
+    await updateUserById(user.id, { source: referralCode, sourceType: 'referral' })
+  }
   await createRoles(user.id, roles.map((role) => role.toString()));
 
   return createUserSession({
@@ -80,7 +84,7 @@ export default function Register() {
   const actionData = useActionData<typeof action>();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const rolesRef = useRef<HTMLInputElement>(null);
+  const referralCodeRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (actionData?.errors?.email) {
@@ -232,6 +236,24 @@ export default function Register() {
                       </div>
                     </div>
                   </fieldset>
+
+                  <div>
+                    <label
+                      htmlFor="referralCode"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Referral Code (optional)
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        ref={referralCodeRef}
+                        id="referralCode"                        
+                        autoFocus={true}
+                        name="referralCode"
+                        className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+                      />
+                    </div>
+                  </div>
 
                   <input type="hidden" name="redirectTo" value={redirectTo} />
                   <button

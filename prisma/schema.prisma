@@ -27,6 +27,8 @@ model User {
   avatar String?
   resume String?
   dateOfBirth DateTime?
+  sourceType String?
+  source String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -37,6 +39,19 @@ model User {
   roles    UserRole[]
   organizations Organization[]
   jobPostings JobPosting[]
+  referralCodes ReferralCode[]
+}
+
+model ReferralCode {
+  id    String @id @default(cuid())
+  code String @unique
+  used Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  ownerId String
 }
 
 model UserRole {
