@@ -5,7 +5,7 @@ import HeroSection from "~/layout/anon/home/HeroSection";
 
 import { useOptionalUser } from "~/utils";
 
-export const meta: V2_MetaFunction = () => [{ title: "Remix Notes" }];
+export const meta: V2_MetaFunction = () => [{ title: "Biosolver" }];
 
 export default function Index() {
   const user = useOptionalUser();
