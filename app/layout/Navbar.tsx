@@ -106,7 +106,7 @@ export default function Navbar() {
                           <Form action="/logout" method="post">
                             <button
                               type='submit'
-                              className={classNames(active ? 'bg-gray-100' : '', 'w-full block px-4 py-2 text-sm text-gray-700')}
+                              className={classNames(active ? 'bg-gray-100' : '', 'w-full text-start block px-4 py-2 text-sm text-gray-700')}
                             >
                               Sign out
                             </button>
