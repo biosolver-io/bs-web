@@ -103,12 +103,14 @@ export default function Navbar() {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="logout"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Sign out
-                          </a>
+                          <Form action="/logout" method="post">
+                            <button
+                              type='submit'
+                              className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            >
+                              Sign out
+                            </button>
+                          </Form>
                         )}
                       </Menu.Item>
                     </Menu.Items>
