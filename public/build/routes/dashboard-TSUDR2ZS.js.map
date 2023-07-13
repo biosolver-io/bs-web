@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../app/components/AppHeader.tsx", "../../../app/routes/dashboard.tsx"],
-  "sourcesContent": ["import { Link } from '@remix-run/react'\r\nimport logoPng from '~/assets/images/logos/base.png'\r\n\r\nexport default function AppHeader() {\r\n  return (\r\n    <div className=\"w-full mx-auto h-auto flex flex-row items-center\">\r\n      <img src={logoPng} alt=\"logo\" className=\"w-20 h-auto\" />\r\n      <Link to=\"/matches\">Your Matches</Link>\r\n      <Link to=\"/profile\">Profile</Link>\r\n    </div>\r\n  )\r\n}", "import { Outlet } from \"@remix-run/react\";\r\nimport AppHeader from \"~/components/AppHeader\";\r\n\r\n\r\nexport default function Dashboard() {\r\n  return (\r\n    <div>\r\n      <AppHeader />\r\n      <Outlet />      \r\n    </div>\r\n  )\r\n}"],
-  "mappings": ";;;;;;;;;;;;;;;AAMM;AAHS,SAAR,YAA6B;AAClC,SACE,mDAAC,SAAI,WAAU,oDACb;AAAA,uDAAC,SAAI,KAAK,cAAS,KAAI,QAAO,WAAU,iBAAxC;AAAA;AAAA;AAAA;AAAA,WAAsD;AAAA,IACtD,mDAAC,QAAK,IAAG,YAAW,4BAApB;AAAA;AAAA;AAAA;AAAA,WAAgC;AAAA,IAChC,mDAAC,QAAK,IAAG,YAAW,uBAApB;AAAA;AAAA;AAAA;AAAA,WAA2B;AAAA,OAH7B;AAAA;AAAA;AAAA;AAAA,SAIA;AAEJ;;;ACJM,IAAAA,0BAAA;AAHS,SAAR,YAA6B;AAClC,SACE,oDAAC,SACC;AAAA,wDAAC,eAAD;AAAA;AAAA;AAAA;AAAA,WAAW;AAAA,IACX,oDAAC,YAAD;AAAA;AAAA;AAAA;AAAA,WAAQ;AAAA,OAFV;AAAA;AAAA;AAAA;AAAA,SAGA;AAEJ;",
-  "names": ["import_jsx_dev_runtime"]
-}

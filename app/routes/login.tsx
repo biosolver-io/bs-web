@@ -64,7 +64,7 @@ export const meta: V2_MetaFunction = () => [{ title: "Login" }];
 
 export default function LoginPage() {
   const [searchParams] = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo") || "/notes";
+  const redirectTo = searchParams.get("redirectTo") || "/dashboard";
   const actionData = useActionData<typeof action>();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -142,7 +142,7 @@ export default function LoginPage() {
             <input type="hidden" name="redirectTo" value={redirectTo} />
             <button
               type="submit"
-              className="w-full rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-400"
+              className="w-full rounded bg-purple-500 px-4 py-2 text-white hover:bg-purple-600 focus:bg-purple-400"
             >
               Log in
             </button>
@@ -152,7 +152,7 @@ export default function LoginPage() {
                   id="remember"
                   name="remember"
                   type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  className="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                 />
                 <label
                   htmlFor="remember"
@@ -164,7 +164,7 @@ export default function LoginPage() {
               <div className="text-center text-sm text-gray-500">
                 Don't have an account?{" "}
                 <Link
-                  className="text-blue-500 underline"
+                  className="text-purple-500 underline"
                   to={{
                     pathname: "/register",
                     search: searchParams.toString(),

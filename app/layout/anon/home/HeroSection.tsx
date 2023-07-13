@@ -7,7 +7,7 @@ export default function HeroSection() {
     <section className="flex flex-wrap w-full h-full mx-auto">
       <HeroDecoration />
       <div className="w-full lg:w-1/2 flex flex-col">
-        <div className="text-start text-6xl my-auto font-semibold">
+        <div className="text-start text-4xl my-auto font-semibold">
           A global platform for remote freelancing work in Biotech & Pharma sectors
         </div>
         <Link to="/register" className="bg-purple-600 hover:bg-purple-800 px-10 rounded-md text-white text-center py-5 mt-10 w-[300px]">

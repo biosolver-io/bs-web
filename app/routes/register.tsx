@@ -20,6 +20,7 @@ export const loader = async ({ request }: LoaderArgs) => {
 export const action = async ({ request }: ActionArgs) => {
   const formData = await request.formData();
   console.log(formData)
+  const fullName = formData.get("fullName");
   const email = formData.get("email");
   const password = formData.get("password");
   const roles = formData.getAll("roles");
@@ -62,7 +63,7 @@ export const action = async ({ request }: ActionArgs) => {
     );
   }
 
-  const user = await createUser(email, password);
+  const user = await createUser(fullName as string, email, password);
   if (referralCode && typeof referralCode === 'string') {
     await updateUserById(user.id, { source: referralCode, sourceType: 'referral' })
   }
@@ -82,6 +83,7 @@ export default function Register() {
   const [searchParams] = useSearchParams();
   const redirectTo = searchParams.get("redirectTo") ?? undefined;
   const actionData = useActionData<typeof action>();
+  const fullNameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const referralCodeRef = useRef<HTMLInputElement>(null);
@@ -117,6 +119,26 @@ export default function Register() {
             <div className="mt-10">
               <div>
                 <Form method="post" className="space-y-6">
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Full Name
+                    </label>
+                    <div className="mt-1">
+                      <input
+                        ref={fullNameRef}
+                        id="fullName"
+                        required
+                        autoFocus={true}
+                        name="fullName"
+                        type="text"
+                        className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+                      />
+
+                    </div>
+                  </div>
                   <div>
                     <label
                       htmlFor="email"
@@ -247,7 +269,7 @@ export default function Register() {
                     <div className="mt-1">
                       <input
                         ref={referralCodeRef}
-                        id="referralCode"                        
+                        id="referralCode"
                         autoFocus={true}
                         name="referralCode"
                         className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
@@ -258,7 +280,7 @@ export default function Register() {
                   <input type="hidden" name="redirectTo" value={redirectTo} />
                   <button
                     type="submit"
-                    className="w-full rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-400"
+                    className="w-full rounded bg-purple-500 px-4 py-2 text-white hover:bg-purple-600 focus:bg-purple-400"
                   >
                     Create Account
                   </button>
@@ -266,7 +288,7 @@ export default function Register() {
                     <div className="text-center text-sm text-gray-500">
                       Already have an account?{" "}
                       <Link
-                        className="text-blue-500 underline"
+                        className="text-purple-500 underline"
                         to={{
                           pathname: "/login",
                           search: searchParams.toString(),
@@ -279,7 +301,7 @@ export default function Register() {
                 </Form>
               </div>
 
-              <div className="mt-10">
+              {/* <div className="mt-10">
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center" aria-hidden="true">
                     <div className="w-full border-t border-gray-200" />
@@ -306,7 +328,7 @@ export default function Register() {
                     <span className="text-sm font-semibold leading-6">LinkedIn</span>
                   </a>
                 </div>
-              </div>
+              </div> */}
             </div>
 
           </div>

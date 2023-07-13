@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/routes/reports.tsx"],
+  "sourcesContent": ["export default function ReportPage() {\r\n  return (\r\n    <div className=\"flex flex-row\">\r\n      Work in Progress\r\n    </div>\r\n  )\r\n}"],
+  "mappings": ";;;;;;;;AAEI;AAFW,SAAR,aAA8B;AACnC,SACE,mDAAC,SAAI,WAAU,iBAAgB,gCAA/B;AAAA;AAAA;AAAA;AAAA,SAEA;AAEJ;",
+  "names": []
+}

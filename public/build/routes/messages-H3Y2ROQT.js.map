@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/routes/messages.tsx"],
+  "sourcesContent": ["export default function MessagesPage() {\r\n  return (\r\n    <div className=\"flex flex-row\">\r\n      Work in Progress\r\n    </div>\r\n  )\r\n}"],
+  "mappings": ";;;;;;;;AAEI;AAFW,SAAR,eAAgC;AACrC,SACE,mDAAC,SAAI,WAAU,iBAAgB,gCAA/B;AAAA;AAAA;AAAA;AAAA,SAEA;AAEJ;",
+  "names": []
+}
