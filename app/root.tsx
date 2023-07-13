@@ -23,6 +23,7 @@ import { XMarkIcon, Cog6ToothIcon, Bars3Icon, MagnifyingGlassIcon, BellIcon, Che
 import { useState, Fragment } from "react";
 
 import userPng from '~/assets/images/user/User_128px.png'
+import logoPng from '~/assets/images/logos/base.png'
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -119,8 +120,8 @@ export default function App() {
                             <div className="flex h-16 shrink-0 items-center">
                               <img
                                 className="h-8 w-auto"
-                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                                alt="Your Company"
+                                src={logoPng}
+                                alt="Biosolver"
                               />
                             </div>
                             <nav className="flex flex-1 flex-col">
@@ -209,8 +210,8 @@ export default function App() {
                     <div className="flex h-16 shrink-0 items-center">
                       <img
                         className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                        alt="Your Company"
+                        src={logoPng}
+                        alt="Biosolver"
                       />
                     </div>
                     <nav className="flex flex-1 flex-col">

@@ -1,5 +1,5 @@
 import { LoaderArgs, json } from "@remix-run/node";
-import { Link } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { getNoteListItems } from "~/models/note.server";
 import { getUserById } from "~/models/user.server";
 import { requireUserId } from "~/session.server";
@@ -11,12 +11,14 @@ export const loader = async ({ request }: LoaderArgs) => {
 };
 
 export default function Dashboard() {
+  const loaderData = useLoaderData<typeof loader>();
+  const { user } = loaderData;
   const profileStrength = 'Incomplete';
   return (
     <div className="flex flex-row">
       <div className="w-3/4">
-        <h2 className="text-4xl text-gray-600">
-          Welcome back, { }
+        <h2 className="text-3xl text-gray-600">
+          Welcome back{", " + user?.fullName}
         </h2>
         <div className="mt-5 w-full flow-root p-5 bordered border-[1px] rounded-sm border-gray-200">
           <div className="float-left">

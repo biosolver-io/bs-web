@@ -954,27 +954,27 @@ function App() {
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("head", { children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("meta", { charSet: "utf-8" }, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 66,
+        lineNumber: 67,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("meta", { name: "viewport", content: "width=device-width,initial-scale=1" }, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 67,
+        lineNumber: 68,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react5.Meta, {}, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 68,
+        lineNumber: 69,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react5.Links, {}, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 69,
+        lineNumber: 70,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/root.tsx",
-      lineNumber: 65,
+      lineNumber: 66,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("body", { className: "w-full h-full font-display", children: [
@@ -992,7 +992,7 @@ function App() {
               leaveTo: "opacity-0",
               children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "fixed inset-0 bg-gray-900/80" }, void 0, !1, {
                 fileName: "app/root.tsx",
-                lineNumber: 87,
+                lineNumber: 88,
                 columnNumber: 23
               }, this)
             },
@@ -1000,7 +1000,7 @@ function App() {
             !1,
             {
               fileName: "app/root.tsx",
-              lineNumber: 78,
+              lineNumber: 79,
               columnNumber: 21
             },
             this
@@ -1029,21 +1029,21 @@ function App() {
                     children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "absolute left-full top-0 flex w-16 justify-center pt-5", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("button", { type: "button", className: "-m-2.5 p-2.5", onClick: () => setSidebarOpen(!1), children: [
                       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("span", { className: "sr-only", children: "Close sidebar" }, void 0, !1, {
                         fileName: "app/root.tsx",
-                        lineNumber: 112,
+                        lineNumber: 113,
                         columnNumber: 33
                       }, this),
                       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_outline2.XMarkIcon, { className: "h-6 w-6 text-white", "aria-hidden": "true" }, void 0, !1, {
                         fileName: "app/root.tsx",
-                        lineNumber: 113,
+                        lineNumber: 114,
                         columnNumber: 33
                       }, this)
                     ] }, void 0, !0, {
                       fileName: "app/root.tsx",
-                      lineNumber: 111,
+                      lineNumber: 112,
                       columnNumber: 31
                     }, this) }, void 0, !1, {
                       fileName: "app/root.tsx",
-                      lineNumber: 110,
+                      lineNumber: 111,
                       columnNumber: 29
                     }, this)
                   },
@@ -1051,7 +1051,7 @@ function App() {
                   !1,
                   {
                     fileName: "app/root.tsx",
-                    lineNumber: 101,
+                    lineNumber: 102,
                     columnNumber: 27
                   },
                   this
@@ -1061,20 +1061,20 @@ function App() {
                     "img",
                     {
                       className: "h-8 w-auto",
-                      src: "https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600",
-                      alt: "Your Company"
+                      src: base_default,
+                      alt: "Biosolver"
                     },
                     void 0,
                     !1,
                     {
                       fileName: "app/root.tsx",
-                      lineNumber: 120,
+                      lineNumber: 121,
                       columnNumber: 31
                     },
                     this
                   ) }, void 0, !1, {
                     fileName: "app/root.tsx",
-                    lineNumber: 119,
+                    lineNumber: 120,
                     columnNumber: 29
                   }, this),
                   /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("nav", { className: "flex flex-1 flex-col", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("ul", { role: "list", className: "flex flex-1 flex-col gap-y-7", children: [
@@ -1101,7 +1101,7 @@ function App() {
                               !1,
                               {
                                 fileName: "app/root.tsx",
-                                lineNumber: 141,
+                                lineNumber: 142,
                                 columnNumber: 43
                               },
                               this
@@ -1113,22 +1113,22 @@ function App() {
                         !0,
                         {
                           fileName: "app/root.tsx",
-                          lineNumber: 132,
+                          lineNumber: 133,
                           columnNumber: 41
                         },
                         this
                       ) }, item.name, !1, {
                         fileName: "app/root.tsx",
-                        lineNumber: 131,
+                        lineNumber: 132,
                         columnNumber: 35
                       }, this)
                     ) }, void 0, !1, {
                       fileName: "app/root.tsx",
-                      lineNumber: 129,
+                      lineNumber: 130,
                       columnNumber: 35
                     }, this) }, void 0, !1, {
                       fileName: "app/root.tsx",
-                      lineNumber: 128,
+                      lineNumber: 129,
                       columnNumber: 33
                     }, this),
                     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("li", { className: "mt-auto", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
@@ -1147,7 +1147,7 @@ function App() {
                             !1,
                             {
                               fileName: "app/root.tsx",
-                              lineNumber: 189,
+                              lineNumber: 190,
                               columnNumber: 37
                             },
                             this
@@ -1159,32 +1159,32 @@ function App() {
                       !0,
                       {
                         fileName: "app/root.tsx",
-                        lineNumber: 185,
+                        lineNumber: 186,
                         columnNumber: 35
                       },
                       this
                     ) }, void 0, !1, {
                       fileName: "app/root.tsx",
-                      lineNumber: 184,
+                      lineNumber: 185,
                       columnNumber: 33
                     }, this)
                   ] }, void 0, !0, {
                     fileName: "app/root.tsx",
-                    lineNumber: 127,
+                    lineNumber: 128,
                     columnNumber: 31
                   }, this) }, void 0, !1, {
                     fileName: "app/root.tsx",
-                    lineNumber: 126,
+                    lineNumber: 127,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
                   fileName: "app/root.tsx",
-                  lineNumber: 118,
+                  lineNumber: 119,
                   columnNumber: 27
                 }, this)
               ] }, void 0, !0, {
                 fileName: "app/root.tsx",
-                lineNumber: 100,
+                lineNumber: 101,
                 columnNumber: 25
               }, this)
             },
@@ -1192,22 +1192,22 @@ function App() {
             !1,
             {
               fileName: "app/root.tsx",
-              lineNumber: 91,
+              lineNumber: 92,
               columnNumber: 23
             },
             this
           ) }, void 0, !1, {
             fileName: "app/root.tsx",
-            lineNumber: 90,
+            lineNumber: 91,
             columnNumber: 21
           }, this)
         ] }, void 0, !0, {
           fileName: "app/root.tsx",
-          lineNumber: 77,
+          lineNumber: 78,
           columnNumber: 19
         }, this) }, void 0, !1, {
           fileName: "app/root.tsx",
-          lineNumber: 76,
+          lineNumber: 77,
           columnNumber: 17
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4", children: [
@@ -1215,20 +1215,20 @@ function App() {
             "img",
             {
               className: "h-8 w-auto",
-              src: "https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600",
-              alt: "Your Company"
+              src: base_default,
+              alt: "Biosolver"
             },
             void 0,
             !1,
             {
               fileName: "app/root.tsx",
-              lineNumber: 210,
+              lineNumber: 211,
               columnNumber: 23
             },
             this
           ) }, void 0, !1, {
             fileName: "app/root.tsx",
-            lineNumber: 209,
+            lineNumber: 210,
             columnNumber: 21
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("nav", { className: "flex flex-1 flex-col", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("ul", { role: "list", className: "flex flex-1 flex-col gap-y-7", children: [
@@ -1255,7 +1255,7 @@ function App() {
                       !1,
                       {
                         fileName: "app/root.tsx",
-                        lineNumber: 231,
+                        lineNumber: 232,
                         columnNumber: 35
                       },
                       this
@@ -1267,22 +1267,22 @@ function App() {
                 !0,
                 {
                   fileName: "app/root.tsx",
-                  lineNumber: 222,
+                  lineNumber: 223,
                   columnNumber: 33
                 },
                 this
               ) }, item.name, !1, {
                 fileName: "app/root.tsx",
-                lineNumber: 221,
+                lineNumber: 222,
                 columnNumber: 27
               }, this)
             ) }, void 0, !1, {
               fileName: "app/root.tsx",
-              lineNumber: 219,
+              lineNumber: 220,
               columnNumber: 27
             }, this) }, void 0, !1, {
               fileName: "app/root.tsx",
-              lineNumber: 218,
+              lineNumber: 219,
               columnNumber: 25
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("li", { className: "mt-auto", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
@@ -1301,7 +1301,7 @@ function App() {
                     !1,
                     {
                       fileName: "app/root.tsx",
-                      lineNumber: 279,
+                      lineNumber: 280,
                       columnNumber: 29
                     },
                     this
@@ -1313,31 +1313,31 @@ function App() {
               !0,
               {
                 fileName: "app/root.tsx",
-                lineNumber: 275,
+                lineNumber: 276,
                 columnNumber: 27
               },
               this
             ) }, void 0, !1, {
               fileName: "app/root.tsx",
-              lineNumber: 274,
+              lineNumber: 275,
               columnNumber: 25
             }, this)
           ] }, void 0, !0, {
             fileName: "app/root.tsx",
-            lineNumber: 217,
+            lineNumber: 218,
             columnNumber: 23
           }, this) }, void 0, !1, {
             fileName: "app/root.tsx",
-            lineNumber: 216,
+            lineNumber: 217,
             columnNumber: 21
           }, this)
         ] }, void 0, !0, {
           fileName: "app/root.tsx",
-          lineNumber: 208,
+          lineNumber: 209,
           columnNumber: 19
         }, this) }, void 0, !1, {
           fileName: "app/root.tsx",
-          lineNumber: 206,
+          lineNumber: 207,
           columnNumber: 17
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "lg:pl-72", children: [
@@ -1351,12 +1351,12 @@ function App() {
                 children: [
                   /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("span", { className: "sr-only", children: "Open sidebar" }, void 0, !1, {
                     fileName: "app/root.tsx",
-                    lineNumber: 299,
+                    lineNumber: 300,
                     columnNumber: 25
                   }, this),
                   /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_outline2.Bars3Icon, { className: "h-6 w-6", "aria-hidden": "true" }, void 0, !1, {
                     fileName: "app/root.tsx",
-                    lineNumber: 300,
+                    lineNumber: 301,
                     columnNumber: 25
                   }, this)
                 ]
@@ -1365,21 +1365,21 @@ function App() {
               !0,
               {
                 fileName: "app/root.tsx",
-                lineNumber: 294,
+                lineNumber: 295,
                 columnNumber: 23
               },
               this
             ),
             /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "h-6 w-px bg-gray-200 lg:hidden", "aria-hidden": "true" }, void 0, !1, {
               fileName: "app/root.tsx",
-              lineNumber: 304,
+              lineNumber: 305,
               columnNumber: 23
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "flex flex-1 gap-x-4 self-stretch lg:gap-x-6", children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("form", { className: "relative flex flex-1", action: "#", method: "GET", children: [
                 /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("label", { htmlFor: "search-field", className: "sr-only", children: "Search" }, void 0, !1, {
                   fileName: "app/root.tsx",
-                  lineNumber: 308,
+                  lineNumber: 309,
                   columnNumber: 27
                 }, this),
                 /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
@@ -1392,7 +1392,7 @@ function App() {
                   !1,
                   {
                     fileName: "app/root.tsx",
-                    lineNumber: 311,
+                    lineNumber: 312,
                     columnNumber: 27
                   },
                   this
@@ -1410,43 +1410,43 @@ function App() {
                   !1,
                   {
                     fileName: "app/root.tsx",
-                    lineNumber: 315,
+                    lineNumber: 316,
                     columnNumber: 27
                   },
                   this
                 )
               ] }, void 0, !0, {
                 fileName: "app/root.tsx",
-                lineNumber: 307,
+                lineNumber: 308,
                 columnNumber: 25
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "flex items-center gap-x-4 lg:gap-x-6", children: [
                 /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("button", { type: "button", className: "-m-2.5 p-2.5 text-gray-400 hover:text-gray-500", children: [
                   /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("span", { className: "sr-only", children: "View notifications" }, void 0, !1, {
                     fileName: "app/root.tsx",
-                    lineNumber: 325,
+                    lineNumber: 326,
                     columnNumber: 29
                   }, this),
                   /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_outline2.BellIcon, { className: "h-6 w-6", "aria-hidden": "true" }, void 0, !1, {
                     fileName: "app/root.tsx",
-                    lineNumber: 326,
+                    lineNumber: 327,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
                   fileName: "app/root.tsx",
-                  lineNumber: 324,
+                  lineNumber: 325,
                   columnNumber: 27
                 }, this),
                 /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200", "aria-hidden": "true" }, void 0, !1, {
                   fileName: "app/root.tsx",
-                  lineNumber: 330,
+                  lineNumber: 331,
                   columnNumber: 27
                 }, this),
                 /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react6.Menu, { as: "div", className: "relative", children: [
                   /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react6.Menu.Button, { className: "-m-1.5 flex items-center p-1.5", children: [
                     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("span", { className: "sr-only", children: "Open user menu" }, void 0, !1, {
                       fileName: "app/root.tsx",
-                      lineNumber: 335,
+                      lineNumber: 336,
                       columnNumber: 31
                     }, this),
                     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
@@ -1460,7 +1460,7 @@ function App() {
                       !1,
                       {
                         fileName: "app/root.tsx",
-                        lineNumber: 336,
+                        lineNumber: 337,
                         columnNumber: 31
                       },
                       this
@@ -1468,22 +1468,22 @@ function App() {
                     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("span", { className: "hidden lg:flex lg:items-center", children: [
                       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("span", { className: "ml-4 text-sm font-semibold leading-6 text-gray-900", "aria-hidden": "true" }, void 0, !1, {
                         fileName: "app/root.tsx",
-                        lineNumber: 342,
+                        lineNumber: 343,
                         columnNumber: 33
                       }, this),
                       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_outline2.ChevronDownIcon, { className: "ml-2 h-5 w-5 text-gray-400", "aria-hidden": "true" }, void 0, !1, {
                         fileName: "app/root.tsx",
-                        lineNumber: 344,
+                        lineNumber: 345,
                         columnNumber: 33
                       }, this)
                     ] }, void 0, !0, {
                       fileName: "app/root.tsx",
-                      lineNumber: 341,
+                      lineNumber: 342,
                       columnNumber: 31
                     }, this)
                   ] }, void 0, !0, {
                     fileName: "app/root.tsx",
-                    lineNumber: 334,
+                    lineNumber: 335,
                     columnNumber: 29
                   }, this),
                   /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
@@ -1511,13 +1511,13 @@ function App() {
                           !1,
                           {
                             fileName: "app/root.tsx",
-                            lineNumber: 359,
+                            lineNumber: 360,
                             columnNumber: 33
                           },
                           this
                         ) }, void 0, !1, {
                           fileName: "app/root.tsx",
-                          lineNumber: 357,
+                          lineNumber: 358,
                           columnNumber: 33
                         }, this),
                         /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react6.Menu.Item, { children: ({ active }) => /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react5.Form, { method: "POST", action: "/logout", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
@@ -1534,22 +1534,22 @@ function App() {
                           !1,
                           {
                             fileName: "app/root.tsx",
-                            lineNumber: 373,
+                            lineNumber: 374,
                             columnNumber: 39
                           },
                           this
                         ) }, void 0, !1, {
                           fileName: "app/root.tsx",
-                          lineNumber: 372,
+                          lineNumber: 373,
                           columnNumber: 33
                         }, this) }, void 0, !1, {
                           fileName: "app/root.tsx",
-                          lineNumber: 370,
+                          lineNumber: 371,
                           columnNumber: 33
                         }, this)
                       ] }, void 0, !0, {
                         fileName: "app/root.tsx",
-                        lineNumber: 356,
+                        lineNumber: 357,
                         columnNumber: 31
                       }, this)
                     },
@@ -1557,109 +1557,109 @@ function App() {
                     !1,
                     {
                       fileName: "app/root.tsx",
-                      lineNumber: 347,
+                      lineNumber: 348,
                       columnNumber: 29
                     },
                     this
                   )
                 ] }, void 0, !0, {
                   fileName: "app/root.tsx",
-                  lineNumber: 333,
+                  lineNumber: 334,
                   columnNumber: 27
                 }, this)
               ] }, void 0, !0, {
                 fileName: "app/root.tsx",
-                lineNumber: 323,
+                lineNumber: 324,
                 columnNumber: 25
               }, this)
             ] }, void 0, !0, {
               fileName: "app/root.tsx",
-              lineNumber: 306,
+              lineNumber: 307,
               columnNumber: 23
             }, this)
           ] }, void 0, !0, {
             fileName: "app/root.tsx",
-            lineNumber: 293,
+            lineNumber: 294,
             columnNumber: 21
           }, this) }, void 0, !1, {
             fileName: "app/root.tsx",
-            lineNumber: 292,
+            lineNumber: 293,
             columnNumber: 19
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("main", { className: "py-10", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react5.Outlet, {}, void 0, !1, {
             fileName: "app/root.tsx",
-            lineNumber: 395,
+            lineNumber: 396,
             columnNumber: 23
           }, this) }, void 0, !1, {
             fileName: "app/root.tsx",
-            lineNumber: 394,
+            lineNumber: 395,
             columnNumber: 21
           }, this) }, void 0, !1, {
             fileName: "app/root.tsx",
-            lineNumber: 393,
+            lineNumber: 394,
             columnNumber: 19
           }, this)
         ] }, void 0, !0, {
           fileName: "app/root.tsx",
-          lineNumber: 291,
+          lineNumber: 292,
           columnNumber: 17
         }, this)
       ] }, void 0, !0, {
         fileName: "app/root.tsx",
-        lineNumber: 75,
+        lineNumber: 76,
         columnNumber: 15
       }, this) }, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 74,
+        lineNumber: 75,
         columnNumber: 13
       }, this) }, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 73,
+        lineNumber: 74,
         columnNumber: 16
       }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "max-w-7xl mx-auto w-full", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Header, {}, void 0, !1, {
           fileName: "app/root.tsx",
-          lineNumber: 403,
+          lineNumber: 404,
           columnNumber: 15
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react5.Outlet, {}, void 0, !1, {
           fileName: "app/root.tsx",
-          lineNumber: 404,
+          lineNumber: 405,
           columnNumber: 15
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Footer, {}, void 0, !1, {
           fileName: "app/root.tsx",
-          lineNumber: 405,
+          lineNumber: 406,
           columnNumber: 15
         }, this)
       ] }, void 0, !0, {
         fileName: "app/root.tsx",
-        lineNumber: 402,
+        lineNumber: 403,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react5.ScrollRestoration, {}, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 409,
+        lineNumber: 410,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react5.Scripts, {}, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 410,
+        lineNumber: 411,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react5.LiveReload, {}, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 411,
+        lineNumber: 412,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/root.tsx",
-      lineNumber: 71,
+      lineNumber: 72,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/root.tsx",
-    lineNumber: 64,
+    lineNumber: 65,
     columnNumber: 5
   }, this);
 }
@@ -4697,54 +4697,58 @@ var import_jsx_dev_runtime30 = require("react/jsx-dev-runtime"), loader4 = async
   return (0, import_node5.json)({ user });
 };
 function Dashboard() {
+  let loaderData = (0, import_react16.useLoaderData)(), { user } = loaderData, profileStrength = "Incomplete";
   return /* @__PURE__ */ (0, import_jsx_dev_runtime30.jsxDEV)("div", { className: "flex flex-row", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime30.jsxDEV)("div", { className: "w-3/4", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime30.jsxDEV)("h2", { className: "text-4xl text-gray-600", children: "Welcome back, " }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime30.jsxDEV)("h2", { className: "text-3xl text-gray-600", children: [
+        "Welcome back",
+        ", " + (user == null ? void 0 : user.fullName)
+      ] }, void 0, !0, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 18,
+        lineNumber: 20,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime30.jsxDEV)("div", { className: "mt-5 w-full flow-root p-5 bordered border-[1px] rounded-sm border-gray-200", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime30.jsxDEV)("div", { className: "float-left", children: [
           "Profile Strength: ",
-          /* @__PURE__ */ (0, import_jsx_dev_runtime30.jsxDEV)("span", { className: "text-purple-600", children: "Incomplete" }, void 0, !1, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime30.jsxDEV)("span", { className: "text-purple-600", children: profileStrength }, void 0, !1, {
             fileName: "app/routes/dashboard.tsx",
-            lineNumber: 23,
+            lineNumber: 25,
             columnNumber: 31
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime30.jsxDEV)("div", { className: "text-purple-600", children: "Please complete your talent profile to enable all the features" }, void 0, !1, {
             fileName: "app/routes/dashboard.tsx",
-            lineNumber: 24,
+            lineNumber: 26,
             columnNumber: 13
           }, this)
         ] }, void 0, !0, {
           fileName: "app/routes/dashboard.tsx",
-          lineNumber: 22,
+          lineNumber: 24,
           columnNumber: 11
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime30.jsxDEV)(import_react16.Link, { to: "/profile", className: "float-right px-5 py-2 bg-purple-600 text-white rounded-sm hover:bg-purple-800", children: "Edit Profile" }, void 0, !1, {
           fileName: "app/routes/dashboard.tsx",
-          lineNumber: 27,
+          lineNumber: 29,
           columnNumber: 11
         }, this)
       ] }, void 0, !0, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 21,
+        lineNumber: 23,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/dashboard.tsx",
-      lineNumber: 17,
+      lineNumber: 19,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime30.jsxDEV)("div", { className: "w-1/4", children: " Right" }, void 0, !1, {
       fileName: "app/routes/dashboard.tsx",
-      lineNumber: 30,
+      lineNumber: 32,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/dashboard.tsx",
-    lineNumber: 16,
+    lineNumber: 18,
     columnNumber: 5
   }, this);
 }
@@ -6374,7 +6378,7 @@ function NotesPage() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-2YKYABTC.js", imports: ["/build/_shared/chunk-YUUU2RAQ.js", "/build/_shared/chunk-SGSFRA2X.js", "/build/_shared/chunk-HYDBX6IC.js", "/build/_shared/chunk-IU43IUTG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-SO3YXH5T.js", imports: ["/build/_shared/chunk-JVNGUFS4.js", "/build/_shared/chunk-WLTRNBV5.js", "/build/_shared/chunk-DZY5WEHX.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-V5SGEZLG.js", imports: ["/build/_shared/chunk-XIBNGEOM.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/calendar": { id: "routes/calendar", parentId: "root", path: "calendar", index: void 0, caseSensitive: void 0, module: "/build/routes/calendar-2HT3ZEXN.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/contact-us": { id: "routes/contact-us", parentId: "root", path: "contact-us", index: void 0, caseSensitive: void 0, module: "/build/routes/contact-us-TPYK572Q.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dashboard": { id: "routes/dashboard", parentId: "root", path: "dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/dashboard-BHZP3FD6.js", imports: ["/build/_shared/chunk-CMWXK6I4.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/documents": { id: "routes/documents", parentId: "root", path: "documents", index: void 0, caseSensitive: void 0, module: "/build/routes/documents-DDZFG3ZZ.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-seekers": { id: "routes/for-seekers", parentId: "root", path: "for-seekers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-seekers-BCZMR64W.js", imports: ["/build/_shared/chunk-ZQB6JNLZ.js", "/build/_shared/chunk-XIBNGEOM.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-solvers": { id: "routes/for-solvers", parentId: "root", path: "for-solvers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-solvers-LAA2NDSX.js", imports: ["/build/_shared/chunk-ZQB6JNLZ.js", "/build/_shared/chunk-XIBNGEOM.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/healthcheck": { id: "routes/healthcheck", parentId: "root", path: "healthcheck", index: void 0, caseSensitive: void 0, module: "/build/routes/healthcheck-JO7RAI4L.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-ZL572MGH.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-XIBNGEOM.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/logout": { id: "routes/logout", parentId: "root", path: "logout", index: void 0, caseSensitive: void 0, module: "/build/routes/logout-S5LWYBEX.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/matches": { id: "routes/matches", parentId: "root", path: "matches", index: void 0, caseSensitive: void 0, module: "/build/routes/matches-3FDE2QYX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/messages": { id: "routes/messages", parentId: "root", path: "messages", index: void 0, caseSensitive: void 0, module: "/build/routes/messages-H3Y2ROQT.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes": { id: "routes/notes", parentId: "root", path: "notes", index: void 0, caseSensitive: void 0, module: "/build/routes/notes-CZIOH5NP.js", imports: ["/build/_shared/chunk-OLP4QJ4K.js", "/build/_shared/chunk-XIBNGEOM.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.$noteId": { id: "routes/notes.$noteId", parentId: "routes/notes", path: ":noteId", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.$noteId-FEUWAUUZ.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/notes._index": { id: "routes/notes._index", parentId: "routes/notes", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/notes._index-HIVNQGXR.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.new": { id: "routes/notes.new", parentId: "routes/notes", path: "new", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.new-4GRWDCON.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/privacy-policy": { id: "routes/privacy-policy", parentId: "root", path: "privacy-policy", index: void 0, caseSensitive: void 0, module: "/build/routes/privacy-policy-JC4P6KVS.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile": { id: "routes/profile", parentId: "root", path: "profile", index: void 0, caseSensitive: void 0, module: "/build/routes/profile-63YCTU63.js", imports: ["/build/_shared/chunk-XIBNGEOM.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile._index": { id: "routes/profile._index", parentId: "routes/profile", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/profile._index-7HQ7LSSD.js", imports: ["/build/_shared/chunk-5R6Y3HSJ.js", "/build/_shared/chunk-ZI3VNW5U.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education": { id: "routes/profile.education", parentId: "routes/profile", path: "education", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education-X52XZ7M6.js", imports: ["/build/_shared/chunk-ZI3VNW5U.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education.degree.new": { id: "routes/profile.education.degree.new", parentId: "routes/profile.education", path: "degree/new", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education.degree.new-ZQUWQTBH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.personal": { id: "routes/profile.personal", parentId: "routes/profile", path: "personal", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.personal-RYRIUBSQ.js", imports: ["/build/_shared/chunk-5R6Y3HSJ.js", "/build/_shared/chunk-ZI3VNW5U.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.skills": { id: "routes/profile.skills", parentId: "routes/profile", path: "skills", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.skills-TAYNLEWC.js", imports: ["/build/_shared/chunk-ZI3VNW5U.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.work": { id: "routes/profile.work", parentId: "routes/profile", path: "work", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.work-IYS2HB76.js", imports: ["/build/_shared/chunk-ZI3VNW5U.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/register": { id: "routes/register", parentId: "root", path: "register", index: void 0, caseSensitive: void 0, module: "/build/routes/register-R6ST4FTA.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-XIBNGEOM.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/reports": { id: "routes/reports", parentId: "root", path: "reports", index: void 0, caseSensitive: void 0, module: "/build/routes/reports-XNV3LFFP.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/terms-and-conditions": { id: "routes/terms-and-conditions", parentId: "root", path: "terms-and-conditions", index: void 0, caseSensitive: void 0, module: "/build/routes/terms-and-conditions-QKWGD4G5.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "cf06ef66", hmr: void 0, url: "/build/manifest-CF06EF66.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-2YKYABTC.js", imports: ["/build/_shared/chunk-YUUU2RAQ.js", "/build/_shared/chunk-SGSFRA2X.js", "/build/_shared/chunk-HYDBX6IC.js", "/build/_shared/chunk-IU43IUTG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-AK5Y5N5B.js", imports: ["/build/_shared/chunk-JVNGUFS4.js", "/build/_shared/chunk-WLTRNBV5.js", "/build/_shared/chunk-DZY5WEHX.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-V5SGEZLG.js", imports: ["/build/_shared/chunk-XIBNGEOM.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/calendar": { id: "routes/calendar", parentId: "root", path: "calendar", index: void 0, caseSensitive: void 0, module: "/build/routes/calendar-2HT3ZEXN.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/contact-us": { id: "routes/contact-us", parentId: "root", path: "contact-us", index: void 0, caseSensitive: void 0, module: "/build/routes/contact-us-TPYK572Q.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dashboard": { id: "routes/dashboard", parentId: "root", path: "dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/dashboard-YMUGVOHI.js", imports: ["/build/_shared/chunk-CMWXK6I4.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/documents": { id: "routes/documents", parentId: "root", path: "documents", index: void 0, caseSensitive: void 0, module: "/build/routes/documents-DDZFG3ZZ.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-seekers": { id: "routes/for-seekers", parentId: "root", path: "for-seekers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-seekers-BCZMR64W.js", imports: ["/build/_shared/chunk-ZQB6JNLZ.js", "/build/_shared/chunk-XIBNGEOM.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-solvers": { id: "routes/for-solvers", parentId: "root", path: "for-solvers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-solvers-LAA2NDSX.js", imports: ["/build/_shared/chunk-ZQB6JNLZ.js", "/build/_shared/chunk-XIBNGEOM.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/healthcheck": { id: "routes/healthcheck", parentId: "root", path: "healthcheck", index: void 0, caseSensitive: void 0, module: "/build/routes/healthcheck-JO7RAI4L.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-ZL572MGH.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-XIBNGEOM.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/logout": { id: "routes/logout", parentId: "root", path: "logout", index: void 0, caseSensitive: void 0, module: "/build/routes/logout-S5LWYBEX.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/matches": { id: "routes/matches", parentId: "root", path: "matches", index: void 0, caseSensitive: void 0, module: "/build/routes/matches-3FDE2QYX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/messages": { id: "routes/messages", parentId: "root", path: "messages", index: void 0, caseSensitive: void 0, module: "/build/routes/messages-H3Y2ROQT.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes": { id: "routes/notes", parentId: "root", path: "notes", index: void 0, caseSensitive: void 0, module: "/build/routes/notes-CZIOH5NP.js", imports: ["/build/_shared/chunk-OLP4QJ4K.js", "/build/_shared/chunk-XIBNGEOM.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.$noteId": { id: "routes/notes.$noteId", parentId: "routes/notes", path: ":noteId", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.$noteId-FEUWAUUZ.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/notes._index": { id: "routes/notes._index", parentId: "routes/notes", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/notes._index-HIVNQGXR.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.new": { id: "routes/notes.new", parentId: "routes/notes", path: "new", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.new-4GRWDCON.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/privacy-policy": { id: "routes/privacy-policy", parentId: "root", path: "privacy-policy", index: void 0, caseSensitive: void 0, module: "/build/routes/privacy-policy-JC4P6KVS.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile": { id: "routes/profile", parentId: "root", path: "profile", index: void 0, caseSensitive: void 0, module: "/build/routes/profile-63YCTU63.js", imports: ["/build/_shared/chunk-XIBNGEOM.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile._index": { id: "routes/profile._index", parentId: "routes/profile", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/profile._index-7HQ7LSSD.js", imports: ["/build/_shared/chunk-5R6Y3HSJ.js", "/build/_shared/chunk-ZI3VNW5U.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education": { id: "routes/profile.education", parentId: "routes/profile", path: "education", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education-X52XZ7M6.js", imports: ["/build/_shared/chunk-ZI3VNW5U.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education.degree.new": { id: "routes/profile.education.degree.new", parentId: "routes/profile.education", path: "degree/new", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education.degree.new-ZQUWQTBH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.personal": { id: "routes/profile.personal", parentId: "routes/profile", path: "personal", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.personal-RYRIUBSQ.js", imports: ["/build/_shared/chunk-5R6Y3HSJ.js", "/build/_shared/chunk-ZI3VNW5U.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.skills": { id: "routes/profile.skills", parentId: "routes/profile", path: "skills", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.skills-TAYNLEWC.js", imports: ["/build/_shared/chunk-ZI3VNW5U.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.work": { id: "routes/profile.work", parentId: "routes/profile", path: "work", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.work-IYS2HB76.js", imports: ["/build/_shared/chunk-ZI3VNW5U.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/register": { id: "routes/register", parentId: "root", path: "register", index: void 0, caseSensitive: void 0, module: "/build/routes/register-R6ST4FTA.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-XIBNGEOM.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/reports": { id: "routes/reports", parentId: "root", path: "reports", index: void 0, caseSensitive: void 0, module: "/build/routes/reports-XNV3LFFP.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/terms-and-conditions": { id: "routes/terms-and-conditions", parentId: "root", path: "terms-and-conditions", index: void 0, caseSensitive: void 0, module: "/build/routes/terms-and-conditions-QKWGD4G5.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "d93065b0", hmr: void 0, url: "/build/manifest-D93065B0.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, v2_errorBoundary: !0, v2_headers: !0, v2_meta: !0, v2_normalizeFormMethod: !0, v2_routeConvention: !0 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
