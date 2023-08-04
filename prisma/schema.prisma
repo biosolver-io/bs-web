@@ -86,16 +86,29 @@ model Note {
 
 model Degree {
   id    String @id @default(cuid())
-  level String
-  field  String
-  school  String
-  country  String
-  start  DateTime
-  end  DateTime
-  ongoing Boolean
 
+  level String
+  major  String
+
+  school  String
+  country  String?
+  stateOrCity String?
+
+  startYear Int?
+  startMonth Int?
+  endYear Int?
+  endMonth Int?  
+  ongoing Boolean? @default(false)
+
+  assessmentFormat String?
+  grade String?
+  hasEca Boolean?
+  ecaAuthority String?
+  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  
+  isTemp Boolean @default(true)
 
   user   User   @relation(fields: [userId], references: [id])
   userId String
@@ -104,13 +117,17 @@ model Degree {
 }
 
 model Accomplishment {
-  id    String @id @default(cuid())
-  name String
-  certificate  String
-  title String
-  link String
-  organization String
-  identifier String
+  id    String @id @default(cuid())  
+  documentUrl  String?
+  title String?
+  link String?
+  objective String?
+  organization String?
+  publisher String?
+  type String?
+  details String?
+  category String?
+  status String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

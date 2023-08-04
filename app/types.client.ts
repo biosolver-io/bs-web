@@ -1,20 +1,26 @@
-export interface Degree {
-  name?: string;
-  field?: string;
+import { Prisma } from "@prisma/client";
+
+export type Degree = Prisma.DegreeGetPayload<{
+  include: {
+    accomplishments: true;
+  }
+}>;
+
+export interface WorkExperience {
+  company?: string;  
+  role?: string;
+  roleType?: string;
   country?: string;
-  university?: string;
+  city?: string;
+  stateOrProvince?: string;
   start?: string;
   end?: string;
-  currentlyStudying?: boolean;
+  currentlyWorking?: boolean;
   accomplishments?: Accomplishment[];
+  highlights?: string[];
+  skills?: string[];
+  domains?: string[];
+  subdomains?: string[];
 }
 
-export interface Accomplishment {
-  name?: string;
-  type?: string;
-  certificate?: FileList;
-  link?: string;
-  id?: string;
-  publisher?: string;
-  title?: string;
-}
+export type Accomplishment = Prisma.AccomplishmentGetPayload<{}>;

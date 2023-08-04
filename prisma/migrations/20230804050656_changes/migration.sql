@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Degree" ALTER COLUMN "country" DROP NOT NULL,
+ALTER COLUMN "stateOrCity" DROP NOT NULL;

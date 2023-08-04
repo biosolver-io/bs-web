@@ -1,0 +1,7 @@
+-- AlterTable
+ALTER TABLE "Accomplishment" ALTER COLUMN "name" DROP NOT NULL,
+ALTER COLUMN "certificate" DROP NOT NULL,
+ALTER COLUMN "title" DROP NOT NULL,
+ALTER COLUMN "link" DROP NOT NULL,
+ALTER COLUMN "organization" DROP NOT NULL,
+ALTER COLUMN "identifier" DROP NOT NULL;

@@ -12,10 +12,10 @@ export const loader = async ({ request }: LoaderArgs) => {
 };
 
 const tabs = [
-  { name: 'Personal', href: '#', current: false },
-  { name: 'Education', href: '#', current: false },
-  { name: 'Work', href: '#', current: false },
-  { name: 'Skills', href: '#', current: true },
+  { name: 'Personal', href: 'personal', current: false },
+  { name: 'Education', href: 'education', current: false },
+  { name: 'Work', href: 'work', current: false },
+  { name: 'Skills', href: 'skills', current: true },
 ]
 
 type ProfileTab = 'Education' | 'Work' | 'Skills' | 'Personal'
@@ -34,27 +34,13 @@ export function Tabs({
           Select a tab
         </label>
         {/* Use an "onChange" listener to redirect the user to the selected tab URL. */}
-        <select
-          id="tabs"
-          name="tabs"
-          className="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
-          value={selectedTab}
-          onChange={(event) => {
-            event.preventDefault()
-            // @ts-ignore
-            changeTab(event.target.value)
-          }}
-        >
-          {tabs.map((tab) => (
-
-            <Link to="education" className="block p-4 text-xl text-blue-500">
-              <option key={tab.name}>
-                {tab.name}
-              </option>
-            </Link>
-
-          ))}
-        </select>
+        {tabs.map((tab) => (
+          <Link key={tab.name} to={tab.href} className="block p-4 text-xl text-blue-500">
+            <div>
+              {tab.name}
+            </div>
+          </Link>
+        ))}
       </div>
       <div className="hidden sm:block">
         <div className="border-b border-gray-200">

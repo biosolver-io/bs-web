@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/assets/data/assessmentFormats.ts"],
+  "sourcesContent": ["export default [\r\n  \"Not Applicable\",\r\n  \"Percentage\",\r\n  \"Percentile\",\r\n  \"GPA\",\r\n  \"CGPA\",\r\n  \"Letter Grades\",\r\n  \"Bologna Process\",\r\n  \"Narrative Assessment\",\r\n  \"Other\"\r\n]"],
+  "mappings": ";AAAA,IAAO,4BAAQ;AAAA,EACb;AAAA,EACA;AAAA,EACA;AAAA,EACA;AAAA,EACA;AAAA,EACA;AAAA,EACA;AAAA,EACA;AAAA,EACA;AACF;",
+  "names": []
+}

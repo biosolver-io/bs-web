@@ -3,6 +3,7 @@ import type { LinksFunction, LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Form,
+  Link,
   Links,
   LiveReload,
   Meta,
@@ -30,18 +31,17 @@ export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ];
 
-export const loader = async ({ request }: LoaderArgs) => {
-  console.log({ user: await getUser(request) })
+export const loader = async ({ request }: LoaderArgs) => {  
   return json({ user: await getUser(request) });
 };
 
 const navigation = [
-  { name: 'Dashboard', href: 'dashboard', icon: HomeIcon, current: true },
-  { name: 'Your Matches', href: 'matches', icon: UsersIcon, current: false },
-  { name: 'Messages', href: 'messages', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: 'calendar', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: 'documents', icon: DocumentDuplicateIcon, current: false },
-  { name: 'Reports', href: 'reports', icon: ChartPieIcon, current: false },
+  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true },
+  { name: 'Your Matches', href: '/matches', icon: UsersIcon, current: false },
+  { name: 'Messages', href: '/messages', icon: FolderIcon, current: false },
+  { name: 'Calendar', href: '/calendar', icon: CalendarIcon, current: false },
+  { name: 'Documents', href: '/documents', icon: DocumentDuplicateIcon, current: false },
+  { name: 'Reports', href: '/reports', icon: ChartPieIcon, current: false },
 ]
 const teams = [
   { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
@@ -130,15 +130,12 @@ export default function App() {
                                   <ul role="list" className="-mx-2 space-y-1">
                                     {navigation.map((item) => (
                                       <li key={item.name}>
-                                        <a
-                                          href={item.href}
-                                          className={classNames(
-                                            item.current
-                                              ? 'bg-gray-50 text-indigo-600'
-                                              : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
-                                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                                          )}
-                                        >
+                                        <Link to={item.href} className={classNames(
+                                          item.current
+                                            ? 'bg-gray-50 text-indigo-600'
+                                            : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                                          'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                                        )}>
                                           <item.icon
                                             className={classNames(
                                               item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
@@ -147,7 +144,7 @@ export default function App() {
                                             aria-hidden="true"
                                           />
                                           {item.name}
-                                        </a>
+                                        </Link>
                                       </li>
                                     ))}
                                   </ul>
@@ -220,15 +217,12 @@ export default function App() {
                           <ul role="list" className="-mx-2 space-y-1">
                             {navigation.map((item) => (
                               <li key={item.name}>
-                                <a
-                                  href={item.href}
-                                  className={classNames(
-                                    item.current
-                                      ? 'bg-gray-50 text-indigo-600'
-                                      : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
-                                    'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                                  )}
-                                >
+                                <Link to={item.href} className={classNames(
+                                  item.current
+                                    ? 'bg-gray-50 text-indigo-600'
+                                    : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                                  'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                                )}>
                                   <item.icon
                                     className={classNames(
                                       item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
@@ -237,7 +231,7 @@ export default function App() {
                                     aria-hidden="true"
                                   />
                                   {item.name}
-                                </a>
+                                </Link>
                               </li>
                             ))}
                           </ul>
