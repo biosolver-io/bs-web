@@ -36,6 +36,7 @@ model User {
   password Password?
   notes    Note[]
   degrees  Degree[]
+  workExperiences WorkExperience[]
   roles    UserRole[]
   organizations Organization[]
   jobPostings JobPosting[]
@@ -116,6 +117,40 @@ model Degree {
   accomplishments Accomplishment[]
 }
 
+model WorkExperience {
+  id    String @id @default(cuid())
+
+  title String
+  level String?
+  employmentType  String?
+  company  String
+  employerType String?
+  companyWebsite String?
+  companyLinkedIn String?
+  country  String?
+  stateOrCity String?
+  industry String?
+
+  startYear Int?
+  startMonth Int?
+  endYear Int?
+  endMonth Int?  
+  ongoing Boolean? @default(false)
+
+  primaryDuties String?
+  secondaryDuties String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  isTemp Boolean @default(true)
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  accomplishments Accomplishment[]
+}
+
 model Accomplishment {
   id    String @id @default(cuid())  
   documentUrl  String?
@@ -132,8 +167,11 @@ model Accomplishment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  degree   Degree   @relation(fields: [degreeId], references: [id])
-  degreeId String
+  degree   Degree?   @relation(fields: [degreeId], references: [id])
+  degreeId String?
+
+  workExperience   WorkExperience?   @relation(fields: [workExperienceId], references: [id])
+  workExperienceId String?
 }
 
 model Organization {

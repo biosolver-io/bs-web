@@ -6,21 +6,10 @@ export type Degree = Prisma.DegreeGetPayload<{
   }
 }>;
 
-export interface WorkExperience {
-  company?: string;  
-  role?: string;
-  roleType?: string;
-  country?: string;
-  city?: string;
-  stateOrProvince?: string;
-  start?: string;
-  end?: string;
-  currentlyWorking?: boolean;
-  accomplishments?: Accomplishment[];
-  highlights?: string[];
-  skills?: string[];
-  domains?: string[];
-  subdomains?: string[];
-}
+export type WorkExperience = Prisma.WorkExperienceGetPayload<{
+  include: {
+    accomplishments: true;
+  }
+}>;
 
 export type Accomplishment = Prisma.AccomplishmentGetPayload<{}>;
