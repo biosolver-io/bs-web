@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../app/routes/profile._index.tsx"],
-  "sourcesContent": ["import { Outlet } from \"@remix-run/react\";\r\nimport ProfilePersonal from \"~/modules/profile/Personal\";\r\n\r\nexport default function () {\r\n  return (\r\n    <Outlet />\r\n  )\r\n}"],
-  "mappings": ";;;;;;;;;;;AAKI;AAFW,SAAR,wBAAoB;AACzB,SACE,mDAAC,YAAD;AAAA;AAAA;AAAA;AAAA,SAAQ;AAEZ;",
-  "names": []
-}
