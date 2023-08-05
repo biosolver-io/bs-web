@@ -4087,9 +4087,9 @@ function TermsAndConditionsPage() {
   }, this);
 }
 
-// app/routes/seeker.application.tsx
-var seeker_application_exports = {};
-__export(seeker_application_exports, {
+// app/routes/solver.application.tsx
+var solver_application_exports = {};
+__export(solver_application_exports, {
   default: () => SeekerApplication,
   loader: () => loader5
 });
@@ -4418,7 +4418,7 @@ function cx(...args) {
   return args.flat().filter((x) => typeof x == "string").join(" ").trim();
 }
 
-// app/routes/seeker.application.tsx
+// app/routes/solver.application.tsx
 var import_jsx_dev_runtime16 = require("react/jsx-dev-runtime"), loader5 = async ({ request }) => {
   let userId = await requireUserId(request), degrees = await prisma.degree.findMany({
     include: {
@@ -4469,7 +4469,7 @@ function SeekerApplication() {
   // What is your desired hourly rate for remote freelancing? (USD/Hr)
   /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("div", { className: "flex flex-col", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(TitleDivider, { title: "Personal Information" }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 131,
       columnNumber: 7
     }, this),
@@ -4484,7 +4484,7 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 134,
           columnNumber: 11
         },
@@ -4500,7 +4500,7 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 139,
           columnNumber: 11
         },
@@ -4516,7 +4516,7 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 144,
           columnNumber: 11
         },
@@ -4532,7 +4532,7 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 149,
           columnNumber: 11
         },
@@ -4548,7 +4548,7 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 154,
           columnNumber: 11
         },
@@ -4564,7 +4564,7 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 159,
           columnNumber: 11
         },
@@ -4581,7 +4581,7 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 164,
           columnNumber: 11
         },
@@ -4597,7 +4597,7 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 170,
           columnNumber: 11
         },
@@ -4613,14 +4613,14 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 175,
           columnNumber: 11
         },
         this
       ),
       /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("label", { className: "block mb-2 font-bold text-md text-gray-700", children: "Work Style" }, void 0, !1, {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 180,
         columnNumber: 11
       }, this),
@@ -4634,14 +4634,14 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 183,
           columnNumber: 11
         },
         this
       ),
       /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("label", { className: "block mb-2 font-bold text-md text-gray-700", children: "Roles" }, void 0, !1, {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 190,
         columnNumber: 11
       }, this),
@@ -4655,7 +4655,7 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 193,
           columnNumber: 11
         },
@@ -4671,7 +4671,7 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 200,
           columnNumber: 11
         },
@@ -4687,7 +4687,7 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 205,
           columnNumber: 11
         },
@@ -4704,28 +4704,28 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 210,
           columnNumber: 11
         },
         this
       ),
       /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("button", { type: "submit", className: "flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", children: "Save" }, void 0, !1, {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 216,
         columnNumber: 11
       }, this)
     ] }, void 0, !0, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 133,
       columnNumber: 9
     }, this) }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 132,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(TitleDivider, { title: "Social Information" }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 219,
       columnNumber: 7
     }, this),
@@ -4740,7 +4740,7 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 222,
           columnNumber: 11
         },
@@ -4756,7 +4756,7 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 227,
           columnNumber: 11
         },
@@ -4772,40 +4772,40 @@ function SeekerApplication() {
         void 0,
         !1,
         {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 232,
           columnNumber: 11
         },
         this
       ),
       /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("button", { type: "submit", className: "flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", children: "Save" }, void 0, !1, {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 237,
         columnNumber: 11
       }, this)
     ] }, void 0, !0, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 221,
       columnNumber: 9
     }, this) }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 220,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(TitleDivider, { title: "Education" }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 240,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("section", { className: "py-5", children: [
       degrees.map((degree) => /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(DegreeCard, { degree }, degree.id, !1, {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 243,
         columnNumber: 33
       }, this)),
       isAddingDegree && /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(degreeFetcher.Form, { action: "/profile/degrees", method: "post", className: "p-5 bordered border-[1px] border-gray-400 rounded-sm shadow-sm", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("input", { name: "degreeId", type: "hidden", value: (_a = degreeFetcher.data) == null ? void 0 : _a.newDegree.id }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 247,
           columnNumber: 13
         }, this),
@@ -4827,7 +4827,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 248,
             columnNumber: 13
           },
@@ -4844,7 +4844,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 261,
             columnNumber: 13
           },
@@ -4861,7 +4861,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 267,
             columnNumber: 13
           },
@@ -4879,7 +4879,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 273,
             columnNumber: 13
           },
@@ -4896,7 +4896,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 280,
             columnNumber: 13
           },
@@ -4904,7 +4904,7 @@ function SeekerApplication() {
         ),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Started" }, void 0, !1, {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 287,
             columnNumber: 15
           }, this),
@@ -4919,7 +4919,7 @@ function SeekerApplication() {
             void 0,
             !1,
             {
-              fileName: "app/routes/seeker.application.tsx",
+              fileName: "app/routes/solver.application.tsx",
               lineNumber: 290,
               columnNumber: 15
             },
@@ -4936,20 +4936,20 @@ function SeekerApplication() {
             void 0,
             !1,
             {
-              fileName: "app/routes/seeker.application.tsx",
+              fileName: "app/routes/solver.application.tsx",
               lineNumber: 298,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, !0, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 286,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Ended" }, void 0, !1, {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 308,
             columnNumber: 15
           }, this),
@@ -4964,7 +4964,7 @@ function SeekerApplication() {
             void 0,
             !1,
             {
-              fileName: "app/routes/seeker.application.tsx",
+              fileName: "app/routes/solver.application.tsx",
               lineNumber: 311,
               columnNumber: 15
             },
@@ -4981,14 +4981,14 @@ function SeekerApplication() {
             void 0,
             !1,
             {
-              fileName: "app/routes/seeker.application.tsx",
+              fileName: "app/routes/solver.application.tsx",
               lineNumber: 319,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, !0, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 307,
           columnNumber: 13
         }, this),
@@ -5004,7 +5004,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 328,
             columnNumber: 13
           },
@@ -5021,7 +5021,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 337,
             columnNumber: 13
           },
@@ -5038,7 +5038,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 343,
             columnNumber: 13
           },
@@ -5055,74 +5055,74 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 351,
             columnNumber: 13
           },
           this
         ),
         accomplishmentsForDegreeBeingAdded.map((accomplishment) => /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(AccomplishmentCard, { accomplishment }, accomplishment.id, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 358,
           columnNumber: 72
         }, this)),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("button", { type: "button", onClick: () => setIsAddingAccomplishment(!0), className: "mt-5 text-blue-500", children: "Add Accomplishment" }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 360,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("input", { name: "action", type: "hidden", value: "saveDegree" }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 361,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("button", { type: "submit", className: "flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", children: "Save" }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 362,
           columnNumber: 13
         }, this)
       ] }, void 0, !0, {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 246,
         columnNumber: 29
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(degreeFetcher.Form, { action: "/profile/degrees", method: "post", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("input", { name: "action", type: "hidden", value: "addDegree" }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 367,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("button", { type: "submit", className: cx("flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", isAddingDegree ? "hidden" : ""), disabled: isAddingDegree, children: "Add Degree" }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 368,
           columnNumber: 13
         }, this)
       ] }, void 0, !0, {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 366,
         columnNumber: 11
       }, this),
       degreeBeingAdded && /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(AccomplishmentForm, { action: `/profile/degrees/${degreeBeingAdded}`, open: isAddingAccomplishment, setOpen: setIsAddingAccomplishment, onSubmit: (accomplishments) => {
         setAccomplishmentsForDegreeBeingAdded(accomplishments);
       } }, void 0, !1, {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 372,
         columnNumber: 31
       }, this)
     ] }, void 0, !0, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 241,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(TitleDivider, { title: "Certifications" }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 377,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("section", { className: "py-5", children: [
       isAddingCertification && /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(certificationFetcher.Form, { action: "/profile/certifications", method: "post", className: "p-5 bordered border-[1px] border-gray-400 rounded-sm shadow-sm", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("input", { name: "certificationId", type: "hidden", value: (_b = certificationFetcher.data) == null ? void 0 : _b.newCertification.id }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 381,
           columnNumber: 13
         }, this),
@@ -5137,7 +5137,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 382,
             columnNumber: 13
           },
@@ -5154,7 +5154,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 388,
             columnNumber: 13
           },
@@ -5171,7 +5171,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 394,
             columnNumber: 13
           },
@@ -5179,7 +5179,7 @@ function SeekerApplication() {
         ),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Issued" }, void 0, !1, {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 401,
             columnNumber: 15
           }, this),
@@ -5194,7 +5194,7 @@ function SeekerApplication() {
             void 0,
             !1,
             {
-              fileName: "app/routes/seeker.application.tsx",
+              fileName: "app/routes/solver.application.tsx",
               lineNumber: 404,
               columnNumber: 15
             },
@@ -5211,20 +5211,20 @@ function SeekerApplication() {
             void 0,
             !1,
             {
-              fileName: "app/routes/seeker.application.tsx",
+              fileName: "app/routes/solver.application.tsx",
               lineNumber: 412,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, !0, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 400,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Expiry" }, void 0, !1, {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 422,
             columnNumber: 15
           }, this),
@@ -5239,7 +5239,7 @@ function SeekerApplication() {
             void 0,
             !1,
             {
-              fileName: "app/routes/seeker.application.tsx",
+              fileName: "app/routes/solver.application.tsx",
               lineNumber: 425,
               columnNumber: 15
             },
@@ -5256,67 +5256,67 @@ function SeekerApplication() {
             void 0,
             !1,
             {
-              fileName: "app/routes/seeker.application.tsx",
+              fileName: "app/routes/solver.application.tsx",
               lineNumber: 433,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, !0, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 421,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("input", { name: "action", type: "hidden", value: "saveCertification" }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 442,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("button", { type: "submit", className: "flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", children: "Save" }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 443,
           columnNumber: 13
         }, this)
       ] }, void 0, !0, {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 380,
         columnNumber: 36
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(certificationFetcher.Form, { action: "/profile/certifications", method: "post", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("input", { name: "action", type: "hidden", value: "addCertificate" }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 448,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("button", { type: "submit", className: cx("flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", isAddingCertification ? "hidden" : ""), disabled: isAddingDegree, children: "Add Certification" }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 449,
           columnNumber: 13
         }, this)
       ] }, void 0, !0, {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 447,
         columnNumber: 11
       }, this)
     ] }, void 0, !0, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 378,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(TitleDivider, { title: "Professional Experience" }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 453,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("section", { className: "py-5", children: [
       workExperiences.map((experience) => /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(WorkExperienceCard, { experience }, experience.id, !1, {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 456,
         columnNumber: 45
       }, this)),
       isAddingWorkExperience && experienceBeingAdded && /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(workExperienceFetcher.Form, { action: "/profile/professional", method: "post", className: "p-5 bordered border-[1px] border-gray-400 rounded-sm shadow-sm", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("input", { name: "workExperienceId", type: "hidden", value: experienceBeingAdded }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 460,
           columnNumber: 13
         }, this),
@@ -5331,7 +5331,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 461,
             columnNumber: 13
           },
@@ -5349,7 +5349,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 467,
             columnNumber: 13
           },
@@ -5366,7 +5366,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 474,
             columnNumber: 13
           },
@@ -5384,7 +5384,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 480,
             columnNumber: 13
           },
@@ -5401,7 +5401,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 487,
             columnNumber: 13
           },
@@ -5418,7 +5418,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 493,
             columnNumber: 13
           },
@@ -5436,7 +5436,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 499,
             columnNumber: 13
           },
@@ -5453,7 +5453,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 506,
             columnNumber: 13
           },
@@ -5461,7 +5461,7 @@ function SeekerApplication() {
         ),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Started" }, void 0, !1, {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 513,
             columnNumber: 15
           }, this),
@@ -5476,7 +5476,7 @@ function SeekerApplication() {
             void 0,
             !1,
             {
-              fileName: "app/routes/seeker.application.tsx",
+              fileName: "app/routes/solver.application.tsx",
               lineNumber: 516,
               columnNumber: 15
             },
@@ -5493,20 +5493,20 @@ function SeekerApplication() {
             void 0,
             !1,
             {
-              fileName: "app/routes/seeker.application.tsx",
+              fileName: "app/routes/solver.application.tsx",
               lineNumber: 524,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, !0, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 512,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Ended" }, void 0, !1, {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 534,
             columnNumber: 15
           }, this),
@@ -5521,7 +5521,7 @@ function SeekerApplication() {
             void 0,
             !1,
             {
-              fileName: "app/routes/seeker.application.tsx",
+              fileName: "app/routes/solver.application.tsx",
               lineNumber: 537,
               columnNumber: 15
             },
@@ -5538,14 +5538,14 @@ function SeekerApplication() {
             void 0,
             !1,
             {
-              fileName: "app/routes/seeker.application.tsx",
+              fileName: "app/routes/solver.application.tsx",
               lineNumber: 545,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, !0, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 533,
           columnNumber: 13
         }, this),
@@ -5561,7 +5561,7 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 554,
             columnNumber: 13
           },
@@ -5579,67 +5579,67 @@ function SeekerApplication() {
           void 0,
           !1,
           {
-            fileName: "app/routes/seeker.application.tsx",
+            fileName: "app/routes/solver.application.tsx",
             lineNumber: 561,
             columnNumber: 13
           },
           this
         ),
         accomplishmentsForExperienceBeingAdded.map((accomplishment) => /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(AccomplishmentCard, { accomplishment }, accomplishment.id, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 569,
           columnNumber: 76
         }, this)),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("button", { type: "button", onClick: () => setIsAddingAccomplishment(!0), className: "mt-5 text-blue-500", children: "Add Accomplishment" }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 571,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("input", { name: "action", type: "hidden", value: "saveWorkExperience" }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 572,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("button", { type: "submit", className: "flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", children: "Save" }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 573,
           columnNumber: 13
         }, this)
       ] }, experienceBeingAdded, !0, {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 459,
         columnNumber: 61
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(workExperienceFetcher.Form, { action: "/profile/professional", method: "post", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("input", { name: "action", type: "hidden", value: "addWorkExperience" }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 578,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("button", { type: "submit", className: cx("flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", isAddingWorkExperience ? "hidden" : ""), disabled: isAddingWorkExperience, children: "Add Experience" }, void 0, !1, {
-          fileName: "app/routes/seeker.application.tsx",
+          fileName: "app/routes/solver.application.tsx",
           lineNumber: 579,
           columnNumber: 13
         }, this)
       ] }, void 0, !0, {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 577,
         columnNumber: 11
       }, this),
       experienceBeingAdded && /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(AccomplishmentForm, { action: `/profile/professional/${experienceBeingAdded}`, open: isAddingAccomplishment, setOpen: setIsAddingAccomplishment, onSubmit: (accomplishments) => {
         setAccomplishmentsForExperienceBeingAdded(accomplishments);
       } }, Date.now().toString(), !1, {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 583,
         columnNumber: 35
       }, this)
     ] }, void 0, !0, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 454,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(TitleDivider, { title: "Hard Skills" }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 588,
       columnNumber: 7
     }, this),
@@ -5652,18 +5652,18 @@ function SeekerApplication() {
       void 0,
       !1,
       {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 590,
         columnNumber: 9
       },
       this
     ) }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 589,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(TitleDivider, { title: "Soft Skills" }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 596,
       columnNumber: 7
     }, this),
@@ -5676,28 +5676,28 @@ function SeekerApplication() {
       void 0,
       !1,
       {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 598,
         columnNumber: 9
       },
       this
     ) }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 597,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(TitleDivider, { title: "References" }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 604,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("section", { className: "py-5" }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 605,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(TitleDivider, { title: "Video Summary" }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 608,
       columnNumber: 7
     }, this),
@@ -5712,18 +5712,18 @@ function SeekerApplication() {
       void 0,
       !1,
       {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 610,
         columnNumber: 9
       },
       this
     ) }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 609,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(TitleDivider, { title: "Feedback" }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 617,
       columnNumber: 7
     }, this),
@@ -5738,18 +5738,18 @@ function SeekerApplication() {
       void 0,
       !1,
       {
-        fileName: "app/routes/seeker.application.tsx",
+        fileName: "app/routes/solver.application.tsx",
         lineNumber: 619,
         columnNumber: 9
       },
       this
     ) }, void 0, !1, {
-      fileName: "app/routes/seeker.application.tsx",
+      fileName: "app/routes/solver.application.tsx",
       lineNumber: 618,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
-    fileName: "app/routes/seeker.application.tsx",
+    fileName: "app/routes/solver.application.tsx",
     lineNumber: 130,
     columnNumber: 5
   }, this);
@@ -10723,7 +10723,7 @@ function NotesPage() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-EP77SPMO.js", imports: ["/build/_shared/chunk-YUUU2RAQ.js", "/build/_shared/chunk-YYAXLAGZ.js", "/build/_shared/chunk-HYDBX6IC.js", "/build/_shared/chunk-IU43IUTG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-BM5GSYV6.js", imports: ["/build/_shared/chunk-DZY5WEHX.js", "/build/_shared/chunk-JVNGUFS4.js", "/build/_shared/chunk-7SDL4ZUQ.js", "/build/_shared/chunk-B45RVZ6Z.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-N7AIAAEP.js", imports: ["/build/_shared/chunk-463C22YY.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/calendar": { id: "routes/calendar", parentId: "root", path: "calendar", index: void 0, caseSensitive: void 0, module: "/build/routes/calendar-2HT3ZEXN.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/contact-us": { id: "routes/contact-us", parentId: "root", path: "contact-us", index: void 0, caseSensitive: void 0, module: "/build/routes/contact-us-TPYK572Q.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dashboard": { id: "routes/dashboard", parentId: "root", path: "dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/dashboard-62PCOQYT.js", imports: ["/build/_shared/chunk-CMWXK6I4.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/documents": { id: "routes/documents", parentId: "root", path: "documents", index: void 0, caseSensitive: void 0, module: "/build/routes/documents-DDZFG3ZZ.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-seekers": { id: "routes/for-seekers", parentId: "root", path: "for-seekers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-seekers-442M3IG5.js", imports: ["/build/_shared/chunk-LZ74P7GG.js", "/build/_shared/chunk-463C22YY.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-solvers": { id: "routes/for-solvers", parentId: "root", path: "for-solvers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-solvers-S2LZFWOX.js", imports: ["/build/_shared/chunk-LZ74P7GG.js", "/build/_shared/chunk-463C22YY.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/healthcheck": { id: "routes/healthcheck", parentId: "root", path: "healthcheck", index: void 0, caseSensitive: void 0, module: "/build/routes/healthcheck-JO7RAI4L.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-6MSDSVDB.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-463C22YY.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/logout": { id: "routes/logout", parentId: "root", path: "logout", index: void 0, caseSensitive: void 0, module: "/build/routes/logout-S5LWYBEX.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/matches": { id: "routes/matches", parentId: "root", path: "matches", index: void 0, caseSensitive: void 0, module: "/build/routes/matches-3FDE2QYX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/messages": { id: "routes/messages", parentId: "root", path: "messages", index: void 0, caseSensitive: void 0, module: "/build/routes/messages-H3Y2ROQT.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes": { id: "routes/notes", parentId: "root", path: "notes", index: void 0, caseSensitive: void 0, module: "/build/routes/notes-PGUHZGDO.js", imports: ["/build/_shared/chunk-463C22YY.js", "/build/_shared/chunk-OLP4QJ4K.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.$noteId": { id: "routes/notes.$noteId", parentId: "routes/notes", path: ":noteId", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.$noteId-CSLD5S5N.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/notes._index": { id: "routes/notes._index", parentId: "routes/notes", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/notes._index-XD4RRL7B.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.new": { id: "routes/notes.new", parentId: "routes/notes", path: "new", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.new-MOYLCMXS.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/privacy-policy": { id: "routes/privacy-policy", parentId: "root", path: "privacy-policy", index: void 0, caseSensitive: void 0, module: "/build/routes/privacy-policy-WGH2JNOP.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile": { id: "routes/profile", parentId: "root", path: "profile", index: void 0, caseSensitive: void 0, module: "/build/routes/profile-BRGSPKCW.js", imports: ["/build/_shared/chunk-463C22YY.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile._index": { id: "routes/profile._index", parentId: "routes/profile", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/profile._index-WDOTFDLH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.certifications": { id: "routes/profile.certifications", parentId: "routes/profile", path: "certifications", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.certifications-7TDABOTK.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.degrees": { id: "routes/profile.degrees", parentId: "routes/profile", path: "degrees", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.degrees-BGVVOCR3.js", imports: ["/build/_shared/chunk-SKIHJPQU.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-T46TUPDB.js", "/build/_shared/chunk-MZ3CQIAX.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-QF74LP3O.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.degrees.$degreeId": { id: "routes/profile.degrees.$degreeId", parentId: "routes/profile.degrees", path: ":degreeId", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.degrees.$degreeId-G3IIRMZP.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education": { id: "routes/profile.education", parentId: "routes/profile", path: "education", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education-MNHDCLFD.js", imports: ["/build/_shared/chunk-HTDZCSOQ.js", "/build/_shared/chunk-X7FIYIPL.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education.back": { id: "routes/profile.education.back", parentId: "routes/profile.education", path: "back", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education.back-7RGPINI3.js", imports: ["/build/_shared/chunk-T46TUPDB.js", "/build/_shared/chunk-QF74LP3O.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education.degree.new": { id: "routes/profile.education.degree.new", parentId: "routes/profile.education", path: "degree/new", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education.degree.new-ZQUWQTBH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.personal": { id: "routes/profile.personal", parentId: "routes/profile", path: "personal", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.personal-3TVTLLKH.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.professional": { id: "routes/profile.professional", parentId: "routes/profile", path: "professional", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.professional-2P6DBM2N.js", imports: ["/build/_shared/chunk-DCXJEXWB.js", "/build/_shared/chunk-MZ3CQIAX.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-QF74LP3O.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.professional.$experienceId": { id: "routes/profile.professional.$experienceId", parentId: "routes/profile.professional", path: ":experienceId", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.professional.$experienceId-E3LDQSHR.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.single": { id: "routes/profile.single", parentId: "routes/profile", path: "single", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.single-UAPOXCXR.js", imports: ["/build/_shared/chunk-OLP4QJ4K.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.skills": { id: "routes/profile.skills", parentId: "routes/profile", path: "skills", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.skills-TCRBEE2W.js", imports: ["/build/_shared/chunk-HTDZCSOQ.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.work": { id: "routes/profile.work", parentId: "routes/profile", path: "work", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.work-54OI5DGJ.js", imports: ["/build/_shared/chunk-J3YHMR5C.js", "/build/_shared/chunk-7SDL4ZUQ.js", "/build/_shared/chunk-B45RVZ6Z.js", "/build/_shared/chunk-HTDZCSOQ.js", "/build/_shared/chunk-KCLKX6RL.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/register": { id: "routes/register", parentId: "root", path: "register", index: void 0, caseSensitive: void 0, module: "/build/routes/register-I6EJFTVK.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-463C22YY.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/reports": { id: "routes/reports", parentId: "root", path: "reports", index: void 0, caseSensitive: void 0, module: "/build/routes/reports-XNV3LFFP.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/seeker.application": { id: "routes/seeker.application", parentId: "root", path: "seeker/application", index: void 0, caseSensitive: void 0, module: "/build/routes/seeker.application-HZLGLV2X.js", imports: ["/build/_shared/chunk-J3YHMR5C.js", "/build/_shared/chunk-463C22YY.js", "/build/_shared/chunk-SKIHJPQU.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-T46TUPDB.js", "/build/_shared/chunk-DCXJEXWB.js", "/build/_shared/chunk-MZ3CQIAX.js", "/build/_shared/chunk-QF74LP3O.js", "/build/_shared/chunk-X7FIYIPL.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/seeker.dashboard": { id: "routes/seeker.dashboard", parentId: "root", path: "seeker/dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/seeker.dashboard-67273DVE.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/skills.hard": { id: "routes/skills.hard", parentId: "root", path: "skills/hard", index: void 0, caseSensitive: void 0, module: "/build/routes/skills.hard-L6P7T3UD.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/terms-and-conditions": { id: "routes/terms-and-conditions", parentId: "root", path: "terms-and-conditions", index: void 0, caseSensitive: void 0, module: "/build/routes/terms-and-conditions-QKWGD4G5.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "a21bf70f", hmr: void 0, url: "/build/manifest-A21BF70F.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-EP77SPMO.js", imports: ["/build/_shared/chunk-YUUU2RAQ.js", "/build/_shared/chunk-YYAXLAGZ.js", "/build/_shared/chunk-HYDBX6IC.js", "/build/_shared/chunk-IU43IUTG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-BM5GSYV6.js", imports: ["/build/_shared/chunk-DZY5WEHX.js", "/build/_shared/chunk-JVNGUFS4.js", "/build/_shared/chunk-7SDL4ZUQ.js", "/build/_shared/chunk-B45RVZ6Z.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-N7AIAAEP.js", imports: ["/build/_shared/chunk-463C22YY.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/calendar": { id: "routes/calendar", parentId: "root", path: "calendar", index: void 0, caseSensitive: void 0, module: "/build/routes/calendar-2HT3ZEXN.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/contact-us": { id: "routes/contact-us", parentId: "root", path: "contact-us", index: void 0, caseSensitive: void 0, module: "/build/routes/contact-us-TPYK572Q.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dashboard": { id: "routes/dashboard", parentId: "root", path: "dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/dashboard-62PCOQYT.js", imports: ["/build/_shared/chunk-CMWXK6I4.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/documents": { id: "routes/documents", parentId: "root", path: "documents", index: void 0, caseSensitive: void 0, module: "/build/routes/documents-DDZFG3ZZ.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-seekers": { id: "routes/for-seekers", parentId: "root", path: "for-seekers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-seekers-442M3IG5.js", imports: ["/build/_shared/chunk-LZ74P7GG.js", "/build/_shared/chunk-463C22YY.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-solvers": { id: "routes/for-solvers", parentId: "root", path: "for-solvers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-solvers-S2LZFWOX.js", imports: ["/build/_shared/chunk-LZ74P7GG.js", "/build/_shared/chunk-463C22YY.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/healthcheck": { id: "routes/healthcheck", parentId: "root", path: "healthcheck", index: void 0, caseSensitive: void 0, module: "/build/routes/healthcheck-JO7RAI4L.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-6MSDSVDB.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-463C22YY.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/logout": { id: "routes/logout", parentId: "root", path: "logout", index: void 0, caseSensitive: void 0, module: "/build/routes/logout-S5LWYBEX.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/matches": { id: "routes/matches", parentId: "root", path: "matches", index: void 0, caseSensitive: void 0, module: "/build/routes/matches-3FDE2QYX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/messages": { id: "routes/messages", parentId: "root", path: "messages", index: void 0, caseSensitive: void 0, module: "/build/routes/messages-H3Y2ROQT.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes": { id: "routes/notes", parentId: "root", path: "notes", index: void 0, caseSensitive: void 0, module: "/build/routes/notes-PGUHZGDO.js", imports: ["/build/_shared/chunk-463C22YY.js", "/build/_shared/chunk-OLP4QJ4K.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.$noteId": { id: "routes/notes.$noteId", parentId: "routes/notes", path: ":noteId", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.$noteId-CSLD5S5N.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/notes._index": { id: "routes/notes._index", parentId: "routes/notes", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/notes._index-XD4RRL7B.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.new": { id: "routes/notes.new", parentId: "routes/notes", path: "new", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.new-MOYLCMXS.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/privacy-policy": { id: "routes/privacy-policy", parentId: "root", path: "privacy-policy", index: void 0, caseSensitive: void 0, module: "/build/routes/privacy-policy-WGH2JNOP.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile": { id: "routes/profile", parentId: "root", path: "profile", index: void 0, caseSensitive: void 0, module: "/build/routes/profile-BRGSPKCW.js", imports: ["/build/_shared/chunk-463C22YY.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile._index": { id: "routes/profile._index", parentId: "routes/profile", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/profile._index-WDOTFDLH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.certifications": { id: "routes/profile.certifications", parentId: "routes/profile", path: "certifications", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.certifications-7TDABOTK.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.degrees": { id: "routes/profile.degrees", parentId: "routes/profile", path: "degrees", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.degrees-BGVVOCR3.js", imports: ["/build/_shared/chunk-SKIHJPQU.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-T46TUPDB.js", "/build/_shared/chunk-MZ3CQIAX.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-QF74LP3O.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.degrees.$degreeId": { id: "routes/profile.degrees.$degreeId", parentId: "routes/profile.degrees", path: ":degreeId", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.degrees.$degreeId-G3IIRMZP.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education": { id: "routes/profile.education", parentId: "routes/profile", path: "education", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education-MNHDCLFD.js", imports: ["/build/_shared/chunk-HTDZCSOQ.js", "/build/_shared/chunk-X7FIYIPL.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education.back": { id: "routes/profile.education.back", parentId: "routes/profile.education", path: "back", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education.back-7RGPINI3.js", imports: ["/build/_shared/chunk-T46TUPDB.js", "/build/_shared/chunk-QF74LP3O.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education.degree.new": { id: "routes/profile.education.degree.new", parentId: "routes/profile.education", path: "degree/new", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education.degree.new-ZQUWQTBH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.personal": { id: "routes/profile.personal", parentId: "routes/profile", path: "personal", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.personal-3TVTLLKH.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.professional": { id: "routes/profile.professional", parentId: "routes/profile", path: "professional", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.professional-2P6DBM2N.js", imports: ["/build/_shared/chunk-DCXJEXWB.js", "/build/_shared/chunk-MZ3CQIAX.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-QF74LP3O.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.professional.$experienceId": { id: "routes/profile.professional.$experienceId", parentId: "routes/profile.professional", path: ":experienceId", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.professional.$experienceId-E3LDQSHR.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.single": { id: "routes/profile.single", parentId: "routes/profile", path: "single", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.single-UAPOXCXR.js", imports: ["/build/_shared/chunk-OLP4QJ4K.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.skills": { id: "routes/profile.skills", parentId: "routes/profile", path: "skills", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.skills-TCRBEE2W.js", imports: ["/build/_shared/chunk-HTDZCSOQ.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.work": { id: "routes/profile.work", parentId: "routes/profile", path: "work", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.work-54OI5DGJ.js", imports: ["/build/_shared/chunk-J3YHMR5C.js", "/build/_shared/chunk-7SDL4ZUQ.js", "/build/_shared/chunk-B45RVZ6Z.js", "/build/_shared/chunk-HTDZCSOQ.js", "/build/_shared/chunk-KCLKX6RL.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/register": { id: "routes/register", parentId: "root", path: "register", index: void 0, caseSensitive: void 0, module: "/build/routes/register-I6EJFTVK.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-463C22YY.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/reports": { id: "routes/reports", parentId: "root", path: "reports", index: void 0, caseSensitive: void 0, module: "/build/routes/reports-XNV3LFFP.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/seeker.dashboard": { id: "routes/seeker.dashboard", parentId: "root", path: "seeker/dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/seeker.dashboard-67273DVE.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/skills.hard": { id: "routes/skills.hard", parentId: "root", path: "skills/hard", index: void 0, caseSensitive: void 0, module: "/build/routes/skills.hard-L6P7T3UD.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/solver.application": { id: "routes/solver.application", parentId: "root", path: "solver/application", index: void 0, caseSensitive: void 0, module: "/build/routes/solver.application-NZY5OLT3.js", imports: ["/build/_shared/chunk-J3YHMR5C.js", "/build/_shared/chunk-463C22YY.js", "/build/_shared/chunk-SKIHJPQU.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-T46TUPDB.js", "/build/_shared/chunk-DCXJEXWB.js", "/build/_shared/chunk-MZ3CQIAX.js", "/build/_shared/chunk-QF74LP3O.js", "/build/_shared/chunk-X7FIYIPL.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/terms-and-conditions": { id: "routes/terms-and-conditions", parentId: "root", path: "terms-and-conditions", index: void 0, caseSensitive: void 0, module: "/build/routes/terms-and-conditions-QKWGD4G5.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "ed8dcf76", hmr: void 0, url: "/build/manifest-ED8DCF76.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, v2_errorBoundary: !0, v2_headers: !0, v2_meta: !0, v2_normalizeFormMethod: !0, v2_routeConvention: !0 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
@@ -10791,13 +10791,13 @@ var assetsBuildDirectory = "public\\build", future = { unstable_dev: !1, unstabl
     caseSensitive: void 0,
     module: terms_and_conditions_exports
   },
-  "routes/seeker.application": {
-    id: "routes/seeker.application",
+  "routes/solver.application": {
+    id: "routes/solver.application",
     parentId: "root",
-    path: "seeker/application",
+    path: "solver/application",
     index: void 0,
     caseSensitive: void 0,
-    module: seeker_application_exports
+    module: solver_application_exports
   },
   "routes/profile.education": {
     id: "routes/profile.education",
