@@ -4,10 +4,12 @@ import { useFetcher, useLoaderData } from "@remix-run/react"
 import { useState, useEffect } from "react"
 import assessmentFormats from "~/assets/data/assessmentFormats"
 import countries from "~/assets/data/countries"
+import currencyCodes from "~/assets/data/currencyCodes"
 import employerTypes from "~/assets/data/employerTypes"
 import employmentTypes from "~/assets/data/employmentTypes"
 import jobTypes from "~/assets/data/jobTypes"
 import months from "~/assets/data/months"
+import roleTypes from "~/assets/data/roleTypes"
 import skills from "~/assets/data/skills"
 import years from "~/assets/data/years"
 import yesNos from "~/assets/data/yesNos"
@@ -44,9 +46,16 @@ export const loader = async ({ request }: LoaderArgs) => {
       accomplishments: true
     }
   })
+  const certifications = await prisma.certification.findMany({
+    where: {
+      userId,
+      isTemp: false
+    }
+  })
   return json({
     degrees,
-    workExperiences
+    workExperiences,
+    certifications
   });
 }
 
@@ -54,8 +63,7 @@ export default function SeekerApplication() {
   const personalInformationFetcher = useFetcher()
   const socialInformationFetcher = useFetcher()
 
-
-  const { degrees, workExperiences } = useLoaderData<typeof loader>()
+  const { degrees, workExperiences, certifications } = useLoaderData<typeof loader>()
 
   const [isAddingAccomplishment, setIsAddingAccomplishment] = useState(false)
 
@@ -68,6 +76,10 @@ export default function SeekerApplication() {
   const [isAddingWorkExperience, setIsAddingWorkExperience] = useState(false)
   const [experienceBeingAdded, setExperienceBeingAdded] = useState<string | null>(null)
   const [accomplishmentsForExperienceBeingAdded, setAccomplishmentsForExperienceBeingAdded] = useState<Accomplishment[]>([])
+
+  const certificationFetcher = useFetcher()
+  const [isAddingCertification, setIsAddingCertification] = useState(false)
+  const [certificationBeingAdded, setCertificationBeingAdded] = useState<string | null>(null)
 
   useEffect(() => {
     setIsAddingDegree(degreeFetcher.data?.newDegree?.id ? true : false)
@@ -93,6 +105,17 @@ export default function SeekerApplication() {
       }
     }
   }, [workExperienceFetcher.data])
+  useEffect(() => {
+    if (certificationFetcher.data) {
+      if (certificationFetcher.data.newCertification) {
+        setIsAddingCertification(certificationFetcher.data.newCertification.id ? true : false)
+        setCertificationBeingAdded(certificationFetcher.data.newCertification.id)
+      } else if (certificationFetcher.data.action === 'saveCertification') {
+        setIsAddingCertification(false)
+        setCertificationBeingAdded(null)
+      }
+    }
+  }, [certificationFetcher.data])
 
   return (
     //     First Name
@@ -107,7 +130,7 @@ export default function SeekerApplication() {
     <div className="flex flex-col">
       <TitleDivider title="Personal Information" />
       <section className='py-5'>
-        <personalInformationFetcher.Form>
+        <personalInformationFetcher.Form action="/profile/personal" method="post">
           <LabelledTextInput
             label="First Name"
             name="firstName"
@@ -155,32 +178,47 @@ export default function SeekerApplication() {
             placeholder="Enter your phone number"
           />
           <label className="block mb-2 font-bold text-md text-gray-700">
-            Job Types
+            Work Style
           </label>
           <MultiSelect
-            name="jobTypes"
+            name="workStylePreferences"
             options={
               jobTypes.map(jobType => ({ value: jobType, label: jobType, name: jobType }))
             }
-            placeholder="What type of jobs are you interested in?"
+            placeholder="What type of work styles are you considering?"
           />
           <label className="block mb-2 font-bold text-md text-gray-700">
             Roles
           </label>
           <MultiSelect
-            name="jobTypes"
+            name="rolesOfInterest"
             options={
-              jobTypes.map(jobType => ({ value: jobType, label: jobType, name: jobType }))
+              roleTypes.map(roleType => ({ value: roleType.id, label: roleType.name, name: roleType.name }))
             }
             placeholder="What type of jobs are you interested in?"
           />
+          <LabelledTextInput
+            label="Minimum Expected Salary"
+            name="minimumExpectedSalary"
+            placeholder="Enter your minimum expected salary"
+          />
+          <LabelledTextInput
+            label="Minimum Hourly Rate"
+            name="minimumHourlyRate"
+            placeholder="Enter your minimum hourly rate"
+          />
+          <LabelledDropdown
+            label="Currency"
+            name="currency"
+            placeholder="Select your local currency"
+            options={currencyCodes.map(currencyCode => ({ value: currencyCode.code, label: currencyCode.name, name: currencyCode.name }))}
+          />
+          <button type="submit" className="flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md">Save</button>
         </personalInformationFetcher.Form>
-
-
       </section>
       <TitleDivider title="Social Information" />
       <section className='py-5'>
-        <socialInformationFetcher.Form>
+        <socialInformationFetcher.Form action="/profile/personal" method="post">
           <LabelledTextInput
             label="LinkedIn URL"
             name="linkedinUrl"
@@ -193,10 +231,10 @@ export default function SeekerApplication() {
           />
           <LabelledTextInput
             label="Personal Website/Portfolio URL"
-            name="personalWebsiteUrl"
+            name="websiteUrl"
             placeholder="https://yourname.com"
           />
-          <button type="submit" className="bg-black border-black border-[1px] text-white hover:bg-white hover:text-black p-3 rounded-lg">Save</button>
+          <button type="submit" className="flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md">Save</button>
         </socialInformationFetcher.Form>
       </section>
       <TitleDivider title="Education" />
@@ -327,7 +365,7 @@ export default function SeekerApplication() {
         {
           <degreeFetcher.Form action="/profile/degrees" method="post">
             <input name="action" type="hidden" value="addDegree" />
-            <button type="submit" className={cx("flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", isAddingAccomplishment ? 'hidden' : '')} disabled={isAddingDegree}>Add Degree</button>
+            <button type="submit" className={cx("flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", isAddingDegree ? 'hidden' : '')} disabled={isAddingDegree}>Add Degree</button>
           </degreeFetcher.Form>
         }
         {
@@ -338,7 +376,79 @@ export default function SeekerApplication() {
       </section>
       <TitleDivider title="Certifications" />
       <section className='py-5'>
-
+        {
+          isAddingCertification && <certificationFetcher.Form action="/profile/certifications" method="post" className="p-5 bordered border-[1px] border-gray-400 rounded-sm shadow-sm">
+            <input name="certificationId" type="hidden" value={certificationFetcher.data?.newCertification.id} />
+            <LabelledTextInput
+              name="title"
+              label="Title"
+              placeholder="Enter the title of your certification"
+              className="w-full mt-5"
+            />
+            <LabelledTextInput
+              name="issuingAuthority"
+              label="Awarding Body/Issuing Authority"
+              placeholder="Enter the name of the awarding body/issuing authority"
+              className="w-full mt-5"
+            />
+            <LabelledTextInput
+              name="durationInMonths"
+              label="Duration (in months)"
+              placeholder="Enter the duration of your certification in months"
+              className="w-full mt-5"
+            />
+            <div className="flex flex-wrap mt-5 gap-5">
+              <label className="w-full mb-2 font-bold text-md text-gray-700">
+                Issued
+              </label>
+              <LabelledDropdown
+                name="issuedYear"
+                placeholder="Year"
+                className="w-full md:w-1/2"
+                options={
+                  years.map(year => ({ value: year.toString(), label: year.toString(), name: year.toString() }))
+                }
+              />
+              <LabelledDropdown
+                name="issuedMonth"
+                placeholder="Month"
+                className="w-full md:w-1/2"
+                options={
+                  months.map(month => ({ value: month.id, label: month.name, name: month.name }))
+                }
+              />
+            </div>
+            <div className="flex flex-wrap mt-5 gap-5">
+              <label className="w-full mb-2 font-bold text-md text-gray-700">
+                Expiry
+              </label>
+              <LabelledDropdown
+                name="expiryYear"
+                placeholder="Year"
+                className="w-full md:w-1/2"
+                options={
+                  Array.from({ length: 50 }, (_, i) => i + 1970).map(year => ({ value: year.toString(), label: year.toString(), name: year.toString() }))
+                }
+              />
+              <LabelledDropdown
+                name="expiryMonth"
+                placeholder="Month"
+                className="w-full md:w-1/2"
+                options={
+                  months.map(month => ({ value: month.id, label: month.name, name: month.name }))
+                }
+              />
+            </div>
+            <input name="action" type="hidden" value="saveCertification" />
+            <button type="submit" className="flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md">Save</button>
+          </certificationFetcher.Form>
+        }
+        {
+          <certificationFetcher.Form action="/profile/certifications" method="post">
+            <input name="action" type="hidden" value="addCertificate" />
+            <button type="submit" className={cx("flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", isAddingCertification ? 'hidden' : '')} disabled={isAddingDegree}>Add Certification</button>
+          </certificationFetcher.Form>
+        }
       </section>
       <TitleDivider title="Professional Experience" />
       <section className='py-5'>

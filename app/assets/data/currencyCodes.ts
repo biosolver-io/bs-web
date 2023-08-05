@@ -1,0 +1,22 @@
+export default [
+  { "name": "United States Dollar", "code": "USD", "symbol": "$" },
+  { "name": "Euro", "code": "EUR", "symbol": "€" },
+  { "name": "British Pound Sterling", "code": "GBP", "symbol": "£" },
+  { "name": "Japanese Yen", "code": "JPY", "symbol": "¥" },
+  { "name": "Canadian Dollar", "code": "CAD", "symbol": "CA$" },
+  { "name": "Australian Dollar", "code": "AUD", "symbol": "A$" },
+  { "name": "Swiss Franc", "code": "CHF", "symbol": "CHF" },
+  { "name": "Chinese Yuan", "code": "CNY", "symbol": "¥" },
+  { "name": "Indian Rupee", "code": "INR", "symbol": "₹" },
+  { "name": "Brazilian Real", "code": "BRL", "symbol": "R$" },
+  { "name": "Mexican Peso", "code": "MXN", "symbol": "$" },
+  { "name": "Russian Ruble", "code": "RUB", "symbol": "₽" },
+  { "name": "South Korean Won", "code": "KRW", "symbol": "₩" },
+  { "name": "South African Rand", "code": "ZAR", "symbol": "R" },
+  { "name": "Singapore Dollar", "code": "SGD", "symbol": "S$" },
+  { "name": "New Zealand Dollar", "code": "NZD", "symbol": "NZ$" },
+  { "name": "Hong Kong Dollar", "code": "HKD", "symbol": "HK$" },
+  { "name": "Swedish Krona", "code": "SEK", "symbol": "kr" },
+  { "name": "Norwegian Krone", "code": "NOK", "symbol": "kr" },
+  { "name": "Turkish Lira", "code": "TRY", "symbol": "₺" }
+]

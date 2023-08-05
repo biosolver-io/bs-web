@@ -9,19 +9,28 @@ generator client {
 
 model User {
   id    String @id @default(cuid())
+
   email String @unique
-  fullName String?
+  firstName String?
+  lastName String?
   phone String?
   addressLine1 String?
   addressLine2 String?
   city String?
   state String?
-  zip String?
+  postalCode String?
   country String?
-  website String?
-  linkedin String?
-  github String?
-  twitter String?
+
+  websiteUrl String?
+  linkedinUrl String?
+  googleScholarUrl String?
+  githubUrl String?
+  twitterUrl String?
+
+  minimumExpectedSalary Int?
+  currency String?
+  minimumHourlyRate Int?
+
   bio String?
   pronouns String?
   avatar String?
@@ -37,10 +46,37 @@ model User {
   notes    Note[]
   degrees  Degree[]
   workExperiences WorkExperience[]
+  certifications Certification[]
   roles    UserRole[]
   organizations Organization[]
   jobPostings JobPosting[]
   referralCodes ReferralCode[]
+  workStylePreferences WorkStylePreference[]
+  rolesOfInterest RoleOfInterest[]
+}
+
+model WorkStylePreference {
+  id    String @id @default(cuid())
+
+  workStyle String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String
+}
+
+model RoleOfInterest {
+  id    String @id @default(cuid())
+  
+  role String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String
 }
 
 model ReferralCode {
@@ -149,6 +185,28 @@ model WorkExperience {
   userId String
 
   accomplishments Accomplishment[]
+}
+
+model Certification {
+  id    String @id @default(cuid())
+  name String
+  description  String?
+  issuingAuthority String?
+  durationInMonths Int?
+  issueYear Int?
+  issueMonth Int?
+  expirationYear Int?
+  expirationMonth Int?
+  credentialId String?
+  credentialUrl String?  
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  isTemp Boolean @default(true)
 }
 
 model Accomplishment {
