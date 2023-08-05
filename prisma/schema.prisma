@@ -224,3 +224,10 @@ model JobPosting {
   organization Organization @relation(fields: [organizationId], references: [id])
   organizationId String
 }
+
+model Skill {
+  id    String @id @default(cuid())
+  name String
+  description  String?  
+  type String?
+}

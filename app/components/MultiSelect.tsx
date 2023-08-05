@@ -42,7 +42,8 @@ export default function MultiSelect({
       )}
       <input type="hidden" name={name} value={selectedOptions.map((option: any) => option.value).join(',')} />
       <Combobox.Button className='w-full'>
-        <Combobox.Input className={'w-full bordered border-[1px] border-gray-400 p-2'} placeholder={placeholder} />
+        <Combobox.Input className={'w-full p-3 border-[1px] border-black rounded-sm focus:outline-none focus:border-2'} placeholder={placeholder} 
+        onChange={(event) => setQuery(event.target.value)}/>
       </Combobox.Button>
       <Transition
         as={Fragment}
@@ -51,7 +52,7 @@ export default function MultiSelect({
         leaveTo="opacity-0"
         afterLeave={() => setQuery('')}
       >
-        <Combobox.Options className='absolute w-auto overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
+        <Combobox.Options className='absolute w-auto max-h-[250px] overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-30'>
           {filteredOptions.map((opt) => (
             <Combobox.Option key={opt.value} value={opt} className='p-2 hover:bg-gray-200 relative cursor-default select-none'>
               {opt.label}

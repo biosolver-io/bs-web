@@ -1,5 +1,6 @@
 export default function LabelledTextInput({
   label,
+  description,
   name,
   onChange,
   placeholder,
@@ -9,6 +10,7 @@ export default function LabelledTextInput({
   multiline,
 }: {
   label?: string
+  description?: string
   name: string
   onChange?: (value: string) => void
   placeholder?: string
@@ -23,6 +25,12 @@ export default function LabelledTextInput({
         <label className="block mb-2 font-bold text-md text-gray-700">
           {label}
         </label>
+      }
+      {
+        description &&
+        <div className="text-sm text-gray-600 mb-2">
+          {description}
+        </div>
       }
       {multiline === true ?
         <textarea

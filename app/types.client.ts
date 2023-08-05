@@ -13,3 +13,5 @@ export type WorkExperience = Prisma.WorkExperienceGetPayload<{
 }>;
 
 export type Accomplishment = Prisma.AccomplishmentGetPayload<{}>;
+
+export type Skill = Prisma.SkillGetPayload<{}>;

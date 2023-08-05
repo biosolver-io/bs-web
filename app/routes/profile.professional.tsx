@@ -33,6 +33,10 @@ export const action = async ({ request }: ActionArgs) => {
       newWorkExperience
     })
   } else if (actionType === 'saveWorkExperience') {
+    const startYear = parseInt(body.get('startYear') as string)
+    const startMonth = parseInt(body.get('startMonth') as string)
+    const endYear = parseInt(body.get('endYear') as string)
+    const endMonth = parseInt(body.get('endMonth') as string)
     await prisma.workExperience.update({
       where: {
         id: body.get('workExperienceId') as string
@@ -42,10 +46,10 @@ export const action = async ({ request }: ActionArgs) => {
         company: body.get('company') as string,
         country: body.get('country') as string,
         stateOrCity: body.get('cityOrState') as string,
-        startYear: parseInt(body.get('startYear') as string),
-        startMonth: parseInt(body.get('startMonth') as string),
-        endYear: parseInt(body.get('endYear') as string),
-        endMonth: parseInt(body.get('endMonth') as string),
+        startYear: isNaN(startYear) ? null : startYear,
+        startMonth: isNaN(startMonth) ? null : startMonth,
+        endYear: isNaN(endYear) ? null : endYear,
+        endMonth: isNaN(endMonth) ? null : endMonth,
         companyWebsite: body.get('companyWebsite') as string,
         companyLinkedIn: body.get('companyLinkedIn') as string,
         primaryDuties: body.get('primaryDuties') as string,
@@ -53,7 +57,11 @@ export const action = async ({ request }: ActionArgs) => {
         isTemp: false
       }
     })
-    return redirect('/profile/professional')
+    return json({
+      action: 'saveWorkExperience',
+      workExperienceId: body.get('workExperienceId') as string,
+      success: true
+    })
   } else {
     throw new Error('Invalid action type')
   }
@@ -76,12 +84,12 @@ export const loader = async ({ request }: LoaderArgs) => {
 }
 
 export default function Professional() {
-  const fetcher = useFetcher<typeof action>()
+  const fetcher = useFetcher()
   const { workExperiences } = useLoaderData<typeof loader>()
   const [searchParams] = useSearchParams()
   const [isAddingAccomplishment, setIsAddingAccomplishment] = useState(false)
   const [isAddingWorkExperience, setIsAddingWorkExperience] = useState(false)
-  const [experienceBeingAdded, setExperienceBeingAdded] = useState<string>('')
+  const [experienceBeingAdded, setExperienceBeingAdded] = useState<string | null>(null)
   const [accomplishmentsForExperienceBeingAdded, setAccomplishmentsForExperienceBeingAdded] = useState<Accomplishment[]>([])
 
   useEffect(() => {
@@ -91,8 +99,13 @@ export default function Professional() {
   }, [searchParams])
   useEffect(() => {
     if (fetcher.data) {
-      setIsAddingWorkExperience(fetcher.data.newWorkExperience.id ? true : false)
-      setExperienceBeingAdded(fetcher.data.newWorkExperience.id)
+      if (fetcher.data.newWorkExperience) {
+        setIsAddingWorkExperience(fetcher.data.newWorkExperience.id ? true : false)
+        setExperienceBeingAdded(fetcher.data.newWorkExperience.id)
+      } else if (fetcher.data.action === 'saveWorkExperience') {
+        setIsAddingWorkExperience(false)
+        setExperienceBeingAdded(null)
+      }
     }
   }, [fetcher.data])
 
@@ -102,8 +115,8 @@ export default function Professional() {
         workExperiences.map(experience => <WorkExperienceCard key={experience.id} experience={experience} />)
       }
       {
-        isAddingWorkExperience && <fetcher.Form action="/profile/professional" method="post" className="p-5">
-          <input name="workExperienceId" type="hidden" value={fetcher.data?.newWorkExperience.id} />
+        isAddingWorkExperience && experienceBeingAdded && <fetcher.Form action="/profile/professional" method="post" className="p-5" key={experienceBeingAdded}>
+          <input name="workExperienceId" type="hidden" value={experienceBeingAdded} />
           <LabelledTextInput
             name="title"
             label="Role/Title"
@@ -228,7 +241,7 @@ export default function Professional() {
       {
         experienceBeingAdded && <AccomplishmentForm action={`/profile/professional/${experienceBeingAdded}`} open={isAddingAccomplishment} setOpen={setIsAddingAccomplishment} onSubmit={(accomplishments) => {
           setAccomplishmentsForExperienceBeingAdded(accomplishments)
-        }} />
+        }} key={Date.now().toString()} />
       }
     </section>
   )
