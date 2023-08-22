@@ -1,13 +1,14 @@
-import { ActionArgs, json } from "@remix-run/node";
+import { ActionArgs, json, unstable_parseMultipartFormData } from "@remix-run/node";
 import { prisma } from "~/db.server";
 import { requireUserId } from "~/session.server";
+import { cloudStorageUploaderHandler } from "~/upload-handler.server";
 
 export const action = async ({ request }: ActionArgs) => {
   const userId = await requireUserId(request)
-  const body = await request.formData();
+  const body = await unstable_parseMultipartFormData(request, cloudStorageUploaderHandler);
 
   const minimumExpectedSalary = parseInt(body.get('minimumExpectedSalary') as string)
-  const minimumHourlyRate = parseInt(body.get('minimumHourlyRate') as string)
+  const minimumHourlyRate = parseInt(body.get('minimumHourlyRate') as string)  
 
   await prisma.user.update({
     where: {
@@ -23,8 +24,9 @@ export const action = async ({ request }: ActionArgs) => {
       state: body.get('state') as string,
       country: body.get('country') as string,
       postalCode: body.get('zip') as string,
+      resume: body.get('resume') as string,
 
-      linkedinUrl: body.get('linkedinUrl') as string,      
+      linkedinUrl: body.get('linkedinUrl') as string,
       websiteUrl: body.get('websiteUrl') as string,
       googleScholarUrl: body.get('googleScholarUrl') as string,
 

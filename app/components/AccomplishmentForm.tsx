@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import LabelledTextInput from "./LabelledInput"
 import { Dialog } from "@headlessui/react"
 import { Accomplishment } from "~/types.client"
+import LabelledFileInput from "./LabelledFileInput"
 
 export default function AccomplishmentForm({
   action,
@@ -76,6 +77,12 @@ export default function AccomplishmentForm({
                       placeholder="Please provide a link to your publication"
                       className="w-full mt-5"
                     />
+                    <LabelledFileInput
+                      name="file"
+                      label="Supporting Document"
+                      placeholder="Please upload a supporting document (if any)"
+                      className="w-full mt-5"
+                    />
                   </>
                 )
               }
@@ -114,6 +121,12 @@ export default function AccomplishmentForm({
                       placeholder="Please provide a link to your patent"
                       className="w-full mt-5"
                     />
+                    <LabelledFileInput
+                      name="file"
+                      label="Supporting Document"
+                      placeholder="Please upload a supporting document (if any)"
+                      className="w-full mt-5"
+                    />
                   </>
                 )
               }
@@ -143,6 +156,12 @@ export default function AccomplishmentForm({
                       name="link"
                       label="Link"
                       placeholder="Please provide a link (if any) to your grant/award"
+                      className="w-full mt-5"
+                    />
+                    <LabelledFileInput
+                      name="file"
+                      label="Supporting Document"
+                      placeholder="Please upload a supporting document (if any)"
                       className="w-full mt-5"
                     />
                   </>
@@ -180,6 +199,12 @@ export default function AccomplishmentForm({
                       placeholder="Please provide a link (if any) to your conference presentation"
                       className="w-full mt-5"
                     />
+                    <LabelledFileInput
+                      name="file"
+                      label="Supporting Document"
+                      placeholder="Please upload a supporting document (if any)"
+                      className="w-full mt-5"
+                    />
                   </>
                 )
               }
@@ -211,6 +236,12 @@ export default function AccomplishmentForm({
                       placeholder="Please provide a link (if any) to your work/certificate"
                       className="w-full mt-5"
                     />
+                    <LabelledFileInput
+                      name="file"
+                      label="Supporting Document"
+                      placeholder="Please upload a supporting document (if any)"
+                      className="w-full mt-5"
+                    />
                   </>
                 )
               }
@@ -240,6 +271,12 @@ export default function AccomplishmentForm({
                       name="link"
                       label="Link"
                       placeholder="Please provide a link (if any) to your grant/award"
+                      className="w-full mt-5"
+                    />
+                    <LabelledFileInput
+                      name="file"
+                      label="Supporting Document"
+                      placeholder="Please upload a supporting document (if any)"
                       className="w-full mt-5"
                     />
                   </>
@@ -277,6 +314,12 @@ export default function AccomplishmentForm({
                       name="link"
                       label="Link"
                       placeholder="Please provide a link (if any) to your work/certificate"
+                      className="w-full mt-5"
+                    />
+                    <LabelledFileInput
+                      name="file"
+                      label="Supporting Document"
+                      placeholder="Please upload a supporting document (if any)"
                       className="w-full mt-5"
                     />
                   </>

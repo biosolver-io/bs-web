@@ -1,5 +1,5 @@
 import { Accomplishment } from "@prisma/client"
-import { LoaderArgs, json } from "@remix-run/node"
+import { ActionArgs, LoaderArgs, json, unstable_parseMultipartFormData } from "@remix-run/node"
 import { useFetcher, useLoaderData } from "@remix-run/react"
 import { useState, useEffect } from "react"
 import assessmentFormats from "~/assets/data/assessmentFormats"
@@ -18,12 +18,15 @@ import AccomplishmentForm from "~/components/AccomplishmentForm"
 import ComboSearch from "~/components/ComboSearch"
 import DegreeCard from "~/components/DegreeCard"
 import LabelledDropdown from "~/components/LabelledDropdown"
+import LabelledFileInput from "~/components/LabelledFileInput"
 import LabelledTextInput from "~/components/LabelledInput"
 import MultiSelect from "~/components/MultiSelect"
 import TitleDivider from "~/components/TitleDivider"
 import WorkExperienceCard from "~/components/WorkExperienceCard"
 import { prisma } from "~/db.server"
 import { requireUserId } from "~/session.server"
+import { createServerClient } from "~/supabase.server"
+import { cloudStorageUploaderHandler } from "~/upload-handler.server"
 import { cx } from "~/utils"
 
 export const loader = async ({ request }: LoaderArgs) => {
@@ -58,6 +61,21 @@ export const loader = async ({ request }: LoaderArgs) => {
     certifications
   });
 }
+
+export const action = async ({ request }: ActionArgs) => {
+  try {
+    const form = await unstable_parseMultipartFormData(request, cloudStorageUploaderHandler);
+
+    //convert it to an object to padd back as actionData
+    const fileInfo = JSON.parse(form.get("my-file"));
+
+    // this is response from upload handler
+    console.log("the form", form.get("my-file"));
+    return fileInfo;
+  } catch (e) {
+    return { error: e };
+  }
+};
 
 export default function SeekerApplication() {
   const personalInformationFetcher = useFetcher()
@@ -130,7 +148,7 @@ export default function SeekerApplication() {
     <div className="flex flex-col">
       <TitleDivider title="Personal Information" />
       <section className='py-5'>
-        <personalInformationFetcher.Form action="/profile/personal" method="post">
+        <personalInformationFetcher.Form action="/profile/personal" method="post" encType="multipart/form-data">
           <LabelledTextInput
             label="First Name"
             name="firstName"
@@ -212,6 +230,11 @@ export default function SeekerApplication() {
             name="currency"
             placeholder="Select your local currency"
             options={currencyCodes.map(currencyCode => ({ value: currencyCode.code, label: currencyCode.name, name: currencyCode.name }))}
+          />          
+          <LabelledFileInput
+            label="Resume"
+            name="resume"
+            placeholder="Upload your resume"
           />
           <button type="submit" className="flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md">Save</button>
         </personalInformationFetcher.Form>
@@ -325,6 +348,12 @@ export default function SeekerApplication() {
                 }
               />
             </div>
+            <LabelledFileInput
+              name="degreeCertificate"
+              label="Degree Certificate"
+              placeholder="Upload your degree certificate"
+              className="w-full mt-5"
+            />
             <LabelledDropdown
               name="assessmentFormat"
               label="Assessment Format"
@@ -340,6 +369,12 @@ export default function SeekerApplication() {
               placeholder="Enter your final marks/grade"
               className="w-full mt-5"
             />
+            <LabelledFileInput
+              name="marksheet"
+              label="Marksheet/Transcript"
+              placeholder="Upload your marksheet/transcript"
+              className="w-full mt-5"
+            />
             <LabelledDropdown
               name="hasEca"
               label="Do you have an ECA Certificate?"
@@ -352,6 +387,18 @@ export default function SeekerApplication() {
               name="ecaAuthority"
               label="ECA Authority"
               placeholder="Enter the name of the authority that issued your ECA certificate"
+              className="w-full mt-5"
+            />
+            <LabelledFileInput
+              name="ecaCertificate"
+              label="ECA Certificate/Report"
+              placeholder="Upload your ECA certificate/report"
+              className="w-full mt-5"
+            />
+            <LabelledFileInput
+              name="thesis"
+              label="Thesis"
+              placeholder="Upload your thesis (if applicable)"
               className="w-full mt-5"
             />
             {
@@ -439,6 +486,12 @@ export default function SeekerApplication() {
                 }
               />
             </div>
+            <LabelledFileInput
+              name="certificate"
+              label="Certificate"
+              placeholder="Upload your certificate"
+              className="w-full mt-5"
+            />
             <input name="action" type="hidden" value="saveCertification" />
             <button type="submit" className="flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md">Save</button>
           </certificationFetcher.Form>
@@ -563,6 +616,13 @@ export default function SeekerApplication() {
               label="Secondary Duties"
               placeholder="Enter the secondary duties (if any) of your role"
               multiline={true}
+              className="w-full mt-5"
+            />
+            <LabelledFileInput
+              name="proofOfEmployment"
+              label="Proof of Employment"
+              description="Upload a document that proves your employment at this company/organization such as a letter of employment, a pay stub, or a contract"
+              placeholder="Upload your proof of employment"
               className="w-full mt-5"
             />
             {

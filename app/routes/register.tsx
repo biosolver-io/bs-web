@@ -63,7 +63,9 @@ export const action = async ({ request }: ActionArgs) => {
     );
   }
 
-  const user = await createUser(fullName as string, email, password);
+  const [firstName, lastName] = fullName ? (fullName as string).split(' ') : ['', '']
+
+  const user = await createUser(firstName, lastName, email, password);
   if (referralCode && typeof referralCode === 'string') {
     await updateUserById(user.id, { source: referralCode, sourceType: 'referral' })
   }

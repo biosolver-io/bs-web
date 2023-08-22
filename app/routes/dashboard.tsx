@@ -16,9 +16,9 @@ export default function Dashboard() {
   const profileStrength = 'Incomplete';
   return (
     <div className="flex flex-row">
-      <div className="w-3/4">
+      <div className="w-full">
         <h2 className="text-3xl text-gray-600">
-          Welcome back{", " + user?.fullName}
+          Welcome back{", " + user?.firstName}
         </h2>
         <div className="mt-5 w-full flow-root p-5 bordered border-[1px] rounded-sm border-gray-200">
           <div className="float-left">
@@ -28,8 +28,7 @@ export default function Dashboard() {
           </div>
           <Link to="/profile" className="float-right px-5 py-2 bg-purple-600 text-white rounded-sm hover:bg-purple-800">Edit Profile</Link>
         </div>
-      </div>
-      <div className="w-1/4"> Right</div>
+      </div>      
     </div>
   )
 }
