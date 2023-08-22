@@ -7,7 +7,7 @@ import { S3Client } from '@aws-sdk/client-s3';
 import { Duplex, Stream, Writable } from 'stream';
 
 const storage = new S3Client({
-  endpoint: STORAGE_ENDPOINT,
+  endpoint: 'http://s3.amazonaws.com/',
   credentials: {
     accessKeyId: 'AKIAZ7CTBDZGEZEB6ENW',
     secretAccessKey: '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',
