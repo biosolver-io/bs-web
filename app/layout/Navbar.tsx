@@ -13,9 +13,9 @@ type NavbarTab = 'Dashboard' | 'Matches' | 'Projects' | 'Calendar'
 export default function Navbar() {
   const menuItems = [
     { name: 'Dashboard', href: '/dashboard' },
-    { name: 'Matches', href: '/matches' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Calendar', href: '/calendar' },
+    // { name: 'Matches', href: '/matches' },
+    // { name: 'Projects', href: '/projects' },
+    // { name: 'Calendar', href: '/calendar' },
   ]
 
   return (
