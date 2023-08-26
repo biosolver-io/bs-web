@@ -315,6 +315,7 @@ export default function App() {
                             name="search"
                           />
                         </form> */}
+                        <div className="relative flex flex-1"></div>
                         <div className="flex items-center gap-x-4 lg:gap-x-6">
                           <button type="button" className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
                             <span className="sr-only">View notifications</span>
