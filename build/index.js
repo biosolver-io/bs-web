@@ -281,7 +281,7 @@ async function logout(request) {
 }
 
 // app/tailwind.css
-var tailwind_default = "/build/_assets/tailwind-RFEPWQOY.css";
+var tailwind_default = "/build/_assets/tailwind-H7P4BHWM.css";
 
 // app/layout/anon/Header.tsx
 var import_react2 = require("react"), import_react3 = require("@headlessui/react"), import_outline = require("@heroicons/react/24/outline"), import_solid = require("@heroicons/react/20/solid");
@@ -10447,6 +10447,72 @@ __export(index_exports, {
   meta: () => meta2
 });
 
+// app/modules/solver_homepage/FullTimeJobCategoriesSection.tsx
+var import_react43 = require("@remix-run/react"), import_jsx_dev_runtime49 = require("react/jsx-dev-runtime"), categories = [{
+  name: "Junior/Senior Scientist",
+  icon: "https://images.unsplash.com/photo-1612837017391-4b6b7b0e2b0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uc3VsdGluZyUyMGNvbnR1bmluZyUyMGNvbnRyb2xsZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+  link: "/register"
+}, {
+  name: "Manufacturing Technician",
+  icon: "https://images.unsplash.com/photo-1612837017391-4b6b7b0e2b0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uc3VsdGluZyUyMGNvbnR1bmluZyUyMGNvbnRyb2xsZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+  link: "/register"
+}, {
+  name: "Labaratory Technician",
+  icon: "https://images.unsplash.com/photo-1612837017391-4b6b7b0e2b0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uc3VsdGluZyUyMGNvbnR1bmluZyUyMGNvbnRyb2xsZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+  link: "/register"
+}, {
+  name: "Technical Instrument Operator",
+  icon: "https://images.unsplash.com/photo-1612837017391-4b6b7b0e2b0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uc3VsdGluZyUyMGNvbnR1bmluZyUyMGNvbnRyb2xsZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+  link: "/register"
+}, {
+  name: "Assistant/Associate Professor",
+  icon: "https://images.unsplash.com/photo-1612837017391-4b6b7b0e2b0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uc3VsdGluZyUyMGNvbnR1bmluZyUyMGNvbnRyb2xsZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+  link: "/register"
+}, {
+  name: "Postdoctoral Fellow",
+  icon: "https://images.unsplash.com/photo-1612837017391-4b6b7b0e2b0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uc3VsdGluZyUyMGNvbnR1bmluZyUyMGNvbnRyb2xsZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+  link: "/register"
+}];
+function FullTimeJobCategoriesSection() {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("section", { className: "text-black body-font max-w-7xl mx-auto w-full mt-20", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "w-full mx-auto max-w-6xl text-5xl text-start font-semibold tracking-tight leading-snug", children: [
+      "Also access ",
+      /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("span", { className: "text-blue-800", children: "full-time" }, void 0, !1, {
+        fileName: "app/modules/solver_homepage/FullTimeJobCategoriesSection.tsx",
+        lineNumber: 33,
+        columnNumber: 21
+      }, this),
+      " opportunities matching your experience in ",
+      /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("span", { className: "text-yellow-600", children: "biotechnology." }, void 0, !1, {
+        fileName: "app/modules/solver_homepage/FullTimeJobCategoriesSection.tsx",
+        lineNumber: 33,
+        columnNumber: 112
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/modules/solver_homepage/FullTimeJobCategoriesSection.tsx",
+      lineNumber: 32,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "w-full flex flex-wrap mt-10 justify-center gap-5 bg-blue-800 rounded-7xl p-8 text-white", children: categories.map((category) => /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)(import_react43.Link, { to: category.link, className: "w-[250px] h-full rounded-4xl bg-blue-600 flex flex-col p-6 hover:bg-white hover:text-black hover:-translate-y-2 my-auto", children: /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "w-full text-center font-semibold text-xl", children: category.name }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/FullTimeJobCategoriesSection.tsx",
+      lineNumber: 39,
+      columnNumber: 15
+    }, this) }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/FullTimeJobCategoriesSection.tsx",
+      lineNumber: 38,
+      columnNumber: 13
+    }, this)) }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/FullTimeJobCategoriesSection.tsx",
+      lineNumber: 35,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/modules/solver_homepage/FullTimeJobCategoriesSection.tsx",
+    lineNumber: 31,
+    columnNumber: 5
+  }, this);
+}
+
 // app/assets/images/backgrounds/ring_up.svg
 var ring_up_default = "/build/_assets/ring_up-YIM4EQSD.svg";
 
@@ -10457,18 +10523,18 @@ var hero_background_default = "/build/_assets/hero_background-ABRAOGWP.png";
 var hero_cta_back_default = "/build/_assets/hero_cta_back-XGUPIIXP.svg";
 
 // app/modules/solver_homepage/HeroSection.tsx
-var import_react43 = require("@remix-run/react"), import_jsx_dev_runtime49 = require("react/jsx-dev-runtime");
+var import_react44 = require("@remix-run/react"), import_jsx_dev_runtime50 = require("react/jsx-dev-runtime");
 function HeroSection3() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("section", { className: "text-black body-font max-w-7xl", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "w-full mx-auto text-7xl font-bold tracking-tight leading-snug text-start", children: [
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("section", { className: "text-black body-font max-w-7xl", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "w-full mx-auto text-7xl font-bold tracking-tight leading-snug text-start", children: [
       "A global platform to ",
-      /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("span", { className: "text-blue-600", children: "network" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("span", { className: "text-blue-600", children: "network" }, void 0, !1, {
         fileName: "app/modules/solver_homepage/HeroSection.tsx",
         lineNumber: 11,
         columnNumber: 30
       }, this),
       " for professionals in ",
-      /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("span", { className: "text-yellow-400", children: "Biotechnology." }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("span", { className: "text-yellow-400", children: "Biotechnology." }, void 0, !1, {
         fileName: "app/modules/solver_homepage/HeroSection.tsx",
         lineNumber: 11,
         columnNumber: 98
@@ -10478,20 +10544,20 @@ function HeroSection3() {
       lineNumber: 10,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "w-full flex flex-wrap mt-5 justify-between mx-auto", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "flex w-full md:w-[73%] h-[350px] rounded-7xl  items-end align-bottom relative", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("img", { className: "w-full absolute h-[350px]", src: hero_background_default }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "w-full flex flex-wrap mt-5 justify-between mx-auto", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "flex w-full md:w-[73%] h-[350px] rounded-7xl  items-end align-bottom relative", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("img", { className: "w-full absolute h-[350px]", src: hero_background_default }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HeroSection.tsx",
           lineNumber: 15,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)(import_react43.Link, { to: "/register", className: "flex absolute align-bottom h-[165px] bg-blue-600 hover:bg-blue-700 border-white border-5 rounded-7xl w-[38.5%] animate-pulse hover:animate-none", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("img", { className: "absolute bottom-0 left-0 w-auto h-[165px]", src: hero_cta_back_default }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)(import_react44.Link, { to: "/register", className: "flex absolute align-bottom h-[165px] bg-blue-600 hover:bg-blue-700 border-white border-5 rounded-7xl w-[38.5%] animate-pulse hover:animate-none", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("img", { className: "absolute bottom-0 left-0 w-auto h-[165px]", src: hero_cta_back_default }, void 0, !1, {
             fileName: "app/modules/solver_homepage/HeroSection.tsx",
             lineNumber: 17,
             columnNumber: 13
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "absolute bottom-0 left-0 text-start text-3xl text-white w-1/2 p-7", children: "Get Started" }, void 0, !1, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "absolute bottom-0 left-0 text-start text-3xl text-white w-1/2 p-7", children: "Get Started" }, void 0, !1, {
             fileName: "app/modules/solver_homepage/HeroSection.tsx",
             lineNumber: 18,
             columnNumber: 13
@@ -10506,13 +10572,13 @@ function HeroSection3() {
         lineNumber: 14,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "w-full md:w-1/4 bg-yellow-400 rounded-7xl h-[350px] relative", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "text-black text-lg p-10", children: "Find opportunities and connect with talent in the biotech industry." }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "w-full md:w-1/4 bg-yellow-400 rounded-7xl h-[350px] relative", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "text-black text-lg p-10", children: "Find opportunities and connect with talent in the biotech industry." }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HeroSection.tsx",
           lineNumber: 24,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("img", { className: "absolute bottom-0 right-0", src: ring_up_default }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("img", { className: "absolute bottom-0 right-0", src: ring_up_default }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HeroSection.tsx",
           lineNumber: 27,
           columnNumber: 11
@@ -10538,12 +10604,12 @@ function HeroSection3() {
 var how_it_works_decoration_default = "/build/_assets/how_it_works_decoration-QDZKIROR.svg";
 
 // app/modules/solver_homepage/HowItWorksSection.tsx
-var import_jsx_dev_runtime50 = require("react/jsx-dev-runtime");
+var import_jsx_dev_runtime51 = require("react/jsx-dev-runtime");
 function HowItWorksSection() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("section", { className: "text-black body-font max-w-7xl mx-auto w-full mt-20", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "w-full mx-auto max-w-6xl text-5xl text-start font-semibold tracking-tight leading-snug", children: [
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("section", { className: "text-black body-font max-w-7xl mx-auto w-full mt-20", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "w-full mx-auto max-w-6xl text-5xl text-start font-semibold tracking-tight leading-snug", children: [
       "Find your ",
-      /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("span", { className: "text-blue-800", children: "dream opportunity" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("span", { className: "text-blue-800", children: "dream opportunity" }, void 0, !1, {
         fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
         lineNumber: 7,
         columnNumber: 19
@@ -10554,24 +10620,24 @@ function HowItWorksSection() {
       lineNumber: 6,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "w-full flex flex-wrap mt-10 justify-center gap-5 bg-blue-800 rounded-7xl p-8 text-white", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "w-[275px] relative rounded-4xl bg-blue-600 flex flex-col p-10 hover:bg-white hover:text-black hover:-translate-y-5", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "absolute font-semibold text-5xl top-[30px] left-[30px]", children: "01" }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "w-full flex flex-wrap mt-10 justify-center gap-5 bg-blue-800 rounded-7xl p-8 text-white", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "w-[275px] relative rounded-4xl bg-blue-600 flex flex-col p-10 hover:bg-white hover:text-black hover:-translate-y-5", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "absolute font-semibold text-5xl top-[30px] left-[30px]", children: "01" }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 11,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("img", { src: how_it_works_decoration_default, className: "absolute top-0 left-0 w-[150px] h-auto" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("img", { src: how_it_works_decoration_default, className: "absolute top-0 left-0 w-[150px] h-auto" }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 12,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "mt-[160px] w-full text-start font-semibold text-3xl", children: "Complete your profile" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "mt-[160px] w-full text-start font-semibold text-3xl", children: "Complete your profile" }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 13,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "mt-5", children: "Ensure that all information is up to date and accurate, so recruiters can find you easily." }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "mt-5", children: "Ensure that all information is up to date and accurate, so recruiters can find you easily." }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 16,
           columnNumber: 11
@@ -10581,23 +10647,23 @@ function HowItWorksSection() {
         lineNumber: 10,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "w-[275px] relative rounded-4xl bg-blue-600 flex flex-col p-10 hover:bg-white hover:text-black hover:-translate-y-5", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "absolute font-semibold text-5xl top-[30px] left-[30px]", children: "02" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "w-[275px] relative rounded-4xl bg-blue-600 flex flex-col p-10 hover:bg-white hover:text-black hover:-translate-y-5", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "absolute font-semibold text-5xl top-[30px] left-[30px]", children: "02" }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 21,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("img", { src: how_it_works_decoration_default, className: "absolute top-0 left-0 w-[150px] h-auto" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("img", { src: how_it_works_decoration_default, className: "absolute top-0 left-0 w-[150px] h-auto" }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 22,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "mt-[160px] w-full text-start font-semibold text-3xl", children: "Upload documents" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "mt-[160px] w-full text-start font-semibold text-3xl", children: "Upload documents" }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 23,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "mt-5", children: "We verify your documents and ensure that you are a real person, so recruiters can trust you." }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "mt-5", children: "We verify your documents and ensure that you are a real person, so recruiters can trust you." }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 26,
           columnNumber: 11
@@ -10607,23 +10673,23 @@ function HowItWorksSection() {
         lineNumber: 20,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "w-[275px] relative rounded-4xl bg-blue-600 flex flex-col p-10 hover:bg-white hover:text-black hover:-translate-y-5", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "absolute font-semibold text-5xl top-[30px] left-[30px]", children: "03" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "w-[275px] relative rounded-4xl bg-blue-600 flex flex-col p-10 hover:bg-white hover:text-black hover:-translate-y-5", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "absolute font-semibold text-5xl top-[30px] left-[30px]", children: "03" }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 31,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("img", { src: how_it_works_decoration_default, className: "absolute top-0 left-0 w-[150px] h-auto" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("img", { src: how_it_works_decoration_default, className: "absolute top-0 left-0 w-[150px] h-auto" }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 32,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "mt-[160px] w-full text-start font-semibold text-3xl", children: "Skill Matching" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "mt-[160px] w-full text-start font-semibold text-3xl", children: "Skill Matching" }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 33,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "mt-5", children: "We match your skills with the right opportunities, so you can find the best fit." }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "mt-5", children: "We match your skills with the right opportunities, so you can find the best fit." }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 36,
           columnNumber: 11
@@ -10633,23 +10699,23 @@ function HowItWorksSection() {
         lineNumber: 30,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "w-[275px] relative rounded-4xl bg-blue-600 flex flex-col p-10 hover:bg-white hover:text-black hover:-translate-y-5", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "absolute font-semibold text-5xl top-[30px] left-[30px]", children: "04" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "w-[275px] relative rounded-4xl bg-blue-600 flex flex-col p-10 hover:bg-white hover:text-black hover:-translate-y-5", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "absolute font-semibold text-5xl top-[30px] left-[30px]", children: "04" }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 41,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("img", { src: how_it_works_decoration_default, className: "absolute top-0 left-0 w-[150px] h-auto" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("img", { src: how_it_works_decoration_default, className: "absolute top-0 left-0 w-[150px] h-auto" }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 42,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "mt-[160px] w-full text-start font-semibold text-3xl", children: "Schedule Interview" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "mt-[160px] w-full text-start font-semibold text-3xl", children: "Schedule Interview" }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 43,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "mt-5", children: "You can schedule an interview with the recruiter to discuss the opportunity when they reach out to you." }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "mt-5", children: "You can schedule an interview with the recruiter to discuss the opportunity when they reach out to you." }, void 0, !1, {
           fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
           lineNumber: 46,
           columnNumber: 11
@@ -10671,63 +10737,129 @@ function HowItWorksSection() {
   }, this);
 }
 
-// app/modules/solver_homepage/LatestJobPosting.tsx
-var import_react44 = require("@remix-run/react"), import_jsx_dev_runtime51 = require("react/jsx-dev-runtime");
-function LatestJobsPosting({
+// app/modules/solver_homepage/JobCategoriesSection.tsx
+var import_react45 = require("@remix-run/react"), import_jsx_dev_runtime52 = require("react/jsx-dev-runtime"), categories2 = [{
+  name: "Technical Consulting",
+  icon: "https://images.unsplash.com/photo-1612837017391-4b6b7b0e2b0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uc3VsdGluZyUyMGNvbnR1bmluZyUyMGNvbnRyb2xsZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+  link: "/register"
+}, {
+  name: "Management Consulting",
+  icon: "https://images.unsplash.com/photo-1612837017391-4b6b7b0e2b0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uc3VsdGluZyUyMGNvbnR1bmluZyUyMGNvbnRyb2xsZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+  link: "/register"
+}, {
+  name: "Technical/Medical Writer",
+  icon: "https://images.unsplash.com/photo-1612837017391-4b6b7b0e2b0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uc3VsdGluZyUyMGNvbnR1bmluZyUyMGNvbnRyb2xsZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+  link: "/register"
+}, {
+  name: "Regulatory Affairs Consulting",
+  icon: "https://images.unsplash.com/photo-1612837017391-4b6b7b0e2b0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uc3VsdGluZyUyMGNvbnR1bmluZyUyMGNvbnRyb2xsZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+  link: "/register"
+}, {
+  name: "IP and Patent Attorney",
+  icon: "https://images.unsplash.com/photo-1612837017391-4b6b7b0e2b0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uc3VsdGluZyUyMGNvbnR1bmluZyUyMGNvbnRyb2xsZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+  link: "/register"
+}, {
+  name: "QA/Compliance Consulting",
+  icon: "https://images.unsplash.com/photo-1612837017391-4b6b7b0e2b0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uc3VsdGluZyUyMGNvbnR1bmluZyUyMGNvbnRyb2xsZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80",
+  link: "/register"
+}];
+function JobCategoriesSection() {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("section", { className: "text-black body-font max-w-7xl mx-auto w-full mt-20", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "w-full mx-auto max-w-6xl text-5xl text-start font-semibold tracking-tight leading-snug", children: [
+      "Get access to ",
+      /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("span", { className: "text-blue-800", children: "remote" }, void 0, !1, {
+        fileName: "app/modules/solver_homepage/JobCategoriesSection.tsx",
+        lineNumber: 33,
+        columnNumber: 23
+      }, this),
+      " opportunities in several areas of the ",
+      /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("span", { className: "text-yellow-600", children: "life sciences." }, void 0, !1, {
+        fileName: "app/modules/solver_homepage/JobCategoriesSection.tsx",
+        lineNumber: 33,
+        columnNumber: 107
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/modules/solver_homepage/JobCategoriesSection.tsx",
+      lineNumber: 32,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "w-full flex flex-wrap mt-10 justify-center gap-5 bg-blue-800 rounded-7xl p-8 text-white", children: categories2.map((category) => /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)(import_react45.Link, { to: category.link, className: "w-[250px] rounded-4xl bg-blue-600 flex flex-col p-6 hover:bg-white hover:text-black hover:-translate-y-2 my-auto", children: /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "w-full text-center font-semibold text-xl", children: category.name }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/JobCategoriesSection.tsx",
+      lineNumber: 39,
+      columnNumber: 15
+    }, this) }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/JobCategoriesSection.tsx",
+      lineNumber: 38,
+      columnNumber: 13
+    }, this)) }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/JobCategoriesSection.tsx",
+      lineNumber: 35,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/modules/solver_homepage/JobCategoriesSection.tsx",
+    lineNumber: 31,
+    columnNumber: 5
+  }, this);
+}
+
+// app/modules/solver_homepage/JobCard.tsx
+var import_react46 = require("@remix-run/react"), import_jsx_dev_runtime53 = require("react/jsx-dev-runtime");
+function JobCard({
   job
 }) {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "w-[375px] bg-gray-100 border-none rounded-3xl p-5", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "flex flex-row gap-5", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("img", { src: job.logo, className: "w-auto h-[80px] max-w-[120px] border-none" }, void 0, !1, {
-        fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "w-[375px] bg-gray-100 border-none rounded-3xl p-5", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "flex flex-row gap-5", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("img", { src: job.logo, className: "w-auto h-[80px] max-w-[120px] border-none" }, void 0, !1, {
+        fileName: "app/modules/solver_homepage/JobCard.tsx",
         lineNumber: 11,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "flex flex-col my-auto", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "text-2xl font-bold", children: job.company }, void 0, !1, {
-          fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+      /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "flex flex-col my-auto", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "text-2xl font-bold", children: job.company }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/JobCard.tsx",
           lineNumber: 13,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "text-sm", children: job.postedOn }, void 0, !1, {
-          fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+        /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "text-sm", children: job.postedOn }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/JobCard.tsx",
           lineNumber: 14,
           columnNumber: 11
         }, this)
       ] }, void 0, !0, {
-        fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+        fileName: "app/modules/solver_homepage/JobCard.tsx",
         lineNumber: 12,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
-      fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+      fileName: "app/modules/solver_homepage/JobCard.tsx",
       lineNumber: 10,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "text-xl font-bold mt-5", children: job.title }, void 0, !1, {
-      fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+    /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "text-xl font-bold mt-5", children: job.title }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/JobCard.tsx",
       lineNumber: 17,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "mt-2", children: job.location }, void 0, !1, {
-      fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+    /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "mt-2", children: job.location }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/JobCard.tsx",
       lineNumber: 20,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)(import_react44.Link, { to: job.applicationUrl, className: "flex mt-10 px-5 border-blue-600 border-[1px] hover:bg-blue-700 hover:text-white text-blue-600 rounded-3xl p-3", children: "Apply now" }, void 0, !1, {
-      fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+    /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(import_react46.Link, { to: job.applicationUrl, className: "flex mt-10 px-5 border-blue-600 border-[1px] hover:bg-blue-700 hover:text-white text-blue-600 rounded-3xl p-3", children: "Apply now" }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/JobCard.tsx",
       lineNumber: 23,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
-    fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+    fileName: "app/modules/solver_homepage/JobCard.tsx",
     lineNumber: 9,
     columnNumber: 5
   }, this);
 }
 
 // app/modules/solver_homepage/LatestJobsSection.tsx
-var import_jsx_dev_runtime52 = require("react/jsx-dev-runtime"), latestJobs = [
+var import_jsx_dev_runtime54 = require("react/jsx-dev-runtime"), latestJobs = [
   {
     logo: "https://ryercat.com/cdn/shop/files/LogoTagline_200x@2x.png?v=1667425643",
     company: "Ryercat",
@@ -10754,20 +10886,21 @@ var import_jsx_dev_runtime52 = require("react/jsx-dev-runtime"), latestJobs = [
   }
 ];
 function LatestJobsSection() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("section", { className: "text-black body-font max-w-7xl mx-auto w-full mt-20", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "w-full text-center text-5xl font-semibold", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("span", { className: "text-blue-800", children: "Latest Jobs" }, void 0, !1, {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("section", { className: "text-black body-font max-w-7xl mx-auto w-full mt-20", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { className: "w-full mx-auto max-w-6xl text-5xl text-start font-semibold tracking-tight leading-snug", children: [
+      "Check out some of the ",
+      /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("span", { className: "text-blue-800", children: "latest" }, void 0, !1, {
         fileName: "app/modules/solver_homepage/LatestJobsSection.tsx",
         lineNumber: 34,
-        columnNumber: 9
+        columnNumber: 31
       }, this),
-      " for you"
+      " opportunties available on our platform."
     ] }, void 0, !0, {
       fileName: "app/modules/solver_homepage/LatestJobsSection.tsx",
       lineNumber: 33,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "w-full flex flex-wrap mt-10 justify-center gap-5", children: latestJobs.map((job) => /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)(LatestJobsPosting, { job }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { className: "w-full flex flex-wrap mt-10 justify-center gap-5", children: latestJobs.map((job) => /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(JobCard, { job }, void 0, !1, {
       fileName: "app/modules/solver_homepage/LatestJobsSection.tsx",
       lineNumber: 39,
       columnNumber: 13
@@ -10784,20 +10917,20 @@ function LatestJobsSection() {
 }
 
 // app/modules/solver_homepage/RopeInSection.tsx
-var import_react45 = require("react");
+var import_react47 = require("react");
 
 // app/assets/images/backgrounds/double_ring_side.svg
 var double_ring_side_default = "/build/_assets/double_ring_side-VLO7I5XT.svg";
 
 // app/modules/solver_homepage/RopeInSection.tsx
-var import_jsx_dev_runtime53 = require("react/jsx-dev-runtime");
+var import_jsx_dev_runtime55 = require("react/jsx-dev-runtime");
 function RopeInSection() {
-  let [targetSelection, setTargetSelection] = (0, import_react45.useState)("solver");
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("section", { className: "text-black body-font max-w-7xl mx-auto w-full mt-20", children: /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "flex justify-center w-full gap-5", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "w-full flex flex-col md:w-[750px] text-white", children: [
-      targetSelection == "solver" ? /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "rounded-7xl text-4xl bg-gray-800 p-10", children: [
+  let [targetSelection, setTargetSelection] = (0, import_react47.useState)("solver");
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("section", { className: "text-black body-font max-w-7xl mx-auto w-full mt-20", children: /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "flex justify-center w-full gap-5", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "w-full flex flex-col md:w-[750px] text-white", children: [
+      targetSelection == "solver" ? /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "rounded-7xl text-4xl bg-gray-800 p-10", children: [
         "Connect with ",
-        /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("span", { className: "text-yellow-600", children: "thousands of companies" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("span", { className: "text-yellow-600", children: "thousands of companies" }, void 0, !1, {
           fileName: "app/modules/solver_homepage/RopeInSection.tsx",
           lineNumber: 15,
           columnNumber: 111
@@ -10807,9 +10940,9 @@ function RopeInSection() {
         fileName: "app/modules/solver_homepage/RopeInSection.tsx",
         lineNumber: 15,
         columnNumber: 43
-      }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "rounded-7xl text-4xl bg-gray-800 p-10", children: [
+      }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "rounded-7xl text-4xl bg-gray-800 p-10", children: [
         "Connect with ",
-        /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("span", { className: "text-yellow-600", children: "thousands of experts" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("span", { className: "text-yellow-600", children: "thousands of experts" }, void 0, !1, {
           fileName: "app/modules/solver_homepage/RopeInSection.tsx",
           lineNumber: 17,
           columnNumber: 28
@@ -10820,9 +10953,9 @@ function RopeInSection() {
         lineNumber: 16,
         columnNumber: 22
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "rounded-7xl text-3xl bg-gray-800 p-10 mt-5 text-white", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "rounded-7xl text-3xl bg-gray-800 p-10 mt-5 text-white", children: [
         "Focus on what matters most: ",
-        /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("span", { className: "text-yellow-600", children: "your profile." }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("span", { className: "text-yellow-600", children: "your profile." }, void 0, !1, {
           fileName: "app/modules/solver_homepage/RopeInSection.tsx",
           lineNumber: 53,
           columnNumber: 41
@@ -10838,7 +10971,7 @@ function RopeInSection() {
       lineNumber: 13,
       columnNumber: 9
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "w-[420px] relative text-white rounded-7xl text-4xl bg-gray-800 p-5", children: /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("img", { className: "absolute left-0 bottom-0 w-full h-auto", src: double_ring_side_default }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "w-[420px] relative text-white rounded-7xl text-4xl bg-gray-800 p-5", children: /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("img", { className: "absolute left-0 bottom-0 w-full h-auto", src: double_ring_side_default }, void 0, !1, {
       fileName: "app/modules/solver_homepage/RopeInSection.tsx",
       lineNumber: 58,
       columnNumber: 11
@@ -10859,33 +10992,43 @@ function RopeInSection() {
 }
 
 // app/routes/_index.tsx
-var import_jsx_dev_runtime54 = require("react/jsx-dev-runtime"), meta2 = () => [{ title: "Biosolver" }];
+var import_jsx_dev_runtime56 = require("react/jsx-dev-runtime"), meta2 = () => [{ title: "Biosolver" }];
 function Index() {
   let user = useOptionalUser();
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { className: "p-6", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(HeroSection3, {}, void 0, !1, {
-      fileName: "app/routes/_index.tsx",
-      lineNumber: 18,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(RopeInSection, {}, void 0, !1, {
-      fileName: "app/routes/_index.tsx",
-      lineNumber: 19,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(HowItWorksSection, {}, void 0, !1, {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)("div", { className: "p-6", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)(HeroSection3, {}, void 0, !1, {
       fileName: "app/routes/_index.tsx",
       lineNumber: 20,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(LatestJobsSection, {}, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)(RopeInSection, {}, void 0, !1, {
       fileName: "app/routes/_index.tsx",
       lineNumber: 21,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)(HowItWorksSection, {}, void 0, !1, {
+      fileName: "app/routes/_index.tsx",
+      lineNumber: 22,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)(LatestJobsSection, {}, void 0, !1, {
+      fileName: "app/routes/_index.tsx",
+      lineNumber: 23,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)(JobCategoriesSection, {}, void 0, !1, {
+      fileName: "app/routes/_index.tsx",
+      lineNumber: 24,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)(FullTimeJobCategoriesSection, {}, void 0, !1, {
+      fileName: "app/routes/_index.tsx",
+      lineNumber: 25,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/_index.tsx",
-    lineNumber: 17,
+    lineNumber: 19,
     columnNumber: 5
   }, this);
 }
@@ -10898,8 +11041,8 @@ __export(login_exports, {
   loader: () => loader14,
   meta: () => meta3
 });
-var import_node23 = require("@remix-run/node"), import_react46 = require("@remix-run/react"), import_react47 = require("react");
-var import_jsx_dev_runtime55 = require("react/jsx-dev-runtime"), loader14 = async ({ request }) => await getUserId(request) ? (0, import_node23.redirect)("/dashboard") : (0, import_node23.json)({}), action17 = async ({ request }) => {
+var import_node23 = require("@remix-run/node"), import_react48 = require("@remix-run/react"), import_react49 = require("react");
+var import_jsx_dev_runtime57 = require("react/jsx-dev-runtime"), loader14 = async ({ request }) => await getUserId(request) ? (0, import_node23.redirect)("/dashboard") : (0, import_node23.json)({}), action17 = async ({ request }) => {
   let formData = await request.formData(), email = formData.get("email"), password = formData.get("password"), redirectTo = safeRedirect(formData.get("redirectTo"), "/dashboard"), remember = formData.get("remember");
   if (!validateEmail(email))
     return (0, import_node23.json)(
@@ -10929,12 +11072,12 @@ var import_jsx_dev_runtime55 = require("react/jsx-dev-runtime"), loader14 = asyn
 }, meta3 = () => [{ title: "Login" }];
 function LoginPage() {
   var _a, _b, _c, _d;
-  let [searchParams] = (0, import_react46.useSearchParams)(), redirectTo = searchParams.get("redirectTo") || "/dashboard", actionData = (0, import_react46.useActionData)(), emailRef = (0, import_react47.useRef)(null), passwordRef = (0, import_react47.useRef)(null);
-  return (0, import_react47.useEffect)(() => {
+  let [searchParams] = (0, import_react48.useSearchParams)(), redirectTo = searchParams.get("redirectTo") || "/dashboard", actionData = (0, import_react48.useActionData)(), emailRef = (0, import_react49.useRef)(null), passwordRef = (0, import_react49.useRef)(null);
+  return (0, import_react49.useEffect)(() => {
     var _a2, _b2, _c2, _d2;
     (_a2 = actionData == null ? void 0 : actionData.errors) != null && _a2.email ? (_b2 = emailRef.current) == null || _b2.focus() : (_c2 = actionData == null ? void 0 : actionData.errors) != null && _c2.password && ((_d2 = passwordRef.current) == null || _d2.focus());
-  }, [actionData]), /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(import_jsx_dev_runtime55.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "flex min-h-full flex-col justify-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "mx-auto w-full max-w-md px-8", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(import_react46.Link, { to: "/", className: "items-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("img", { className: "h-16 w-16 mx-auto", src: base_default, alt: "BioSolver Logo" }, void 0, !1, {
+  }, [actionData]), /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)(import_jsx_dev_runtime57.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)("div", { className: "flex min-h-full flex-col justify-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)("div", { className: "mx-auto w-full max-w-md px-8", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)(import_react48.Link, { to: "/", className: "items-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)("img", { className: "h-16 w-16 mx-auto", src: base_default, alt: "BioSolver Logo" }, void 0, !1, {
       fileName: "app/routes/login.tsx",
       lineNumber: 85,
       columnNumber: 13
@@ -10943,9 +11086,9 @@ function LoginPage() {
       lineNumber: 84,
       columnNumber: 11
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(import_react46.Form, { method: "post", className: "space-y-6", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(
+    /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)(import_react48.Form, { method: "post", className: "space-y-6", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)(
           "label",
           {
             htmlFor: "email",
@@ -10961,8 +11104,8 @@ function LoginPage() {
           },
           this
         ),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "mt-1", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(
+        /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)("div", { className: "mt-1", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)(
             "input",
             {
               ref: emailRef,
@@ -10985,7 +11128,7 @@ function LoginPage() {
             },
             this
           ),
-          (_b = actionData == null ? void 0 : actionData.errors) != null && _b.email ? /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "pt-1 text-red-700", id: "email-error", children: actionData.errors.email }, void 0, !1, {
+          (_b = actionData == null ? void 0 : actionData.errors) != null && _b.email ? /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)("div", { className: "pt-1 text-red-700", id: "email-error", children: actionData.errors.email }, void 0, !1, {
             fileName: "app/routes/login.tsx",
             lineNumber: 109,
             columnNumber: 19
@@ -11000,8 +11143,8 @@ function LoginPage() {
         lineNumber: 88,
         columnNumber: 13
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)(
           "label",
           {
             htmlFor: "password",
@@ -11017,8 +11160,8 @@ function LoginPage() {
           },
           this
         ),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "mt-1", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(
+        /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)("div", { className: "mt-1", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)(
             "input",
             {
               id: "password",
@@ -11039,7 +11182,7 @@ function LoginPage() {
             },
             this
           ),
-          (_d = actionData == null ? void 0 : actionData.errors) != null && _d.password ? /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "pt-1 text-red-700", id: "password-error", children: actionData.errors.password }, void 0, !1, {
+          (_d = actionData == null ? void 0 : actionData.errors) != null && _d.password ? /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)("div", { className: "pt-1 text-red-700", id: "password-error", children: actionData.errors.password }, void 0, !1, {
             fileName: "app/routes/login.tsx",
             lineNumber: 135,
             columnNumber: 19
@@ -11054,12 +11197,12 @@ function LoginPage() {
         lineNumber: 116,
         columnNumber: 13
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("input", { type: "hidden", name: "redirectTo", value: redirectTo }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)("input", { type: "hidden", name: "redirectTo", value: redirectTo }, void 0, !1, {
         fileName: "app/routes/login.tsx",
         lineNumber: 142,
         columnNumber: 13
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)(
         "button",
         {
           type: "submit",
@@ -11075,9 +11218,9 @@ function LoginPage() {
         },
         this
       ),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "flex items-center justify-between", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "flex items-center", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)("div", { className: "flex items-center justify-between", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)("div", { className: "flex items-center", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)(
             "input",
             {
               id: "remember",
@@ -11094,7 +11237,7 @@ function LoginPage() {
             },
             this
           ),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(
+          /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)(
             "label",
             {
               htmlFor: "remember",
@@ -11115,11 +11258,11 @@ function LoginPage() {
           lineNumber: 150,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "text-center text-sm text-gray-500", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)("div", { className: "text-center text-sm text-gray-500", children: [
           "Don't have an account?",
           " ",
-          /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(
-            import_react46.Link,
+          /* @__PURE__ */ (0, import_jsx_dev_runtime57.jsxDEV)(
+            import_react48.Link,
             {
               className: "text-purple-500 underline",
               to: {
@@ -11173,16 +11316,16 @@ __export(notes_exports, {
   default: () => NotesPage,
   loader: () => loader15
 });
-var import_node24 = require("@remix-run/node"), import_react48 = require("@remix-run/react");
-var import_jsx_dev_runtime56 = require("react/jsx-dev-runtime"), loader15 = async ({ request }) => {
+var import_node24 = require("@remix-run/node"), import_react50 = require("@remix-run/react");
+var import_jsx_dev_runtime58 = require("react/jsx-dev-runtime"), loader15 = async ({ request }) => {
   let userId = await requireUserId(request), noteListItems = await getNoteListItems({ userId });
   return (0, import_node24.json)({ noteListItems });
 };
 function NotesPage() {
-  let data = (0, import_react48.useLoaderData)(), user = useUser();
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)("div", { className: "flex h-full min-h-screen flex-col", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)("header", { className: "flex items-center justify-between bg-slate-800 p-4 text-white", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)("h1", { className: "text-3xl font-bold", children: /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)(import_react48.Link, { to: ".", children: "Notes" }, void 0, !1, {
+  let data = (0, import_react50.useLoaderData)(), user = useUser();
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)("div", { className: "flex h-full min-h-screen flex-col", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)("header", { className: "flex items-center justify-between bg-slate-800 p-4 text-white", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)("h1", { className: "text-3xl font-bold", children: /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)(import_react50.Link, { to: ".", children: "Notes" }, void 0, !1, {
         fileName: "app/routes/notes.tsx",
         lineNumber: 23,
         columnNumber: 11
@@ -11191,12 +11334,12 @@ function NotesPage() {
         lineNumber: 22,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)("p", { children: user.email }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)("p", { children: user.email }, void 0, !1, {
         fileName: "app/routes/notes.tsx",
         lineNumber: 25,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)(import_react48.Form, { action: "/logout", method: "post", children: /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)(import_react50.Form, { action: "/logout", method: "post", children: /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)(
         "button",
         {
           type: "submit",
@@ -11221,24 +11364,24 @@ function NotesPage() {
       lineNumber: 21,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)("main", { className: "flex h-full bg-white", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)("div", { className: "h-full w-80 border-r bg-gray-50", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)(import_react48.Link, { to: "new", className: "block p-4 text-xl text-blue-500", children: "+ New Note" }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)("main", { className: "flex h-full bg-white", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)("div", { className: "h-full w-80 border-r bg-gray-50", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)(import_react50.Link, { to: "new", className: "block p-4 text-xl text-blue-500", children: "+ New Note" }, void 0, !1, {
           fileName: "app/routes/notes.tsx",
           lineNumber: 38,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)("hr", {}, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)("hr", {}, void 0, !1, {
           fileName: "app/routes/notes.tsx",
           lineNumber: 42,
           columnNumber: 11
         }, this),
-        data.noteListItems.length === 0 ? /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)("p", { className: "p-4", children: "No notes yet" }, void 0, !1, {
+        data.noteListItems.length === 0 ? /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)("p", { className: "p-4", children: "No notes yet" }, void 0, !1, {
           fileName: "app/routes/notes.tsx",
           lineNumber: 45,
           columnNumber: 13
-        }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)("ol", { children: data.noteListItems.map((note) => /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)("li", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)(
-          import_react48.NavLink,
+        }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)("ol", { children: data.noteListItems.map((note) => /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)("li", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)(
+          import_react50.NavLink,
           {
             className: ({ isActive }) => `block border-b p-4 text-xl ${isActive ? "bg-white" : ""}`,
             to: note.id,
@@ -11269,7 +11412,7 @@ function NotesPage() {
         lineNumber: 37,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)("div", { className: "flex-1 p-6", children: /* @__PURE__ */ (0, import_jsx_dev_runtime56.jsxDEV)(import_react48.Outlet, {}, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)("div", { className: "flex-1 p-6", children: /* @__PURE__ */ (0, import_jsx_dev_runtime58.jsxDEV)(import_react50.Outlet, {}, void 0, !1, {
         fileName: "app/routes/notes.tsx",
         lineNumber: 65,
         columnNumber: 11
@@ -11291,7 +11434,7 @@ function NotesPage() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-EP77SPMO.js", imports: ["/build/_shared/chunk-YUUU2RAQ.js", "/build/_shared/chunk-YYAXLAGZ.js", "/build/_shared/chunk-HYDBX6IC.js", "/build/_shared/chunk-IU43IUTG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-S42HRGHW.js", imports: ["/build/_shared/chunk-JVNGUFS4.js", "/build/_shared/chunk-2JSQPZOA.js", "/build/_shared/chunk-7SDL4ZUQ.js", "/build/_shared/chunk-B45RVZ6Z.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-GNDFKLHK.js", imports: ["/build/_shared/chunk-TK3V3LOJ.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/calendar": { id: "routes/calendar", parentId: "root", path: "calendar", index: void 0, caseSensitive: void 0, module: "/build/routes/calendar-2HT3ZEXN.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/contact-us": { id: "routes/contact-us", parentId: "root", path: "contact-us", index: void 0, caseSensitive: void 0, module: "/build/routes/contact-us-GONVAQFC.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dashboard": { id: "routes/dashboard", parentId: "root", path: "dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/dashboard-VELTGKKT.js", imports: ["/build/_shared/chunk-CMWXK6I4.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/documents": { id: "routes/documents", parentId: "root", path: "documents", index: void 0, caseSensitive: void 0, module: "/build/routes/documents-DDZFG3ZZ.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-seekers": { id: "routes/for-seekers", parentId: "root", path: "for-seekers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-seekers-PUBRVQZP.js", imports: ["/build/_shared/chunk-SXIYXCZW.js", "/build/_shared/chunk-TK3V3LOJ.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-solvers": { id: "routes/for-solvers", parentId: "root", path: "for-solvers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-solvers-2LSG7J7U.js", imports: ["/build/_shared/chunk-SXIYXCZW.js", "/build/_shared/chunk-TK3V3LOJ.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/healthcheck": { id: "routes/healthcheck", parentId: "root", path: "healthcheck", index: void 0, caseSensitive: void 0, module: "/build/routes/healthcheck-JO7RAI4L.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-FUUTBLZQ.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-TK3V3LOJ.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/logout": { id: "routes/logout", parentId: "root", path: "logout", index: void 0, caseSensitive: void 0, module: "/build/routes/logout-S5LWYBEX.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/matches": { id: "routes/matches", parentId: "root", path: "matches", index: void 0, caseSensitive: void 0, module: "/build/routes/matches-3FDE2QYX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/messages": { id: "routes/messages", parentId: "root", path: "messages", index: void 0, caseSensitive: void 0, module: "/build/routes/messages-H3Y2ROQT.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes": { id: "routes/notes", parentId: "root", path: "notes", index: void 0, caseSensitive: void 0, module: "/build/routes/notes-6CKECB3K.js", imports: ["/build/_shared/chunk-OLP4QJ4K.js", "/build/_shared/chunk-TK3V3LOJ.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.$noteId": { id: "routes/notes.$noteId", parentId: "routes/notes", path: ":noteId", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.$noteId-CSLD5S5N.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/notes._index": { id: "routes/notes._index", parentId: "routes/notes", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/notes._index-XD4RRL7B.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.new": { id: "routes/notes.new", parentId: "routes/notes", path: "new", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.new-MOYLCMXS.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/privacy-policy": { id: "routes/privacy-policy", parentId: "root", path: "privacy-policy", index: void 0, caseSensitive: void 0, module: "/build/routes/privacy-policy-WGH2JNOP.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile": { id: "routes/profile", parentId: "root", path: "profile", index: void 0, caseSensitive: void 0, module: "/build/routes/profile-5VTARPDL.js", imports: ["/build/_shared/chunk-TK3V3LOJ.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile._index": { id: "routes/profile._index", parentId: "routes/profile", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/profile._index-WDOTFDLH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.certifications": { id: "routes/profile.certifications", parentId: "routes/profile", path: "certifications", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.certifications-7TDABOTK.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.degrees": { id: "routes/profile.degrees", parentId: "routes/profile", path: "degrees", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.degrees-CSLH5ZDY.js", imports: ["/build/_shared/chunk-SKIHJPQU.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-FN2IEU7Y.js", "/build/_shared/chunk-ZKPZBVFQ.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.degrees.$degreeId": { id: "routes/profile.degrees.$degreeId", parentId: "routes/profile.degrees", path: ":degreeId", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.degrees.$degreeId-G3IIRMZP.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education": { id: "routes/profile.education", parentId: "routes/profile", path: "education", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education-MNHDCLFD.js", imports: ["/build/_shared/chunk-HTDZCSOQ.js", "/build/_shared/chunk-X7FIYIPL.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education.back": { id: "routes/profile.education.back", parentId: "routes/profile.education", path: "back", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education.back-2HWFHE3K.js", imports: ["/build/_shared/chunk-FN2IEU7Y.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-TK3V3LOJ.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education.degree.new": { id: "routes/profile.education.degree.new", parentId: "routes/profile.education", path: "degree/new", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education.degree.new-ZQUWQTBH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.misc": { id: "routes/profile.misc", parentId: "routes/profile", path: "misc", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.misc-4K3ZH5QY.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.personal": { id: "routes/profile.personal", parentId: "routes/profile", path: "personal", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.personal-3TVTLLKH.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.professional": { id: "routes/profile.professional", parentId: "routes/profile", path: "professional", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.professional-27F7RG3M.js", imports: ["/build/_shared/chunk-QCRITVYM.js", "/build/_shared/chunk-ZKPZBVFQ.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.professional.$experienceId": { id: "routes/profile.professional.$experienceId", parentId: "routes/profile.professional", path: ":experienceId", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.professional.$experienceId-E3LDQSHR.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.single": { id: "routes/profile.single", parentId: "routes/profile", path: "single", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.single-UAPOXCXR.js", imports: ["/build/_shared/chunk-OLP4QJ4K.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.skills": { id: "routes/profile.skills", parentId: "routes/profile", path: "skills", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.skills-TCRBEE2W.js", imports: ["/build/_shared/chunk-HTDZCSOQ.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.work": { id: "routes/profile.work", parentId: "routes/profile", path: "work", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.work-CFBF5QKQ.js", imports: ["/build/_shared/chunk-NAXTNZ6C.js", "/build/_shared/chunk-7SDL4ZUQ.js", "/build/_shared/chunk-B45RVZ6Z.js", "/build/_shared/chunk-HTDZCSOQ.js", "/build/_shared/chunk-KCLKX6RL.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/register": { id: "routes/register", parentId: "root", path: "register", index: void 0, caseSensitive: void 0, module: "/build/routes/register-5PPFWLTF.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-TK3V3LOJ.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/reports": { id: "routes/reports", parentId: "root", path: "reports", index: void 0, caseSensitive: void 0, module: "/build/routes/reports-XNV3LFFP.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/seeker.dashboard": { id: "routes/seeker.dashboard", parentId: "root", path: "seeker/dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/seeker.dashboard-67273DVE.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/skills.hard": { id: "routes/skills.hard", parentId: "root", path: "skills/hard", index: void 0, caseSensitive: void 0, module: "/build/routes/skills.hard-L6P7T3UD.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/solver.application": { id: "routes/solver.application", parentId: "root", path: "solver/application", index: void 0, caseSensitive: void 0, module: "/build/routes/solver.application-7I42YPQR.js", imports: ["/build/_shared/chunk-NAXTNZ6C.js", "/build/_shared/chunk-SKIHJPQU.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-FN2IEU7Y.js", "/build/_shared/chunk-QCRITVYM.js", "/build/_shared/chunk-ZKPZBVFQ.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-TK3V3LOJ.js", "/build/_shared/chunk-X7FIYIPL.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/terms-and-conditions": { id: "routes/terms-and-conditions", parentId: "root", path: "terms-and-conditions", index: void 0, caseSensitive: void 0, module: "/build/routes/terms-and-conditions-QKWGD4G5.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "025384a1", hmr: void 0, url: "/build/manifest-025384A1.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-EP77SPMO.js", imports: ["/build/_shared/chunk-YUUU2RAQ.js", "/build/_shared/chunk-YYAXLAGZ.js", "/build/_shared/chunk-HYDBX6IC.js", "/build/_shared/chunk-IU43IUTG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-HI575NC6.js", imports: ["/build/_shared/chunk-JVNGUFS4.js", "/build/_shared/chunk-2JSQPZOA.js", "/build/_shared/chunk-7SDL4ZUQ.js", "/build/_shared/chunk-B45RVZ6Z.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-7QY3NFCY.js", imports: ["/build/_shared/chunk-TK3V3LOJ.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/calendar": { id: "routes/calendar", parentId: "root", path: "calendar", index: void 0, caseSensitive: void 0, module: "/build/routes/calendar-2HT3ZEXN.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/contact-us": { id: "routes/contact-us", parentId: "root", path: "contact-us", index: void 0, caseSensitive: void 0, module: "/build/routes/contact-us-GONVAQFC.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dashboard": { id: "routes/dashboard", parentId: "root", path: "dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/dashboard-VELTGKKT.js", imports: ["/build/_shared/chunk-CMWXK6I4.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/documents": { id: "routes/documents", parentId: "root", path: "documents", index: void 0, caseSensitive: void 0, module: "/build/routes/documents-DDZFG3ZZ.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-seekers": { id: "routes/for-seekers", parentId: "root", path: "for-seekers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-seekers-PUBRVQZP.js", imports: ["/build/_shared/chunk-SXIYXCZW.js", "/build/_shared/chunk-TK3V3LOJ.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-solvers": { id: "routes/for-solvers", parentId: "root", path: "for-solvers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-solvers-2LSG7J7U.js", imports: ["/build/_shared/chunk-SXIYXCZW.js", "/build/_shared/chunk-TK3V3LOJ.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/healthcheck": { id: "routes/healthcheck", parentId: "root", path: "healthcheck", index: void 0, caseSensitive: void 0, module: "/build/routes/healthcheck-JO7RAI4L.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-FUUTBLZQ.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-TK3V3LOJ.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/logout": { id: "routes/logout", parentId: "root", path: "logout", index: void 0, caseSensitive: void 0, module: "/build/routes/logout-S5LWYBEX.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/matches": { id: "routes/matches", parentId: "root", path: "matches", index: void 0, caseSensitive: void 0, module: "/build/routes/matches-3FDE2QYX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/messages": { id: "routes/messages", parentId: "root", path: "messages", index: void 0, caseSensitive: void 0, module: "/build/routes/messages-H3Y2ROQT.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes": { id: "routes/notes", parentId: "root", path: "notes", index: void 0, caseSensitive: void 0, module: "/build/routes/notes-6CKECB3K.js", imports: ["/build/_shared/chunk-OLP4QJ4K.js", "/build/_shared/chunk-TK3V3LOJ.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.$noteId": { id: "routes/notes.$noteId", parentId: "routes/notes", path: ":noteId", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.$noteId-CSLD5S5N.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/notes._index": { id: "routes/notes._index", parentId: "routes/notes", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/notes._index-XD4RRL7B.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.new": { id: "routes/notes.new", parentId: "routes/notes", path: "new", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.new-MOYLCMXS.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/privacy-policy": { id: "routes/privacy-policy", parentId: "root", path: "privacy-policy", index: void 0, caseSensitive: void 0, module: "/build/routes/privacy-policy-WGH2JNOP.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile": { id: "routes/profile", parentId: "root", path: "profile", index: void 0, caseSensitive: void 0, module: "/build/routes/profile-5VTARPDL.js", imports: ["/build/_shared/chunk-TK3V3LOJ.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile._index": { id: "routes/profile._index", parentId: "routes/profile", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/profile._index-WDOTFDLH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.certifications": { id: "routes/profile.certifications", parentId: "routes/profile", path: "certifications", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.certifications-7TDABOTK.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.degrees": { id: "routes/profile.degrees", parentId: "routes/profile", path: "degrees", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.degrees-CSLH5ZDY.js", imports: ["/build/_shared/chunk-SKIHJPQU.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-FN2IEU7Y.js", "/build/_shared/chunk-ZKPZBVFQ.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.degrees.$degreeId": { id: "routes/profile.degrees.$degreeId", parentId: "routes/profile.degrees", path: ":degreeId", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.degrees.$degreeId-G3IIRMZP.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education": { id: "routes/profile.education", parentId: "routes/profile", path: "education", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education-MNHDCLFD.js", imports: ["/build/_shared/chunk-HTDZCSOQ.js", "/build/_shared/chunk-X7FIYIPL.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education.back": { id: "routes/profile.education.back", parentId: "routes/profile.education", path: "back", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education.back-2HWFHE3K.js", imports: ["/build/_shared/chunk-FN2IEU7Y.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-TK3V3LOJ.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education.degree.new": { id: "routes/profile.education.degree.new", parentId: "routes/profile.education", path: "degree/new", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education.degree.new-ZQUWQTBH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.misc": { id: "routes/profile.misc", parentId: "routes/profile", path: "misc", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.misc-4K3ZH5QY.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.personal": { id: "routes/profile.personal", parentId: "routes/profile", path: "personal", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.personal-3TVTLLKH.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.professional": { id: "routes/profile.professional", parentId: "routes/profile", path: "professional", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.professional-27F7RG3M.js", imports: ["/build/_shared/chunk-QCRITVYM.js", "/build/_shared/chunk-ZKPZBVFQ.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.professional.$experienceId": { id: "routes/profile.professional.$experienceId", parentId: "routes/profile.professional", path: ":experienceId", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.professional.$experienceId-E3LDQSHR.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.single": { id: "routes/profile.single", parentId: "routes/profile", path: "single", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.single-UAPOXCXR.js", imports: ["/build/_shared/chunk-OLP4QJ4K.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.skills": { id: "routes/profile.skills", parentId: "routes/profile", path: "skills", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.skills-TCRBEE2W.js", imports: ["/build/_shared/chunk-HTDZCSOQ.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.work": { id: "routes/profile.work", parentId: "routes/profile", path: "work", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.work-CFBF5QKQ.js", imports: ["/build/_shared/chunk-NAXTNZ6C.js", "/build/_shared/chunk-7SDL4ZUQ.js", "/build/_shared/chunk-B45RVZ6Z.js", "/build/_shared/chunk-HTDZCSOQ.js", "/build/_shared/chunk-KCLKX6RL.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/register": { id: "routes/register", parentId: "root", path: "register", index: void 0, caseSensitive: void 0, module: "/build/routes/register-5PPFWLTF.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-TK3V3LOJ.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/reports": { id: "routes/reports", parentId: "root", path: "reports", index: void 0, caseSensitive: void 0, module: "/build/routes/reports-XNV3LFFP.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/seeker.dashboard": { id: "routes/seeker.dashboard", parentId: "root", path: "seeker/dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/seeker.dashboard-67273DVE.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/skills.hard": { id: "routes/skills.hard", parentId: "root", path: "skills/hard", index: void 0, caseSensitive: void 0, module: "/build/routes/skills.hard-L6P7T3UD.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/solver.application": { id: "routes/solver.application", parentId: "root", path: "solver/application", index: void 0, caseSensitive: void 0, module: "/build/routes/solver.application-7I42YPQR.js", imports: ["/build/_shared/chunk-NAXTNZ6C.js", "/build/_shared/chunk-SKIHJPQU.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-FN2IEU7Y.js", "/build/_shared/chunk-QCRITVYM.js", "/build/_shared/chunk-ZKPZBVFQ.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-TK3V3LOJ.js", "/build/_shared/chunk-X7FIYIPL.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/terms-and-conditions": { id: "routes/terms-and-conditions", parentId: "root", path: "terms-and-conditions", index: void 0, caseSensitive: void 0, module: "/build/routes/terms-and-conditions-QKWGD4G5.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "bc713de4", hmr: void 0, url: "/build/manifest-BC713DE4.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, v2_errorBoundary: !0, v2_headers: !0, v2_meta: !0, v2_normalizeFormMethod: !0, v2_routeConvention: !0 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {

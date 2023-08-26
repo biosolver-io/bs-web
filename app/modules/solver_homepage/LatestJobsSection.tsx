@@ -1,4 +1,4 @@
-import LatestJobsPosting from "./LatestJobPosting"
+import JobCard from "./JobCard"
 
 const latestJobs = [
   {
@@ -30,13 +30,13 @@ const latestJobs = [
 export default function LatestJobsSection() {
   return (
     <section className="text-black body-font max-w-7xl mx-auto w-full mt-20">
-      <div className="w-full text-center text-5xl font-semibold">
-        <span className="text-blue-800">Latest Jobs</span> for you
+      <div className="w-full mx-auto max-w-6xl text-5xl text-start font-semibold tracking-tight leading-snug">
+        Check out some of the <span className="text-blue-800">latest</span> opportunties available on our platform.
       </div>
       <div className="w-full flex flex-wrap mt-10 justify-center gap-5">
         {
           latestJobs.map(job => (
-            <LatestJobsPosting job={job} />
+            <JobCard job={job} />
           ))
         }
       </div>
