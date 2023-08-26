@@ -299,7 +299,7 @@ export default function App() {
                       <div className="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true" />
 
                       <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-                        <form className="relative flex flex-1" action="#" method="GET">
+                        {/* <form className="relative flex flex-1" action="#" method="GET">
                           <label htmlFor="search-field" className="sr-only">
                             Search
                           </label>
@@ -314,7 +314,7 @@ export default function App() {
                             type="search"
                             name="search"
                           />
-                        </form>
+                        </form> */}
                         <div className="flex items-center gap-x-4 lg:gap-x-6">
                           <button type="button" className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
                             <span className="sr-only">View notifications</span>
