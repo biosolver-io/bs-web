@@ -1,5 +1,5 @@
 
-import { ActionArgs, LoaderArgs, json, redirect } from "@remix-run/node";
+import { ActionArgs, LoaderArgs, json, redirect, unstable_composeUploadHandlers, unstable_createMemoryUploadHandler, unstable_parseMultipartFormData } from "@remix-run/node";
 import { useActionData, useFetcher, useLoaderData, useSearchParams } from "@remix-run/react"
 import { useEffect, useState } from "react";
 import countries from "~/assets/data/countries";
@@ -15,9 +15,15 @@ import WorkExperienceCard from "~/components/WorkExperienceCard";
 import { prisma } from "~/db.server";
 import { requireUserId } from "~/session.server";
 import { Accomplishment } from "~/types.client";
+import { supabaseStorageUploaderHandler } from "~/upload-handler.server";
+import { readFilePathFromFormData } from "~/utils";
 
 export const action = async ({ request }: ActionArgs) => {
-  const body = await request.formData();
+  const userId = await requireUserId(request)
+  const body = await unstable_parseMultipartFormData(request, unstable_composeUploadHandlers(
+    supabaseStorageUploaderHandler(userId),
+    unstable_createMemoryUploadHandler(),
+  ));
   const actionType = body.get('action')
   if (actionType === 'addWorkExperience') {
     const newWorkExperience = await prisma.workExperience.create({
@@ -54,6 +60,7 @@ export const action = async ({ request }: ActionArgs) => {
         companyLinkedIn: body.get('companyLinkedIn') as string,
         primaryDuties: body.get('primaryDuties') as string,
         secondaryDuties: body.get('secondaryDuties') as string,
+        proofOfEmployment: readFilePathFromFormData(body, 'proofOfEmployment'),
         isTemp: false
       }
     })

@@ -77,3 +77,7 @@ export function cx(...args: unknown[]) {
     .join(' ')
     .trim()
 }
+
+export function readFilePathFromFormData(formData: FormData, name: string): string | null {
+  return (formData.get(name) as Blob).size > 0 ? formData.get(name) as string : null
+}

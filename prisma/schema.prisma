@@ -141,6 +141,11 @@ model Degree {
   grade String?
   hasEca Boolean?
   ecaAuthority String?
+
+  degreeCertificate String?
+  marksheet String?
+  ecaCertificate String?
+  thesis String?
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -175,6 +180,8 @@ model WorkExperience {
 
   primaryDuties String?
   secondaryDuties String?
+
+  proofOfEmployment String?
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -198,7 +205,9 @@ model Certification {
   expirationYear Int?
   expirationMonth Int?
   credentialId String?
-  credentialUrl String?  
+  credentialUrl String?
+
+  certificate String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -26,7 +26,7 @@ export default function Dashboard() {
             <div className="text-purple-600">Please complete your talent profile to enable all the features
             </div>
           </div>
-          <Link to="/profile" className="float-right px-5 py-2 bg-purple-600 text-white rounded-sm hover:bg-purple-800">Edit Profile</Link>
+          <Link to="/solver/application" className="float-right px-5 py-2 bg-purple-600 text-white rounded-sm hover:bg-purple-800">Submit Profile</Link>
         </div>
       </div>      
     </div>

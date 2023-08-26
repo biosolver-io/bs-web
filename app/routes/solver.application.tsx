@@ -1,5 +1,5 @@
 import { Accomplishment } from "@prisma/client"
-import { ActionArgs, LoaderArgs, json, unstable_parseMultipartFormData } from "@remix-run/node"
+import { ActionArgs, LoaderArgs, json, unstable_composeUploadHandlers, unstable_createMemoryUploadHandler, unstable_parseMultipartFormData } from "@remix-run/node"
 import { useFetcher, useLoaderData } from "@remix-run/react"
 import { useState, useEffect } from "react"
 import assessmentFormats from "~/assets/data/assessmentFormats"
@@ -26,7 +26,7 @@ import WorkExperienceCard from "~/components/WorkExperienceCard"
 import { prisma } from "~/db.server"
 import { requireUserId } from "~/session.server"
 import { createServerClient } from "~/supabase.server"
-import { cloudStorageUploaderHandler } from "~/upload-handler.server"
+import { cloudStorageUploaderHandler, supabaseStorageUploaderHandler } from "~/upload-handler.server"
 import { cx } from "~/utils"
 
 export const loader = async ({ request }: LoaderArgs) => {
@@ -64,14 +64,22 @@ export const loader = async ({ request }: LoaderArgs) => {
 
 export const action = async ({ request }: ActionArgs) => {
   try {
-    const form = await unstable_parseMultipartFormData(request, cloudStorageUploaderHandler);
+    const userId = await requireUserId(request)
+    const form = await unstable_parseMultipartFormData(request, unstable_composeUploadHandlers(
+      supabaseStorageUploaderHandler(userId),
+      unstable_createMemoryUploadHandler(),
+    ));
 
     //convert it to an object to padd back as actionData
-    const fileInfo = JSON.parse(form.get("my-file"));
-
-    // this is response from upload handler
-    console.log("the form", form.get("my-file"));
-    return fileInfo;
+    const proofOfEmploymentPath = form.get("proofOfEmployment") as string;
+    const certificatePath = form.get("certificate") as string;
+    const thesisPath = form.get("thesis") as string;
+    const ecaCertificatePath = form.get("ecaCertificate") as string;
+    const marksheetPath = form.get("marksheet") as string;
+    const degreeCertificatePath = form.get("degreeCertificate") as string;
+    const resumePath = form.get("resume") as string;
+    
+    return 'files received';
   } catch (e) {
     return { error: e };
   }
@@ -266,7 +274,7 @@ export default function SeekerApplication() {
           degrees.map(degree => <DegreeCard key={degree.id} degree={degree} />)
         }
         {
-          isAddingDegree && <degreeFetcher.Form action="/profile/degrees" method="post" className="p-5 bordered border-[1px] border-gray-400 rounded-sm shadow-sm">
+          isAddingDegree && <degreeFetcher.Form action="/profile/degrees" encType="multipart/form-data" method="post" className="p-5 bordered border-[1px] border-gray-400 rounded-sm shadow-sm">
             <input name="degreeId" type="hidden" value={degreeFetcher.data?.newDegree.id} />
             <LabelledDropdown
               name="type"
@@ -410,7 +418,7 @@ export default function SeekerApplication() {
           </degreeFetcher.Form>
         }
         {
-          <degreeFetcher.Form action="/profile/degrees" method="post">
+          <degreeFetcher.Form action="/profile/degrees" method="post" encType="multipart/form-data">
             <input name="action" type="hidden" value="addDegree" />
             <button type="submit" className={cx("flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", isAddingDegree ? 'hidden' : '')} disabled={isAddingDegree}>Add Degree</button>
           </degreeFetcher.Form>

@@ -281,7 +281,7 @@ async function logout(request) {
 }
 
 // app/tailwind.css
-var tailwind_default = "/build/_assets/tailwind-AQ7HG2HZ.css";
+var tailwind_default = "/build/_assets/tailwind-DJRHCZPA.css";
 
 // app/layout/anon/Header.tsx
 var import_react2 = require("react"), import_react3 = require("@headlessui/react"), import_outline = require("@heroicons/react/24/outline"), import_solid = require("@heroicons/react/20/solid");
@@ -306,7 +306,7 @@ var import_react4 = require("@remix-run/react"), import_jsx_dev_runtime2 = requi
 function Header() {
   let [mobileMenuOpen, setMobileMenuOpen] = (0, import_react2.useState)(!1);
   return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("header", { className: "bg-white", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("nav", { className: "mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8", "aria-label": "Global", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("nav", { className: "mx-auto flex max-w-7xl items-center justify-between lg:px-8", "aria-label": "Global", children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "flex lg:flex-1", children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(import_react4.Link, { to: "/", className: "-m-1.5 p-1.5", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("span", { className: "sr-only", children: "BioSolver" }, void 0, !1, {
           fileName: "app/layout/anon/Header.tsx",
@@ -1741,9 +1741,84 @@ __export(profile_certifications_exports, {
   action: () => action3,
   loader: () => loader2
 });
-var import_node6 = require("@remix-run/node");
+var import_node7 = require("@remix-run/node");
+
+// app/upload-handler.server.ts
+var import_storage = require("@google-cloud/storage"), import_node6 = require("@remix-run/node"), import_lib_storage = require("@aws-sdk/lib-storage"), import_client_s3 = require("@aws-sdk/client-s3"), import_stream = require("stream"), import_supabase_js = require("@supabase/supabase-js"), storage = new import_client_s3.S3Client({
+  endpoint: "http://s3.amazonaws.com/",
+  credentials: {
+    accessKeyId: "AKIAZ7CTBDZGEZEB6ENW",
+    secretAccessKey: "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"
+  },
+  // This is only needed for the AWS SDK and it must be set to their region
+  region: "us-east-1"
+});
+var supabase = (0, import_supabase_js.createClient)("https://kkppsfrqongueliewefs.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtrcHBzZnJxb25ndWVsaWV3ZWZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODc4MjkxNjYsImV4cCI6MjAwMzQwNTE2Nn0.NjQbf0flnN1ht7n_ex2L6iUX7WAhlswzYnQfRsdt3Cw"), uploadStreamToSupasebaseStorage = async (file, fileName) => {
+  let bucketName = "bs-documents", { data, error } = await supabase.storage.from(bucketName).upload(`solver/${fileName}`, file, {
+    cacheControl: "3600",
+    upsert: !0
+  });
+  return error ? (console.error(error), `error://${error.message}`) : data ? data.path : "error://No data returned from supabase";
+};
+var supabaseStorageUploaderHandler = (userId) => async ({
+  filename,
+  data,
+  contentType,
+  name
+}) => {
+  if (filename) {
+    let dataArray = [];
+    for await (let x of data)
+      dataArray.push(x);
+    let fileInstance = new File(dataArray, `${userId}_${filename}`, { type: contentType });
+    return await uploadStreamToSupasebaseStorage(fileInstance, `${userId}_${filename}`);
+  }
+};
+
+// app/utils.ts
+var import_react8 = require("@remix-run/react"), import_react9 = require("react"), DEFAULT_REDIRECT = "/";
+function safeRedirect(to, defaultRedirect = DEFAULT_REDIRECT) {
+  return !to || typeof to != "string" || !to.startsWith("/") || to.startsWith("//") ? defaultRedirect : to;
+}
+function useMatchesData(id) {
+  let matchingRoutes = (0, import_react8.useMatches)(), route = (0, import_react9.useMemo)(
+    () => matchingRoutes.find((route3) => route3.id === id),
+    [matchingRoutes, id]
+  );
+  return route == null ? void 0 : route.data;
+}
+function isUser(user) {
+  return user && typeof user == "object" && typeof user.email == "string";
+}
+function useOptionalUser() {
+  let data = useMatchesData("root");
+  if (!(!data || !isUser(data.user)))
+    return data.user;
+}
+function useUser() {
+  let maybeUser = useOptionalUser();
+  if (!maybeUser)
+    throw new Error(
+      "No user found in root loader, but user is required by useUser. If user is optional, try useOptionalUser instead."
+    );
+  return maybeUser;
+}
+function validateEmail(email) {
+  return typeof email == "string" && email.length > 3 && email.includes("@");
+}
+function cx(...args) {
+  return args.flat().filter((x) => typeof x == "string").join(" ").trim();
+}
+function readFilePathFromFormData(formData, name) {
+  return formData.get(name).size > 0 ? formData.get(name) : null;
+}
+
+// app/routes/profile.certifications.tsx
 var action3 = async ({ request }) => {
-  let body = await request.formData(), actionType = body.get("action");
+  let userId = await requireUserId(request), body = await (0, import_node7.unstable_parseMultipartFormData)(request, (0, import_node7.unstable_composeUploadHandlers)(
+    supabaseStorageUploaderHandler(userId),
+    (0, import_node7.unstable_createMemoryUploadHandler)()
+  )), actionType = body.get("action");
   if (actionType === "addCertificate") {
     let newCertification = await prisma.certification.create({
       data: {
@@ -1752,7 +1827,7 @@ var action3 = async ({ request }) => {
         isTemp: !0
       }
     });
-    return (0, import_node6.json)({
+    return (0, import_node7.json)({
       newCertification
     });
   } else if (actionType === "saveCertificate") {
@@ -1765,6 +1840,7 @@ var action3 = async ({ request }) => {
         name: body.get("name"),
         description: body.get("description"),
         issuingAuthority: body.get("issuingAuthority"),
+        certificate: readFilePathFromFormData(body, "certificate"),
         issueYear: isNaN(issueYear) ? null : issueYear,
         issueMonth: isNaN(issueMonth) ? null : issueMonth,
         expirationYear: isNaN(expirationYear) ? null : expirationYear,
@@ -1772,7 +1848,7 @@ var action3 = async ({ request }) => {
         durationInMonths: isNaN(durationInMonths) ? null : durationInMonths,
         isTemp: !1
       }
-    }), (0, import_node6.redirect)("/profile/degrees");
+    }), (0, import_node7.redirect)("/profile/degrees");
   } else
     throw new Error("Invalid action type");
 }, loader2 = async ({ request }) => {
@@ -1782,7 +1858,7 @@ var action3 = async ({ request }) => {
       isTemp: !1
     }
   });
-  return (0, import_node6.json)({
+  return (0, import_node7.json)({
     certifications
   });
 };
@@ -1794,7 +1870,7 @@ __export(profile_education_back_exports, {
   default: () => profile_education_back_default,
   loader: () => loader3
 });
-var import_node7 = require("@remix-run/node"), import_react8 = require("@remix-run/react"), import_react9 = require("react"), import_react_hook_form = require("react-hook-form");
+var import_node8 = require("@remix-run/node"), import_react10 = require("@remix-run/react"), import_react11 = require("react"), import_react_hook_form = require("react-hook-form");
 
 // app/assets/data/countries.ts
 var countries_default = [
@@ -2152,7 +2228,7 @@ var import_jsx_dev_runtime7 = require("react/jsx-dev-runtime"), loader3 = async 
       userId
     }
   });
-  return (0, import_node7.json)({ degrees });
+  return (0, import_node8.json)({ degrees });
 }, action4 = async ({ request }) => {
   let userId = await requireUserId(request), formData = await request.formData();
   console.log(formData);
@@ -2161,13 +2237,13 @@ var import_jsx_dev_runtime7 = require("react/jsx-dev-runtime"), loader3 = async 
       userId
     }
   });
-  return (0, import_node7.json)({ degrees });
+  return (0, import_node8.json)({ degrees });
 };
 function profile_education_back_default() {
-  let [addingDegree, setAddingDegree] = (0, import_react9.useState)(!1), { degrees } = (0, import_react8.useLoaderData)(), { register, watch, control, handleSubmit } = (0, import_react_hook_form.useForm)(), isCurrentlyStudying = watch("currentlyStudying"), formRef = (0, import_react9.useRef)(null), { fields: fields2, append, remove } = (0, import_react_hook_form.useFieldArray)({
+  let [addingDegree, setAddingDegree] = (0, import_react11.useState)(!1), { degrees } = (0, import_react10.useLoaderData)(), { register, watch, control, handleSubmit } = (0, import_react_hook_form.useForm)(), isCurrentlyStudying = watch("currentlyStudying"), formRef = (0, import_react11.useRef)(null), { fields: fields2, append, remove } = (0, import_react_hook_form.useFieldArray)({
     control,
     name: "accomplishments"
-  }), submit = (0, import_react8.useSubmit)();
+  }), submit = (0, import_react10.useSubmit)();
   return /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "w-full max-w-4xl mx-auto", children: [
     degrees.map((degree, index) => /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(DegreeCard, { degree }, index, !1, {
       fileName: "app/routes/profile.education.back.tsx",
@@ -2181,7 +2257,7 @@ function profile_education_back_default() {
       lineNumber: 60,
       columnNumber: 26
     }, this),
-    addingDegree && /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_react8.Form, { method: "post", onSubmit: handleSubmit((data) => {
+    addingDegree && /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_react10.Form, { method: "post", onSubmit: handleSubmit((data) => {
       console.log(data), submit(formRef.current);
     }), className: "mb-4 border-gray-500 border-solid rounded-md p-5 border-2", ref: formRef, children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { htmlFor: "name", className: "block mb-2 font-medium text-gray-700", children: "Degree" }, void 0, !1, {
@@ -2594,7 +2670,7 @@ __export(profile_professional_exports, {
   default: () => Professional,
   loader: () => loader4
 });
-var import_node8 = require("@remix-run/node"), import_react13 = require("@remix-run/react"), import_react14 = require("react");
+var import_node9 = require("@remix-run/node"), import_react15 = require("@remix-run/react"), import_react16 = require("react");
 
 // app/assets/data/employerTypes.ts
 var employerTypes_default = [
@@ -2684,7 +2760,7 @@ var years_default = Array.from(
 );
 
 // app/components/AccomplishmentForm.tsx
-var import_react10 = require("@remix-run/react");
+var import_react12 = require("@remix-run/react");
 
 // app/components/LabelledDropdown.tsx
 var import_jsx_dev_runtime8 = require("react/jsx-dev-runtime");
@@ -2738,7 +2814,7 @@ function LabelledDropdown({
 }
 
 // app/components/AccomplishmentForm.tsx
-var import_react11 = require("react");
+var import_react13 = require("react");
 
 // app/components/LabelledInput.tsx
 var import_jsx_dev_runtime9 = require("react/jsx-dev-runtime");
@@ -2810,7 +2886,7 @@ function LabelledTextInput({
 }
 
 // app/components/AccomplishmentForm.tsx
-var import_react12 = require("@headlessui/react");
+var import_react14 = require("@headlessui/react");
 
 // app/components/LabelledFileInput.tsx
 var import_jsx_dev_runtime10 = require("react/jsx-dev-runtime");
@@ -2870,16 +2946,16 @@ function AccomplishmentForm({
   setOpen,
   onSubmit
 }) {
-  let fetcher = (0, import_react10.useFetcher)(), [type, setType] = (0, import_react11.useState)("Not selected");
-  return (0, import_react11.useEffect)(() => {
+  let fetcher = (0, import_react12.useFetcher)(), [type, setType] = (0, import_react13.useState)("Not selected");
+  return (0, import_react13.useEffect)(() => {
     fetcher.data && (onSubmit(fetcher.data.accomplishments), setOpen(!1));
-  }, [fetcher.data]), /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(import_react12.Dialog, { open, onClose: () => setOpen(!1), children: [
+  }, [fetcher.data]), /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(import_react14.Dialog, { open, onClose: () => setOpen(!1), children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("div", { className: "fixed inset-0 bg-black/30 z-[100]", "aria-hidden": "true" }, void 0, !1, {
       fileName: "app/components/AccomplishmentForm.tsx",
       lineNumber: 30,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("div", { className: "fixed inset-0 overflow-y-auto z-[100]", children: /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("div", { className: "flex min-h-full items-center justify-center p-4", children: /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(import_react12.Dialog.Panel, { className: "bg-white border-2 rounded-sm border-black p-10 w-1/2", children: /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(fetcher.Form, { action: action17, method: "post", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("div", { className: "fixed inset-0 overflow-y-auto z-[100]", children: /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("div", { className: "flex min-h-full items-center justify-center p-4", children: /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(import_react14.Dialog.Panel, { className: "bg-white border-2 rounded-sm border-black p-10 w-1/2", children: /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(fetcher.Form, { action: action17, method: "post", children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("input", { name: "action", type: "hidden", value: "addAccomplishment" }, void 0, !1, {
         fileName: "app/components/AccomplishmentForm.tsx",
         lineNumber: 35,
@@ -3657,7 +3733,10 @@ function WorkExperienceCard({ experience }) {
 
 // app/routes/profile.professional.tsx
 var import_jsx_dev_runtime13 = require("react/jsx-dev-runtime"), action5 = async ({ request }) => {
-  let body = await request.formData(), actionType = body.get("action");
+  let userId = await requireUserId(request), body = await (0, import_node9.unstable_parseMultipartFormData)(request, (0, import_node9.unstable_composeUploadHandlers)(
+    supabaseStorageUploaderHandler(userId),
+    (0, import_node9.unstable_createMemoryUploadHandler)()
+  )), actionType = body.get("action");
   if (actionType === "addWorkExperience") {
     let newWorkExperience = await prisma.workExperience.create({
       data: {
@@ -3668,7 +3747,7 @@ var import_jsx_dev_runtime13 = require("react/jsx-dev-runtime"), action5 = async
         isTemp: !0
       }
     });
-    return (0, import_node8.json)({
+    return (0, import_node9.json)({
       newWorkExperience
     });
   } else if (actionType === "saveWorkExperience") {
@@ -3690,9 +3769,10 @@ var import_jsx_dev_runtime13 = require("react/jsx-dev-runtime"), action5 = async
         companyLinkedIn: body.get("companyLinkedIn"),
         primaryDuties: body.get("primaryDuties"),
         secondaryDuties: body.get("secondaryDuties"),
+        proofOfEmployment: readFilePathFromFormData(body, "proofOfEmployment"),
         isTemp: !1
       }
-    }), (0, import_node8.json)({
+    }), (0, import_node9.json)({
       action: "saveWorkExperience",
       workExperienceId: body.get("workExperienceId"),
       success: !0
@@ -3709,26 +3789,26 @@ var import_jsx_dev_runtime13 = require("react/jsx-dev-runtime"), action5 = async
       isTemp: !1
     }
   });
-  return (0, import_node8.json)({
+  return (0, import_node9.json)({
     workExperiences
   });
 };
 function Professional() {
-  let fetcher = (0, import_react13.useFetcher)(), { workExperiences } = (0, import_react13.useLoaderData)(), [searchParams] = (0, import_react13.useSearchParams)(), [isAddingAccomplishment, setIsAddingAccomplishment] = (0, import_react14.useState)(!1), [isAddingWorkExperience, setIsAddingWorkExperience] = (0, import_react14.useState)(!1), [experienceBeingAdded, setExperienceBeingAdded] = (0, import_react14.useState)(null), [accomplishmentsForExperienceBeingAdded, setAccomplishmentsForExperienceBeingAdded] = (0, import_react14.useState)([]);
-  return (0, import_react14.useEffect)(() => {
+  let fetcher = (0, import_react15.useFetcher)(), { workExperiences } = (0, import_react15.useLoaderData)(), [searchParams] = (0, import_react15.useSearchParams)(), [isAddingAccomplishment, setIsAddingAccomplishment] = (0, import_react16.useState)(!1), [isAddingWorkExperience, setIsAddingWorkExperience] = (0, import_react16.useState)(!1), [experienceBeingAdded, setExperienceBeingAdded] = (0, import_react16.useState)(null), [accomplishmentsForExperienceBeingAdded, setAccomplishmentsForExperienceBeingAdded] = (0, import_react16.useState)([]);
+  return (0, import_react16.useEffect)(() => {
     searchParams.get("addAccomplishment") && setIsAddingAccomplishment(!0);
-  }, [searchParams]), (0, import_react14.useEffect)(() => {
+  }, [searchParams]), (0, import_react16.useEffect)(() => {
     fetcher.data && (fetcher.data.newWorkExperience ? (setIsAddingWorkExperience(!!fetcher.data.newWorkExperience.id), setExperienceBeingAdded(fetcher.data.newWorkExperience.id)) : fetcher.data.action === "saveWorkExperience" && (setIsAddingWorkExperience(!1), setExperienceBeingAdded(null)));
   }, [fetcher.data]), /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)("section", { children: [
     workExperiences.map((experience) => /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(WorkExperienceCard, { experience }, experience.id, !1, {
       fileName: "app/routes/profile.professional.tsx",
-      lineNumber: 115,
+      lineNumber: 122,
       columnNumber: 43
     }, this)),
     isAddingWorkExperience && experienceBeingAdded && /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(fetcher.Form, { action: "/profile/professional", method: "post", className: "p-5", children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)("input", { name: "workExperienceId", type: "hidden", value: experienceBeingAdded }, void 0, !1, {
         fileName: "app/routes/profile.professional.tsx",
-        lineNumber: 119,
+        lineNumber: 126,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(
@@ -3743,7 +3823,7 @@ function Professional() {
         !1,
         {
           fileName: "app/routes/profile.professional.tsx",
-          lineNumber: 120,
+          lineNumber: 127,
           columnNumber: 11
         },
         this
@@ -3761,7 +3841,7 @@ function Professional() {
         !1,
         {
           fileName: "app/routes/profile.professional.tsx",
-          lineNumber: 126,
+          lineNumber: 133,
           columnNumber: 11
         },
         this
@@ -3778,7 +3858,7 @@ function Professional() {
         !1,
         {
           fileName: "app/routes/profile.professional.tsx",
-          lineNumber: 133,
+          lineNumber: 140,
           columnNumber: 11
         },
         this
@@ -3796,7 +3876,7 @@ function Professional() {
         !1,
         {
           fileName: "app/routes/profile.professional.tsx",
-          lineNumber: 139,
+          lineNumber: 146,
           columnNumber: 11
         },
         this
@@ -3813,7 +3893,7 @@ function Professional() {
         !1,
         {
           fileName: "app/routes/profile.professional.tsx",
-          lineNumber: 146,
+          lineNumber: 153,
           columnNumber: 11
         },
         this
@@ -3830,7 +3910,7 @@ function Professional() {
         !1,
         {
           fileName: "app/routes/profile.professional.tsx",
-          lineNumber: 152,
+          lineNumber: 159,
           columnNumber: 11
         },
         this
@@ -3848,7 +3928,7 @@ function Professional() {
         !1,
         {
           fileName: "app/routes/profile.professional.tsx",
-          lineNumber: 158,
+          lineNumber: 165,
           columnNumber: 11
         },
         this
@@ -3865,7 +3945,7 @@ function Professional() {
         !1,
         {
           fileName: "app/routes/profile.professional.tsx",
-          lineNumber: 165,
+          lineNumber: 172,
           columnNumber: 11
         },
         this
@@ -3873,7 +3953,7 @@ function Professional() {
       /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Started" }, void 0, !1, {
           fileName: "app/routes/profile.professional.tsx",
-          lineNumber: 172,
+          lineNumber: 179,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(
@@ -3888,7 +3968,7 @@ function Professional() {
           !1,
           {
             fileName: "app/routes/profile.professional.tsx",
-            lineNumber: 175,
+            lineNumber: 182,
             columnNumber: 13
           },
           this
@@ -3905,20 +3985,20 @@ function Professional() {
           !1,
           {
             fileName: "app/routes/profile.professional.tsx",
-            lineNumber: 183,
+            lineNumber: 190,
             columnNumber: 13
           },
           this
         )
       ] }, void 0, !0, {
         fileName: "app/routes/profile.professional.tsx",
-        lineNumber: 171,
+        lineNumber: 178,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Ended" }, void 0, !1, {
           fileName: "app/routes/profile.professional.tsx",
-          lineNumber: 193,
+          lineNumber: 200,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(
@@ -3933,7 +4013,7 @@ function Professional() {
           !1,
           {
             fileName: "app/routes/profile.professional.tsx",
-            lineNumber: 196,
+            lineNumber: 203,
             columnNumber: 13
           },
           this
@@ -3950,14 +4030,14 @@ function Professional() {
           !1,
           {
             fileName: "app/routes/profile.professional.tsx",
-            lineNumber: 204,
+            lineNumber: 211,
             columnNumber: 13
           },
           this
         )
       ] }, void 0, !0, {
         fileName: "app/routes/profile.professional.tsx",
-        lineNumber: 192,
+        lineNumber: 199,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(
@@ -3973,7 +4053,7 @@ function Professional() {
         !1,
         {
           fileName: "app/routes/profile.professional.tsx",
-          lineNumber: 213,
+          lineNumber: 220,
           columnNumber: 11
         },
         this
@@ -3991,62 +4071,62 @@ function Professional() {
         !1,
         {
           fileName: "app/routes/profile.professional.tsx",
-          lineNumber: 220,
+          lineNumber: 227,
           columnNumber: 11
         },
         this
       ),
       accomplishmentsForExperienceBeingAdded.map((accomplishment) => /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(AccomplishmentCard, { accomplishment }, accomplishment.id, !1, {
         fileName: "app/routes/profile.professional.tsx",
-        lineNumber: 228,
+        lineNumber: 235,
         columnNumber: 74
       }, this)),
       /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)("button", { type: "button", onClick: () => setIsAddingAccomplishment(!0), className: "mt-5 text-blue-500", children: "Add Accomplishment" }, void 0, !1, {
         fileName: "app/routes/profile.professional.tsx",
-        lineNumber: 230,
+        lineNumber: 237,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)("input", { name: "action", type: "hidden", value: "saveWorkExperience" }, void 0, !1, {
         fileName: "app/routes/profile.professional.tsx",
-        lineNumber: 231,
+        lineNumber: 238,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)("button", { type: "submit", className: "flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", children: "Save" }, void 0, !1, {
         fileName: "app/routes/profile.professional.tsx",
-        lineNumber: 232,
+        lineNumber: 239,
         columnNumber: 11
       }, this)
     ] }, experienceBeingAdded, !0, {
       fileName: "app/routes/profile.professional.tsx",
-      lineNumber: 118,
+      lineNumber: 125,
       columnNumber: 59
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(fetcher.Form, { action: "/profile/professional", method: "post", children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)("input", { name: "action", type: "hidden", value: "addWorkExperience" }, void 0, !1, {
         fileName: "app/routes/profile.professional.tsx",
-        lineNumber: 237,
+        lineNumber: 244,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)("button", { type: "submit", className: "flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", disabled: isAddingWorkExperience, children: "Add Experience" }, void 0, !1, {
         fileName: "app/routes/profile.professional.tsx",
-        lineNumber: 238,
+        lineNumber: 245,
         columnNumber: 11
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/profile.professional.tsx",
-      lineNumber: 236,
+      lineNumber: 243,
       columnNumber: 9
     }, this),
     experienceBeingAdded && /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(AccomplishmentForm, { action: `/profile/professional/${experienceBeingAdded}`, open: isAddingAccomplishment, setOpen: setIsAddingAccomplishment, onSubmit: (accomplishments) => {
       setAccomplishmentsForExperienceBeingAdded(accomplishments);
     } }, Date.now().toString(), !1, {
       fileName: "app/routes/profile.professional.tsx",
-      lineNumber: 242,
+      lineNumber: 249,
       columnNumber: 33
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/profile.professional.tsx",
-    lineNumber: 113,
+    lineNumber: 120,
     columnNumber: 5
   }, this);
 }
@@ -4437,18 +4517,18 @@ var yesNos_default = [
 ];
 
 // app/components/MultiSelect.tsx
-var import_react15 = require("react"), import_react16 = require("@headlessui/react"), import_solid2 = require("@heroicons/react/24/solid"), import_jsx_dev_runtime15 = require("react/jsx-dev-runtime");
+var import_react17 = require("react"), import_react18 = require("@headlessui/react"), import_solid2 = require("@heroicons/react/24/solid"), import_jsx_dev_runtime15 = require("react/jsx-dev-runtime");
 function MultiSelect({
   options,
   name,
   defaultValue,
   placeholder
 }) {
-  let [selectedOptions, setSelectedOptions] = (0, import_react15.useState)(defaultValue || []), [query, setQuery] = (0, import_react15.useState)(""), filteredOptions = query === "" ? options : options.filter(
+  let [selectedOptions, setSelectedOptions] = (0, import_react17.useState)(defaultValue || []), [query, setQuery] = (0, import_react17.useState)(""), filteredOptions = query === "" ? options : options.filter(
     (option) => option.label.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+/g, ""))
   );
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(import_react16.Combobox, { value: selectedOptions, onChange: setSelectedOptions, multiple: !0, children: [
-    selectedOptions.length > 0 && /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("ul", { children: selectedOptions.map((opt) => /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("li", { className: "inline-block w-auto bg-gray-300 p-2 mr-1 mt-1", children: [
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(import_react18.Combobox, { value: selectedOptions, onChange: setSelectedOptions, multiple: !0, children: [
+    selectedOptions.length > 0 && /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("ul", { className: "flex flex-row flex-wrap gap-2 mb-2", children: selectedOptions.map((opt) => /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("li", { className: "inline-block w-auto bg-gray-300 p-2", children: [
       opt.label,
       /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("button", { className: "ml-1", onClick: () => setSelectedOptions(selectedOptions.filter((option) => option.value !== opt.value)), children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(import_solid2.XCircleIcon, { className: "w-4 h-4 inline-block" }, void 0, !1, {
         fileName: "app/components/MultiSelect.tsx",
@@ -4468,13 +4548,13 @@ function MultiSelect({
       lineNumber: 32,
       columnNumber: 9
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("input", { type: "hidden", name, value: selectedOptions.map((option) => option.value).join(",") }, void 0, !1, {
+    selectedOptions.map((option) => /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("input", { type: "hidden", name: `${name}`, value: option.value }, option.value, !1, {
       fileName: "app/components/MultiSelect.tsx",
-      lineNumber: 43,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(import_react16.Combobox.Button, { className: "w-full", children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
-      import_react16.Combobox.Input,
+      lineNumber: 45,
+      columnNumber: 11
+    }, this)),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(import_react18.Combobox.Button, { className: "w-full", children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
+      import_react18.Combobox.Input,
       {
         className: "w-full p-3 border-[1px] border-black rounded-sm focus:outline-none focus:border-2",
         placeholder,
@@ -4484,30 +4564,42 @@ function MultiSelect({
       !1,
       {
         fileName: "app/components/MultiSelect.tsx",
-        lineNumber: 45,
+        lineNumber: 50,
         columnNumber: 9
       },
       this
     ) }, void 0, !1, {
       fileName: "app/components/MultiSelect.tsx",
-      lineNumber: 44,
+      lineNumber: 49,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
-      import_react16.Transition,
+      import_react18.Transition,
       {
-        as: import_react15.Fragment,
+        as: import_react17.Fragment,
         leave: "transition ease-in duration-100",
         leaveFrom: "opacity-100",
         leaveTo: "opacity-0",
         afterLeave: () => setQuery(""),
-        children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(import_react16.Combobox.Options, { className: "absolute w-auto max-h-[250px] overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-30", children: filteredOptions.map((opt) => /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(import_react16.Combobox.Option, { value: opt, className: "p-2 hover:bg-gray-200 relative cursor-default select-none", children: opt.label }, opt.value, !1, {
+        children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(import_react18.Combobox.Options, { className: "absolute max-h-[250px] overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-30", children: filteredOptions.map((opt) => /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
+          import_react18.Combobox.Option,
+          {
+            value: opt,
+            className: "p-2 hover:bg-gray-200 relative cursor-default select-none",
+            disabled: selectedOptions.some((option) => option.value === opt.value),
+            children: opt.label
+          },
+          opt.value,
+          !1,
+          {
+            fileName: "app/components/MultiSelect.tsx",
+            lineNumber: 62,
+            columnNumber: 13
+          },
+          this
+        )) }, void 0, !1, {
           fileName: "app/components/MultiSelect.tsx",
-          lineNumber: 57,
-          columnNumber: 13
-        }, this)) }, void 0, !1, {
-          fileName: "app/components/MultiSelect.tsx",
-          lineNumber: 55,
+          lineNumber: 60,
           columnNumber: 9
         }, this)
       },
@@ -4515,7 +4607,7 @@ function MultiSelect({
       !1,
       {
         fileName: "app/components/MultiSelect.tsx",
-        lineNumber: 48,
+        lineNumber: 53,
         columnNumber: 7
       },
       this
@@ -4558,60 +4650,6 @@ function TitleDivider({
   }, this);
 }
 
-// app/upload-handler.server.ts
-var import_storage = require("@google-cloud/storage"), import_node9 = require("@remix-run/node"), uploadStreamToCloudStorage = async (fileStream, fileName) => {
-  try {
-    let bucketName = "bs-user-documents", file = new import_storage.Storage().bucket(bucketName).file(fileName);
-    async function streamFileUpload() {
-      await (0, import_node9.writeAsyncIterableToWritable)(
-        fileStream,
-        file.createWriteStream()
-      ), console.log(`${fileName} uploaded to ${bucketName}`);
-    }
-    return streamFileUpload().catch(console.error), file.cloudStorageURI.toString();
-  } catch (error) {
-    return console.error(error), "";
-  }
-}, cloudStorageUploaderHandler = async ({
-  filename,
-  data: fileStream
-}) => await uploadStreamToCloudStorage(fileStream, filename || Date.now().toString());
-
-// app/utils.ts
-var import_react17 = require("@remix-run/react"), import_react18 = require("react"), DEFAULT_REDIRECT = "/";
-function safeRedirect(to, defaultRedirect = DEFAULT_REDIRECT) {
-  return !to || typeof to != "string" || !to.startsWith("/") || to.startsWith("//") ? defaultRedirect : to;
-}
-function useMatchesData(id) {
-  let matchingRoutes = (0, import_react17.useMatches)(), route = (0, import_react18.useMemo)(
-    () => matchingRoutes.find((route3) => route3.id === id),
-    [matchingRoutes, id]
-  );
-  return route == null ? void 0 : route.data;
-}
-function isUser(user) {
-  return user && typeof user == "object" && typeof user.email == "string";
-}
-function useOptionalUser() {
-  let data = useMatchesData("root");
-  if (!(!data || !isUser(data.user)))
-    return data.user;
-}
-function useUser() {
-  let maybeUser = useOptionalUser();
-  if (!maybeUser)
-    throw new Error(
-      "No user found in root loader, but user is required by useUser. If user is optional, try useOptionalUser instead."
-    );
-  return maybeUser;
-}
-function validateEmail(email) {
-  return typeof email == "string" && email.length > 3 && email.includes("@");
-}
-function cx(...args) {
-  return args.flat().filter((x) => typeof x == "string").join(" ").trim();
-}
-
 // app/routes/solver.application.tsx
 var import_jsx_dev_runtime17 = require("react/jsx-dev-runtime"), loader5 = async ({ request }) => {
   let userId = await requireUserId(request), degrees = await prisma.degree.findMany({
@@ -4643,8 +4681,11 @@ var import_jsx_dev_runtime17 = require("react/jsx-dev-runtime"), loader5 = async
   });
 }, action6 = async ({ request }) => {
   try {
-    let form = await (0, import_node10.unstable_parseMultipartFormData)(request, cloudStorageUploaderHandler), fileInfo = JSON.parse(form.get("my-file"));
-    return console.log("the form", form.get("my-file")), fileInfo;
+    let userId = await requireUserId(request), form = await (0, import_node10.unstable_parseMultipartFormData)(request, (0, import_node10.unstable_composeUploadHandlers)(
+      supabaseStorageUploaderHandler(userId),
+      (0, import_node10.unstable_createMemoryUploadHandler)()
+    )), proofOfEmploymentPath = form.get("proofOfEmployment"), certificatePath = form.get("certificate"), thesisPath = form.get("thesis"), ecaCertificatePath = form.get("ecaCertificate"), marksheetPath = form.get("marksheet"), degreeCertificatePath = form.get("degreeCertificate"), resumePath = form.get("resume");
+    return "files received";
   } catch (e) {
     return { error: e };
   }
@@ -4671,7 +4712,7 @@ function SeekerApplication() {
   /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("div", { className: "flex flex-col", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(TitleDivider, { title: "Personal Information" }, void 0, !1, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 149,
+      lineNumber: 157,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("section", { className: "py-5", children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(personalInformationFetcher.Form, { action: "/profile/personal", method: "post", encType: "multipart/form-data", children: [
@@ -4686,7 +4727,7 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 152,
+          lineNumber: 160,
           columnNumber: 11
         },
         this
@@ -4702,7 +4743,7 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 157,
+          lineNumber: 165,
           columnNumber: 11
         },
         this
@@ -4718,7 +4759,7 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 162,
+          lineNumber: 170,
           columnNumber: 11
         },
         this
@@ -4734,7 +4775,7 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 167,
+          lineNumber: 175,
           columnNumber: 11
         },
         this
@@ -4750,7 +4791,7 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 172,
+          lineNumber: 180,
           columnNumber: 11
         },
         this
@@ -4766,7 +4807,7 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 177,
+          lineNumber: 185,
           columnNumber: 11
         },
         this
@@ -4783,7 +4824,7 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 182,
+          lineNumber: 190,
           columnNumber: 11
         },
         this
@@ -4799,7 +4840,7 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 188,
+          lineNumber: 196,
           columnNumber: 11
         },
         this
@@ -4815,14 +4856,14 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 193,
+          lineNumber: 201,
           columnNumber: 11
         },
         this
       ),
       /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("label", { className: "block mb-2 font-bold text-md text-gray-700", children: "Work Style" }, void 0, !1, {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 198,
+        lineNumber: 206,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -4836,14 +4877,14 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 201,
+          lineNumber: 209,
           columnNumber: 11
         },
         this
       ),
       /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("label", { className: "block mb-2 font-bold text-md text-gray-700", children: "Roles" }, void 0, !1, {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 208,
+        lineNumber: 216,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -4857,7 +4898,7 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 211,
+          lineNumber: 219,
           columnNumber: 11
         },
         this
@@ -4873,7 +4914,7 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 218,
+          lineNumber: 226,
           columnNumber: 11
         },
         this
@@ -4889,7 +4930,7 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 223,
+          lineNumber: 231,
           columnNumber: 11
         },
         this
@@ -4906,7 +4947,7 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 228,
+          lineNumber: 236,
           columnNumber: 11
         },
         this
@@ -4922,28 +4963,28 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 234,
+          lineNumber: 242,
           columnNumber: 11
         },
         this
       ),
       /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("button", { type: "submit", className: "flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", children: "Save" }, void 0, !1, {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 239,
+        lineNumber: 247,
         columnNumber: 11
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 151,
+      lineNumber: 159,
       columnNumber: 9
     }, this) }, void 0, !1, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 150,
+      lineNumber: 158,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(TitleDivider, { title: "Social Information" }, void 0, !1, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 242,
+      lineNumber: 250,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("section", { className: "py-5", children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(socialInformationFetcher.Form, { action: "/profile/personal", method: "post", children: [
@@ -4958,7 +4999,7 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 245,
+          lineNumber: 253,
           columnNumber: 11
         },
         this
@@ -4974,7 +5015,7 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 250,
+          lineNumber: 258,
           columnNumber: 11
         },
         this
@@ -4990,40 +5031,40 @@ function SeekerApplication() {
         !1,
         {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 255,
+          lineNumber: 263,
           columnNumber: 11
         },
         this
       ),
       /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("button", { type: "submit", className: "flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", children: "Save" }, void 0, !1, {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 260,
+        lineNumber: 268,
         columnNumber: 11
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 244,
+      lineNumber: 252,
       columnNumber: 9
     }, this) }, void 0, !1, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 243,
+      lineNumber: 251,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(TitleDivider, { title: "Education" }, void 0, !1, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 263,
+      lineNumber: 271,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("section", { className: "py-5", children: [
       degrees.map((degree) => /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(DegreeCard, { degree }, degree.id, !1, {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 266,
+        lineNumber: 274,
         columnNumber: 33
       }, this)),
-      isAddingDegree && /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(degreeFetcher.Form, { action: "/profile/degrees", method: "post", className: "p-5 bordered border-[1px] border-gray-400 rounded-sm shadow-sm", children: [
+      isAddingDegree && /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(degreeFetcher.Form, { action: "/profile/degrees", encType: "multipart/form-data", method: "post", className: "p-5 bordered border-[1px] border-gray-400 rounded-sm shadow-sm", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("input", { name: "degreeId", type: "hidden", value: (_a = degreeFetcher.data) == null ? void 0 : _a.newDegree.id }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 270,
+          lineNumber: 278,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -5045,7 +5086,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 271,
+            lineNumber: 279,
             columnNumber: 13
           },
           this
@@ -5062,7 +5103,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 284,
+            lineNumber: 292,
             columnNumber: 13
           },
           this
@@ -5079,7 +5120,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 290,
+            lineNumber: 298,
             columnNumber: 13
           },
           this
@@ -5097,7 +5138,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 296,
+            lineNumber: 304,
             columnNumber: 13
           },
           this
@@ -5114,7 +5155,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 303,
+            lineNumber: 311,
             columnNumber: 13
           },
           this
@@ -5122,7 +5163,7 @@ function SeekerApplication() {
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Started" }, void 0, !1, {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 310,
+            lineNumber: 318,
             columnNumber: 15
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -5137,7 +5178,7 @@ function SeekerApplication() {
             !1,
             {
               fileName: "app/routes/solver.application.tsx",
-              lineNumber: 313,
+              lineNumber: 321,
               columnNumber: 15
             },
             this
@@ -5154,20 +5195,20 @@ function SeekerApplication() {
             !1,
             {
               fileName: "app/routes/solver.application.tsx",
-              lineNumber: 321,
+              lineNumber: 329,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, !0, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 309,
+          lineNumber: 317,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Ended" }, void 0, !1, {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 331,
+            lineNumber: 339,
             columnNumber: 15
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -5182,7 +5223,7 @@ function SeekerApplication() {
             !1,
             {
               fileName: "app/routes/solver.application.tsx",
-              lineNumber: 334,
+              lineNumber: 342,
               columnNumber: 15
             },
             this
@@ -5199,14 +5240,14 @@ function SeekerApplication() {
             !1,
             {
               fileName: "app/routes/solver.application.tsx",
-              lineNumber: 342,
+              lineNumber: 350,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, !0, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 330,
+          lineNumber: 338,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -5221,7 +5262,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 351,
+            lineNumber: 359,
             columnNumber: 13
           },
           this
@@ -5239,7 +5280,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 357,
+            lineNumber: 365,
             columnNumber: 13
           },
           this
@@ -5256,7 +5297,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 366,
+            lineNumber: 374,
             columnNumber: 13
           },
           this
@@ -5273,7 +5314,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 372,
+            lineNumber: 380,
             columnNumber: 13
           },
           this
@@ -5290,7 +5331,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 378,
+            lineNumber: 386,
             columnNumber: 13
           },
           this
@@ -5307,7 +5348,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 386,
+            lineNumber: 394,
             columnNumber: 13
           },
           this
@@ -5324,7 +5365,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 392,
+            lineNumber: 400,
             columnNumber: 13
           },
           this
@@ -5341,74 +5382,74 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 398,
+            lineNumber: 406,
             columnNumber: 13
           },
           this
         ),
         accomplishmentsForDegreeBeingAdded.map((accomplishment) => /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(AccomplishmentCard, { accomplishment }, accomplishment.id, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 405,
+          lineNumber: 413,
           columnNumber: 72
         }, this)),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("button", { type: "button", onClick: () => setIsAddingAccomplishment(!0), className: "mt-5 text-blue-500", children: "Add Accomplishment" }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 407,
+          lineNumber: 415,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("input", { name: "action", type: "hidden", value: "saveDegree" }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 408,
+          lineNumber: 416,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("button", { type: "submit", className: "flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", children: "Save" }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 409,
+          lineNumber: 417,
           columnNumber: 13
         }, this)
       ] }, void 0, !0, {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 269,
+        lineNumber: 277,
         columnNumber: 29
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(degreeFetcher.Form, { action: "/profile/degrees", method: "post", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(degreeFetcher.Form, { action: "/profile/degrees", method: "post", encType: "multipart/form-data", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("input", { name: "action", type: "hidden", value: "addDegree" }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 414,
+          lineNumber: 422,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("button", { type: "submit", className: cx("flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", isAddingDegree ? "hidden" : ""), disabled: isAddingDegree, children: "Add Degree" }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 415,
+          lineNumber: 423,
           columnNumber: 13
         }, this)
       ] }, void 0, !0, {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 413,
+        lineNumber: 421,
         columnNumber: 11
       }, this),
       degreeBeingAdded && /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(AccomplishmentForm, { action: `/profile/degrees/${degreeBeingAdded}`, open: isAddingAccomplishment, setOpen: setIsAddingAccomplishment, onSubmit: (accomplishments) => {
         setAccomplishmentsForDegreeBeingAdded(accomplishments);
       } }, void 0, !1, {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 419,
+        lineNumber: 427,
         columnNumber: 31
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 264,
+      lineNumber: 272,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(TitleDivider, { title: "Certifications" }, void 0, !1, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 424,
+      lineNumber: 432,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("section", { className: "py-5", children: [
       isAddingCertification && /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(certificationFetcher.Form, { action: "/profile/certifications", method: "post", className: "p-5 bordered border-[1px] border-gray-400 rounded-sm shadow-sm", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("input", { name: "certificationId", type: "hidden", value: (_b = certificationFetcher.data) == null ? void 0 : _b.newCertification.id }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 428,
+          lineNumber: 436,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -5423,7 +5464,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 429,
+            lineNumber: 437,
             columnNumber: 13
           },
           this
@@ -5440,7 +5481,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 435,
+            lineNumber: 443,
             columnNumber: 13
           },
           this
@@ -5457,7 +5498,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 441,
+            lineNumber: 449,
             columnNumber: 13
           },
           this
@@ -5465,7 +5506,7 @@ function SeekerApplication() {
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Issued" }, void 0, !1, {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 448,
+            lineNumber: 456,
             columnNumber: 15
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -5480,7 +5521,7 @@ function SeekerApplication() {
             !1,
             {
               fileName: "app/routes/solver.application.tsx",
-              lineNumber: 451,
+              lineNumber: 459,
               columnNumber: 15
             },
             this
@@ -5497,20 +5538,20 @@ function SeekerApplication() {
             !1,
             {
               fileName: "app/routes/solver.application.tsx",
-              lineNumber: 459,
+              lineNumber: 467,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, !0, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 447,
+          lineNumber: 455,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Expiry" }, void 0, !1, {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 469,
+            lineNumber: 477,
             columnNumber: 15
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -5525,7 +5566,7 @@ function SeekerApplication() {
             !1,
             {
               fileName: "app/routes/solver.application.tsx",
-              lineNumber: 472,
+              lineNumber: 480,
               columnNumber: 15
             },
             this
@@ -5542,14 +5583,14 @@ function SeekerApplication() {
             !1,
             {
               fileName: "app/routes/solver.application.tsx",
-              lineNumber: 480,
+              lineNumber: 488,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, !0, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 468,
+          lineNumber: 476,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -5564,62 +5605,62 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 489,
+            lineNumber: 497,
             columnNumber: 13
           },
           this
         ),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("input", { name: "action", type: "hidden", value: "saveCertification" }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 495,
+          lineNumber: 503,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("button", { type: "submit", className: "flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", children: "Save" }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 496,
+          lineNumber: 504,
           columnNumber: 13
         }, this)
       ] }, void 0, !0, {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 427,
+        lineNumber: 435,
         columnNumber: 36
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(certificationFetcher.Form, { action: "/profile/certifications", method: "post", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("input", { name: "action", type: "hidden", value: "addCertificate" }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 501,
+          lineNumber: 509,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("button", { type: "submit", className: cx("flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", isAddingCertification ? "hidden" : ""), disabled: isAddingDegree, children: "Add Certification" }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 502,
+          lineNumber: 510,
           columnNumber: 13
         }, this)
       ] }, void 0, !0, {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 500,
+        lineNumber: 508,
         columnNumber: 11
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 425,
+      lineNumber: 433,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(TitleDivider, { title: "Professional Experience" }, void 0, !1, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 506,
+      lineNumber: 514,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("section", { className: "py-5", children: [
       workExperiences.map((experience) => /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(WorkExperienceCard, { experience }, experience.id, !1, {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 509,
+        lineNumber: 517,
         columnNumber: 45
       }, this)),
       isAddingWorkExperience && experienceBeingAdded && /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(workExperienceFetcher.Form, { action: "/profile/professional", method: "post", className: "p-5 bordered border-[1px] border-gray-400 rounded-sm shadow-sm", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("input", { name: "workExperienceId", type: "hidden", value: experienceBeingAdded }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 513,
+          lineNumber: 521,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -5634,7 +5675,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 514,
+            lineNumber: 522,
             columnNumber: 13
           },
           this
@@ -5652,7 +5693,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 520,
+            lineNumber: 528,
             columnNumber: 13
           },
           this
@@ -5669,7 +5710,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 527,
+            lineNumber: 535,
             columnNumber: 13
           },
           this
@@ -5687,7 +5728,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 533,
+            lineNumber: 541,
             columnNumber: 13
           },
           this
@@ -5704,7 +5745,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 540,
+            lineNumber: 548,
             columnNumber: 13
           },
           this
@@ -5721,7 +5762,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 546,
+            lineNumber: 554,
             columnNumber: 13
           },
           this
@@ -5739,7 +5780,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 552,
+            lineNumber: 560,
             columnNumber: 13
           },
           this
@@ -5756,7 +5797,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 559,
+            lineNumber: 567,
             columnNumber: 13
           },
           this
@@ -5764,7 +5805,7 @@ function SeekerApplication() {
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Started" }, void 0, !1, {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 566,
+            lineNumber: 574,
             columnNumber: 15
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -5779,7 +5820,7 @@ function SeekerApplication() {
             !1,
             {
               fileName: "app/routes/solver.application.tsx",
-              lineNumber: 569,
+              lineNumber: 577,
               columnNumber: 15
             },
             this
@@ -5796,20 +5837,20 @@ function SeekerApplication() {
             !1,
             {
               fileName: "app/routes/solver.application.tsx",
-              lineNumber: 577,
+              lineNumber: 585,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, !0, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 565,
+          lineNumber: 573,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Ended" }, void 0, !1, {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 587,
+            lineNumber: 595,
             columnNumber: 15
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -5824,7 +5865,7 @@ function SeekerApplication() {
             !1,
             {
               fileName: "app/routes/solver.application.tsx",
-              lineNumber: 590,
+              lineNumber: 598,
               columnNumber: 15
             },
             this
@@ -5841,14 +5882,14 @@ function SeekerApplication() {
             !1,
             {
               fileName: "app/routes/solver.application.tsx",
-              lineNumber: 598,
+              lineNumber: 606,
               columnNumber: 15
             },
             this
           )
         ] }, void 0, !0, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 586,
+          lineNumber: 594,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -5864,7 +5905,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 607,
+            lineNumber: 615,
             columnNumber: 13
           },
           this
@@ -5882,7 +5923,7 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 614,
+            lineNumber: 622,
             columnNumber: 13
           },
           this
@@ -5900,89 +5941,65 @@ function SeekerApplication() {
           !1,
           {
             fileName: "app/routes/solver.application.tsx",
-            lineNumber: 621,
+            lineNumber: 629,
             columnNumber: 13
           },
           this
         ),
         accomplishmentsForExperienceBeingAdded.map((accomplishment) => /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(AccomplishmentCard, { accomplishment }, accomplishment.id, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 629,
+          lineNumber: 637,
           columnNumber: 76
         }, this)),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("button", { type: "button", onClick: () => setIsAddingAccomplishment(!0), className: "mt-5 text-blue-500", children: "Add Accomplishment" }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 631,
+          lineNumber: 639,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("input", { name: "action", type: "hidden", value: "saveWorkExperience" }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 632,
+          lineNumber: 640,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("button", { type: "submit", className: "flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", children: "Save" }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 633,
+          lineNumber: 641,
           columnNumber: 13
         }, this)
       ] }, experienceBeingAdded, !0, {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 512,
+        lineNumber: 520,
         columnNumber: 61
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(workExperienceFetcher.Form, { action: "/profile/professional", method: "post", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("input", { name: "action", type: "hidden", value: "addWorkExperience" }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 638,
+          lineNumber: 646,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("button", { type: "submit", className: cx("flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", isAddingWorkExperience ? "hidden" : ""), disabled: isAddingWorkExperience, children: "Add Experience" }, void 0, !1, {
           fileName: "app/routes/solver.application.tsx",
-          lineNumber: 639,
+          lineNumber: 647,
           columnNumber: 13
         }, this)
       ] }, void 0, !0, {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 637,
+        lineNumber: 645,
         columnNumber: 11
       }, this),
       experienceBeingAdded && /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(AccomplishmentForm, { action: `/profile/professional/${experienceBeingAdded}`, open: isAddingAccomplishment, setOpen: setIsAddingAccomplishment, onSubmit: (accomplishments) => {
         setAccomplishmentsForExperienceBeingAdded(accomplishments);
       } }, Date.now().toString(), !1, {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 643,
+        lineNumber: 651,
         columnNumber: 35
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 507,
+      lineNumber: 515,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(TitleDivider, { title: "Hard Skills" }, void 0, !1, {
-      fileName: "app/routes/solver.application.tsx",
-      lineNumber: 648,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("section", { className: "py-5", children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
-      MultiSelect,
-      {
-        name: "hardSkills",
-        options: skills_default.map((skill) => ({ label: skill.name, value: skill.name, name: skill.name }))
-      },
-      void 0,
-      !1,
-      {
-        fileName: "app/routes/solver.application.tsx",
-        lineNumber: 650,
-        columnNumber: 9
-      },
-      this
-    ) }, void 0, !1, {
-      fileName: "app/routes/solver.application.tsx",
-      lineNumber: 649,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(TitleDivider, { title: "Soft Skills" }, void 0, !1, {
       fileName: "app/routes/solver.application.tsx",
       lineNumber: 656,
       columnNumber: 7
@@ -5990,7 +6007,7 @@ function SeekerApplication() {
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("section", { className: "py-5", children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
       MultiSelect,
       {
-        name: "softSkills",
+        name: "hardSkills",
         options: skills_default.map((skill) => ({ label: skill.name, value: skill.name, name: skill.name }))
       },
       void 0,
@@ -6006,19 +6023,43 @@ function SeekerApplication() {
       lineNumber: 657,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(TitleDivider, { title: "References" }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(TitleDivider, { title: "Soft Skills" }, void 0, !1, {
       fileName: "app/routes/solver.application.tsx",
       lineNumber: 664,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("section", { className: "py-5" }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("section", { className: "py-5", children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
+      MultiSelect,
+      {
+        name: "softSkills",
+        options: skills_default.map((skill) => ({ label: skill.name, value: skill.name, name: skill.name }))
+      },
+      void 0,
+      !1,
+      {
+        fileName: "app/routes/solver.application.tsx",
+        lineNumber: 666,
+        columnNumber: 9
+      },
+      this
+    ) }, void 0, !1, {
       fileName: "app/routes/solver.application.tsx",
       lineNumber: 665,
       columnNumber: 7
     }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(TitleDivider, { title: "References" }, void 0, !1, {
+      fileName: "app/routes/solver.application.tsx",
+      lineNumber: 672,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("section", { className: "py-5" }, void 0, !1, {
+      fileName: "app/routes/solver.application.tsx",
+      lineNumber: 673,
+      columnNumber: 7
+    }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(TitleDivider, { title: "Video Summary" }, void 0, !1, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 668,
+      lineNumber: 676,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("section", { className: "py-5", children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -6033,18 +6074,18 @@ function SeekerApplication() {
       !1,
       {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 670,
+        lineNumber: 678,
         columnNumber: 9
       },
       this
     ) }, void 0, !1, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 669,
+      lineNumber: 677,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(TitleDivider, { title: "Feedback" }, void 0, !1, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 677,
+      lineNumber: 685,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("section", { className: "py-5", children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
@@ -6059,18 +6100,18 @@ function SeekerApplication() {
       !1,
       {
         fileName: "app/routes/solver.application.tsx",
-        lineNumber: 679,
+        lineNumber: 687,
         columnNumber: 9
       },
       this
     ) }, void 0, !1, {
       fileName: "app/routes/solver.application.tsx",
-      lineNumber: 678,
+      lineNumber: 686,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/solver.application.tsx",
-    lineNumber: 148,
+    lineNumber: 156,
     columnNumber: 5
   }, this);
 }
@@ -6370,7 +6411,10 @@ __export(profile_personal_exports, {
 });
 var import_node12 = require("@remix-run/node");
 var action8 = async ({ request }) => {
-  let userId = await requireUserId(request), body = await (0, import_node12.unstable_parseMultipartFormData)(request, cloudStorageUploaderHandler), minimumExpectedSalary = parseInt(body.get("minimumExpectedSalary")), minimumHourlyRate = parseInt(body.get("minimumHourlyRate"));
+  let userId = await requireUserId(request), body = await (0, import_node12.unstable_parseMultipartFormData)(request, (0, import_node12.unstable_composeUploadHandlers)(
+    supabaseStorageUploaderHandler(userId),
+    (0, import_node12.unstable_createMemoryUploadHandler)()
+  )), minimumExpectedSalary = parseInt(body.get("minimumExpectedSalary")), minimumHourlyRate = parseInt(body.get("minimumHourlyRate"));
   return await prisma.user.update({
     where: {
       id: userId
@@ -6378,14 +6422,14 @@ var action8 = async ({ request }) => {
     data: {
       firstName: body.get("firstName"),
       lastName: body.get("lastName"),
-      phone: body.get("phone"),
+      phone: body.get("phoneNumber"),
       addressLine1: body.get("addressLine1"),
       addressLine2: body.get("addressLine2"),
       city: body.get("city"),
       state: body.get("state"),
       country: body.get("country"),
       postalCode: body.get("zip"),
-      resume: body.get("resume"),
+      resume: readFilePathFromFormData(body, "resume"),
       linkedinUrl: body.get("linkedinUrl"),
       websiteUrl: body.get("websiteUrl"),
       googleScholarUrl: body.get("googleScholarUrl"),
@@ -6395,16 +6439,14 @@ var action8 = async ({ request }) => {
       workStylePreferences: {
         createMany: {
           data: body.getAll("workStylePreferences").map((workStylePreference) => ({
-            workStyle: workStylePreference,
-            userId
+            workStyle: workStylePreference
           }))
         }
       },
       rolesOfInterest: {
         createMany: {
           data: body.getAll("rolesOfInterest").map((roleOfInterest) => ({
-            role: roleOfInterest,
-            userId
+            role: roleOfInterest
           }))
         }
       }
@@ -6427,7 +6469,10 @@ __export(profile_degrees_exports, {
 });
 var import_node13 = require("@remix-run/node"), import_react23 = require("@remix-run/react"), import_react24 = require("react");
 var import_jsx_dev_runtime19 = require("react/jsx-dev-runtime"), action9 = async ({ request }) => {
-  let body = await request.formData(), actionType = body.get("action");
+  let userId = await requireUserId(request), body = await (0, import_node13.unstable_parseMultipartFormData)(request, (0, import_node13.unstable_composeUploadHandlers)(
+    supabaseStorageUploaderHandler(userId),
+    (0, import_node13.unstable_createMemoryUploadHandler)()
+  )), actionType = body.get("action");
   if (actionType === "addDegree") {
     let newDegree = await prisma.degree.create({
       data: {
@@ -6441,31 +6486,35 @@ var import_jsx_dev_runtime19 = require("react/jsx-dev-runtime"), action9 = async
     return (0, import_node13.json)({
       newDegree
     });
-  } else if (actionType === "saveDegree") {
-    let dataToUpdate = {
-      level: body.get("type"),
-      major: body.get("major"),
-      school: body.get("school"),
-      country: body.get("country"),
-      stateOrCity: body.get("cityOrState"),
-      startYear: parseInt(body.get("startYear")),
-      startMonth: parseInt(body.get("startMonth")),
-      endYear: parseInt(body.get("endYear")),
-      endMonth: parseInt(body.get("endMonth")),
-      assessmentFormat: body.get("assessmentFormat"),
-      grade: body.get("grade"),
-      hasEca: body.get("hasEca") === "Yes",
-      ecaAuthority: body.get("ecaAuthority"),
-      isTemp: !1
-    };
-    return console.log(dataToUpdate), await prisma.degree.update({
-      where: {
-        id: body.get("degreeId")
-      },
-      data: dataToUpdate
-    }), (0, import_node13.redirect)("/profile/degrees");
-  } else
+  } else {
+    if (actionType === "saveDegree")
+      return await prisma.degree.update({
+        where: {
+          id: body.get("degreeId")
+        },
+        data: {
+          level: body.get("type"),
+          major: body.get("major"),
+          school: body.get("school"),
+          country: body.get("country"),
+          stateOrCity: body.get("cityOrState"),
+          startYear: parseInt(body.get("startYear")),
+          startMonth: parseInt(body.get("startMonth")),
+          endYear: parseInt(body.get("endYear")),
+          endMonth: parseInt(body.get("endMonth")),
+          assessmentFormat: body.get("assessmentFormat"),
+          grade: body.get("grade"),
+          hasEca: body.get("hasEca") === "Yes",
+          ecaAuthority: body.get("ecaAuthority"),
+          ecaCertificate: readFilePathFromFormData(body, "ecaCertificate"),
+          thesis: readFilePathFromFormData(body, "thesis"),
+          marksheet: readFilePathFromFormData(body, "marksheet"),
+          degreeCertificate: readFilePathFromFormData(body, "degreeCertificate"),
+          isTemp: !1
+        }
+      }), (0, import_node13.redirect)("/profile/degrees");
     throw new Error("Invalid action type");
+  }
 }, loader6 = async ({ request }) => {
   let userId = await requireUserId(request), degrees = await prisma.degree.findMany({
     include: {
@@ -6491,13 +6540,13 @@ function EducationDegrees() {
   }, [fetcher.data]), /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("section", { children: [
     degrees.map((degree) => /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(DegreeCard, { degree }, degree.id, !1, {
       fileName: "app/routes/profile.degrees.tsx",
-      lineNumber: 105,
+      lineNumber: 113,
       columnNumber: 31
     }, this)),
     isAddingDegree && /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(fetcher.Form, { action: "/profile/degrees", method: "post", className: "p-5", children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("input", { name: "degreeId", type: "hidden", value: (_a = fetcher.data) == null ? void 0 : _a.newDegree.id }, void 0, !1, {
         fileName: "app/routes/profile.degrees.tsx",
-        lineNumber: 109,
+        lineNumber: 117,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(
@@ -6519,7 +6568,7 @@ function EducationDegrees() {
         !1,
         {
           fileName: "app/routes/profile.degrees.tsx",
-          lineNumber: 110,
+          lineNumber: 118,
           columnNumber: 11
         },
         this
@@ -6536,7 +6585,7 @@ function EducationDegrees() {
         !1,
         {
           fileName: "app/routes/profile.degrees.tsx",
-          lineNumber: 123,
+          lineNumber: 131,
           columnNumber: 11
         },
         this
@@ -6553,7 +6602,7 @@ function EducationDegrees() {
         !1,
         {
           fileName: "app/routes/profile.degrees.tsx",
-          lineNumber: 129,
+          lineNumber: 137,
           columnNumber: 11
         },
         this
@@ -6571,7 +6620,7 @@ function EducationDegrees() {
         !1,
         {
           fileName: "app/routes/profile.degrees.tsx",
-          lineNumber: 135,
+          lineNumber: 143,
           columnNumber: 11
         },
         this
@@ -6588,7 +6637,7 @@ function EducationDegrees() {
         !1,
         {
           fileName: "app/routes/profile.degrees.tsx",
-          lineNumber: 142,
+          lineNumber: 150,
           columnNumber: 11
         },
         this
@@ -6596,7 +6645,7 @@ function EducationDegrees() {
       /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Started" }, void 0, !1, {
           fileName: "app/routes/profile.degrees.tsx",
-          lineNumber: 149,
+          lineNumber: 157,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(
@@ -6611,7 +6660,7 @@ function EducationDegrees() {
           !1,
           {
             fileName: "app/routes/profile.degrees.tsx",
-            lineNumber: 152,
+            lineNumber: 160,
             columnNumber: 13
           },
           this
@@ -6628,20 +6677,20 @@ function EducationDegrees() {
           !1,
           {
             fileName: "app/routes/profile.degrees.tsx",
-            lineNumber: 160,
+            lineNumber: 168,
             columnNumber: 13
           },
           this
         )
       ] }, void 0, !0, {
         fileName: "app/routes/profile.degrees.tsx",
-        lineNumber: 148,
+        lineNumber: 156,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("div", { className: "flex flex-wrap mt-5 gap-5", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("label", { className: "w-full mb-2 font-bold text-md text-gray-700", children: "Ended" }, void 0, !1, {
           fileName: "app/routes/profile.degrees.tsx",
-          lineNumber: 170,
+          lineNumber: 178,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(
@@ -6656,7 +6705,7 @@ function EducationDegrees() {
           !1,
           {
             fileName: "app/routes/profile.degrees.tsx",
-            lineNumber: 173,
+            lineNumber: 181,
             columnNumber: 13
           },
           this
@@ -6673,14 +6722,14 @@ function EducationDegrees() {
           !1,
           {
             fileName: "app/routes/profile.degrees.tsx",
-            lineNumber: 181,
+            lineNumber: 189,
             columnNumber: 13
           },
           this
         )
       ] }, void 0, !0, {
         fileName: "app/routes/profile.degrees.tsx",
-        lineNumber: 169,
+        lineNumber: 177,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(
@@ -6696,7 +6745,7 @@ function EducationDegrees() {
         !1,
         {
           fileName: "app/routes/profile.degrees.tsx",
-          lineNumber: 190,
+          lineNumber: 198,
           columnNumber: 11
         },
         this
@@ -6713,7 +6762,7 @@ function EducationDegrees() {
         !1,
         {
           fileName: "app/routes/profile.degrees.tsx",
-          lineNumber: 199,
+          lineNumber: 207,
           columnNumber: 11
         },
         this
@@ -6730,7 +6779,7 @@ function EducationDegrees() {
         !1,
         {
           fileName: "app/routes/profile.degrees.tsx",
-          lineNumber: 205,
+          lineNumber: 213,
           columnNumber: 11
         },
         this
@@ -6747,62 +6796,62 @@ function EducationDegrees() {
         !1,
         {
           fileName: "app/routes/profile.degrees.tsx",
-          lineNumber: 213,
+          lineNumber: 221,
           columnNumber: 11
         },
         this
       ),
       accomplishmentsForDegreeBeingAdded.map((accomplishment) => /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(AccomplishmentCard, { accomplishment }, accomplishment.id, !1, {
         fileName: "app/routes/profile.degrees.tsx",
-        lineNumber: 220,
+        lineNumber: 228,
         columnNumber: 70
       }, this)),
       /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("button", { type: "button", onClick: () => setIsAddingAccomplishment(!0), className: "mt-5 text-blue-500", children: "Add Accomplishment" }, void 0, !1, {
         fileName: "app/routes/profile.degrees.tsx",
-        lineNumber: 222,
+        lineNumber: 230,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("input", { name: "action", type: "hidden", value: "saveDegree" }, void 0, !1, {
         fileName: "app/routes/profile.degrees.tsx",
-        lineNumber: 223,
+        lineNumber: 231,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("button", { type: "submit", className: "flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", children: "Save" }, void 0, !1, {
         fileName: "app/routes/profile.degrees.tsx",
-        lineNumber: 224,
+        lineNumber: 232,
         columnNumber: 11
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/profile.degrees.tsx",
-      lineNumber: 108,
+      lineNumber: 116,
       columnNumber: 27
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(fetcher.Form, { action: "/profile/degrees", method: "post", children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("input", { name: "action", type: "hidden", value: "addDegree" }, void 0, !1, {
         fileName: "app/routes/profile.degrees.tsx",
-        lineNumber: 229,
+        lineNumber: 237,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("button", { type: "submit", className: "flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", disabled: isAddingDegree, children: "Add Degree" }, void 0, !1, {
         fileName: "app/routes/profile.degrees.tsx",
-        lineNumber: 230,
+        lineNumber: 238,
         columnNumber: 11
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/profile.degrees.tsx",
-      lineNumber: 228,
+      lineNumber: 236,
       columnNumber: 9
     }, this),
     degreeBeingAdded && /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(AccomplishmentForm, { action: `/profile/degrees/${degreeBeingAdded}`, open: isAddingAccomplishment, setOpen: setIsAddingAccomplishment, onSubmit: (accomplishments) => {
       setAccomplishmentsForDegreeBeingAdded(accomplishments);
     } }, void 0, !1, {
       fileName: "app/routes/profile.degrees.tsx",
-      lineNumber: 234,
+      lineNumber: 242,
       columnNumber: 29
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/profile.degrees.tsx",
-    lineNumber: 103,
+    lineNumber: 111,
     columnNumber: 5
   }, this);
 }
@@ -9411,7 +9460,7 @@ function Dashboard() {
         lineNumber: 24,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime39.jsxDEV)(import_react36.Link, { to: "/profile", className: "float-right px-5 py-2 bg-purple-600 text-white rounded-sm hover:bg-purple-800", children: "Edit Profile" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime39.jsxDEV)(import_react36.Link, { to: "/solver/application", className: "float-right px-5 py-2 bg-purple-600 text-white rounded-sm hover:bg-purple-800", children: "Submit Profile" }, void 0, !1, {
         fileName: "app/routes/dashboard.tsx",
         lineNumber: 29,
         columnNumber: 11
@@ -10331,307 +10380,446 @@ __export(index_exports, {
   default: () => Index,
   meta: () => meta2
 });
-var import_react44 = require("@remix-run/react");
 
-// app/assets/images/categories/consulting.png
-var consulting_default = "/build/_assets/consulting-6GVLD3FQ.png";
+// app/assets/images/backgrounds/ring_up.svg
+var ring_up_default = "/build/_assets/ring_up-YIM4EQSD.svg";
 
-// app/assets/images/categories/experimentation.png
-var experimentation_default = "/build/_assets/experimentation-HZMRQESG.png";
+// app/assets/images/backgrounds/hero_background.png
+var hero_background_default = "/build/_assets/hero_background-ABRAOGWP.png";
 
-// app/assets/images/categories/analytics-reporting.png
-var analytics_reporting_default = "/build/_assets/analytics-reporting-6SCWPECF.png";
+// app/assets/images/backgrounds/hero_cta_back.svg
+var hero_cta_back_default = "/build/_assets/hero_cta_back-XGUPIIXP.svg";
 
-// app/assets/images/categories/clinical-trial.png
-var clinical_trial_default = "/build/_assets/clinical-trial-JRT6F7P2.png";
-
-// app/layout/anon/GridTile.tsx
-var import_jsx_dev_runtime48 = require("react/jsx-dev-runtime");
-function GridTile({
-  className,
-  imgSrc,
-  imgAlt,
-  title,
-  description,
-  linkSrc,
-  linkText
-}) {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("div", { className: cx(className, "flex flex-col mx-auto justify-center items-center bg-white hover:border-2 hover:shadow-lg hover:scale-105 transition-all ease-in-out shadow-sm rounded-md hover:border-purple-500 hover:text-purple-500"), children: [
-    imgSrc && /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("img", { src: imgSrc, alt: imgAlt, className: "w-16 h-auto mb-5" }, void 0, !1, {
-      fileName: "app/layout/anon/GridTile.tsx",
-      lineNumber: 25,
-      columnNumber: 19
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("h3", { className: "font-bold text-xl", children: title }, void 0, !1, {
-      fileName: "app/layout/anon/GridTile.tsx",
-      lineNumber: 27,
+// app/modules/solver_homepage/HeroSection.tsx
+var import_react43 = require("@remix-run/react"), import_jsx_dev_runtime48 = require("react/jsx-dev-runtime");
+function HeroSection3() {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("section", { className: "text-black body-font max-w-7xl", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("div", { className: "w-full mx-auto text-7xl font-bold tracking-tight leading-snug text-start", children: [
+      "A global platform to ",
+      /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("span", { className: "text-blue-600", children: "network" }, void 0, !1, {
+        fileName: "app/modules/solver_homepage/HeroSection.tsx",
+        lineNumber: 11,
+        columnNumber: 30
+      }, this),
+      " for professionals in ",
+      /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("span", { className: "text-yellow-400", children: "Biotechnology." }, void 0, !1, {
+        fileName: "app/modules/solver_homepage/HeroSection.tsx",
+        lineNumber: 11,
+        columnNumber: 98
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/modules/solver_homepage/HeroSection.tsx",
+      lineNumber: 10,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("p", { children: description }, void 0, !1, {
-      fileName: "app/layout/anon/GridTile.tsx",
-      lineNumber: 28,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("a", { href: linkSrc, className: "mt-5", children: linkText }, void 0, !1, {
-      fileName: "app/layout/anon/GridTile.tsx",
-      lineNumber: 29,
-      columnNumber: 7
-    }, this)
-  ] }, void 0, !0, {
-    fileName: "app/layout/anon/GridTile.tsx",
-    lineNumber: 21,
-    columnNumber: 5
-  }, this);
-}
-
-// app/layout/anon/home/CategorySection.tsx
-var import_jsx_dev_runtime49 = require("react/jsx-dev-runtime");
-function CategoriesSection() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("section", { className: "flex flex-wrap w-full h-full mx-auto mt-40 justify-center items-center content-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "w-full h-auto", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("h2", { className: "text-4xl text-center", children: "How it works" }, void 0, !1, {
-      fileName: "app/layout/anon/home/CategorySection.tsx",
-      lineNumber: 38,
-      columnNumber: 9
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("p", { className: "text-center", children: "Connect with our Seekers." }, void 0, !1, {
-      fileName: "app/layout/anon/home/CategorySection.tsx",
-      lineNumber: 39,
-      columnNumber: 9
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "flex justify-center flex-wrap mt-5 gap-2 max-w-7xl", children: [
-      {
-        title: "Solver Registration",
-        image: consulting_default,
-        link: "/technical-consulting",
-        description: "Solvers select job types, set hourly rates, and declare their top five hard skills. They submit academic and professional credentials, evidence of accomplishments, and any relevant work documentation."
-      },
-      {
-        title: "Skill Identification",
-        image: experimentation_default,
-        link: "/experimental-troubleshooting",
-        description: "We meticulously evaluate the provided information to assess their authenticity and assign scores for each hard and soft skill by combining educational and professional achievements and technical assessments."
-      },
-      {
-        title: "Project Submission",
-        image: analytics_reporting_default,
-        link: "/data-collection-and-analysis",
-        description: "Clients outline project specifics and set parameters like desired qualifications, experience level, and estimated hourly rate. Our AI further refines these inputs, identifying key hard and soft skills required for the project."
-      },
-      {
-        title: "Skill Matching",
-        image: clinical_trial_default,
-        link: "/clinical-trial-coordination",
-        description: "On project submission, our skill-matching algorithm shortlists the top suited Solvers. Clients are presented with this curated list, and upon selection, the project commences."
-      }
-    ].map((category, index) => /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)(
-      GridTile,
-      {
-        className: "w-[500px] h-auto p-10",
-        title: category.title,
-        imgSrc: category.image,
-        linkSrc: category.link,
-        description: category.description
-      },
-      index,
-      !1,
-      {
-        fileName: "app/layout/anon/home/CategorySection.tsx",
-        lineNumber: 44,
-        columnNumber: 15
-      },
-      this
-    )) }, void 0, !1, {
-      fileName: "app/layout/anon/home/CategorySection.tsx",
-      lineNumber: 40,
-      columnNumber: 9
-    }, this)
-  ] }, void 0, !0, {
-    fileName: "app/layout/anon/home/CategorySection.tsx",
-    lineNumber: 37,
-    columnNumber: 7
-  }, this) }, void 0, !1, {
-    fileName: "app/layout/anon/home/CategorySection.tsx",
-    lineNumber: 36,
-    columnNumber: 5
-  }, this);
-}
-
-// app/layout/anon/home/HeroSection.tsx
-var import_react43 = require("@remix-run/react");
-
-// app/assets/images/hero/hero-circle.png
-var hero_circle_default = "/build/_assets/hero-circle-KXCWELAH.png";
-
-// app/assets/images/hero/hero-circle-2.png
-var hero_circle_2_default = "/build/_assets/hero-circle-2-NAQIEYD6.png";
-
-// app/assets/images/hero/hero-square.png
-var hero_square_default = "/build/_assets/hero-square-EM2POTLU.png";
-
-// app/assets/images/hero/hero-square-2.png
-var hero_square_2_default = "/build/_assets/hero-square-2-IMF6Q7TS.png";
-
-// app/assets/images/hero/hero-dot.png
-var hero_dot_default = "/build/_assets/hero-dot-XYGSM2N4.png";
-
-// app/assets/images/hero/hero-triangle.png
-var hero_triangle_default = "/build/_assets/hero-triangle-BMPWFA4I.png";
-
-// app/layout/anon/home/HeroDecoration.tsx
-var import_jsx_dev_runtime50 = require("react/jsx-dev-runtime");
-function HeroDecoration() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "-z-10", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("img", { className: "absolute right-[5%] top-[25%] opacity-10", src: hero_circle_default }, void 0, !1, {
-      fileName: "app/layout/anon/home/HeroDecoration.tsx",
-      lineNumber: 11,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("img", { className: "absolute right-[10%] top-[50%] animate-bounce ", src: hero_circle_2_default }, void 0, !1, {
-      fileName: "app/layout/anon/home/HeroDecoration.tsx",
-      lineNumber: 12,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("img", { className: "absolute left-[52%] bottom-[25%] animate-slide-x", src: hero_square_default }, void 0, !1, {
-      fileName: "app/layout/anon/home/HeroDecoration.tsx",
+    /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("div", { className: "w-full flex flex-wrap mt-5 justify-between mx-auto", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("div", { className: "flex w-full md:w-[73%] h-[350px] rounded-7xl  items-end align-bottom relative", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("img", { className: "w-full absolute h-[350px]", src: hero_background_default }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HeroSection.tsx",
+          lineNumber: 15,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)(import_react43.Link, { to: "/register", className: "flex absolute align-bottom h-[165px] bg-blue-600 hover:bg-blue-700 border-white border-5 rounded-7xl w-[38.5%] animate-pulse hover:animate-none", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("img", { className: "absolute bottom-0 left-0 w-auto h-[165px]", src: hero_cta_back_default }, void 0, !1, {
+            fileName: "app/modules/solver_homepage/HeroSection.tsx",
+            lineNumber: 17,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("div", { className: "absolute bottom-0 left-0 text-start text-3xl text-white w-1/2 p-7", children: "Get Started" }, void 0, !1, {
+            fileName: "app/modules/solver_homepage/HeroSection.tsx",
+            lineNumber: 18,
+            columnNumber: 13
+          }, this)
+        ] }, void 0, !0, {
+          fileName: "app/modules/solver_homepage/HeroSection.tsx",
+          lineNumber: 16,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/modules/solver_homepage/HeroSection.tsx",
+        lineNumber: 14,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("div", { className: "w-full md:w-1/4 bg-yellow-400 rounded-7xl h-[350px] relative", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("div", { className: "text-black text-lg p-10", children: "Find opportunities and connect with talent in the biotech industry." }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HeroSection.tsx",
+          lineNumber: 24,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime48.jsxDEV)("img", { className: "absolute bottom-0 right-0", src: ring_up_default }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HeroSection.tsx",
+          lineNumber: 27,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/modules/solver_homepage/HeroSection.tsx",
+        lineNumber: 23,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/modules/solver_homepage/HeroSection.tsx",
       lineNumber: 13,
       columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("img", { className: "absolute left-1/2 top-1/2 animate-rotate-360", src: hero_square_2_default }, void 0, !1, {
-      fileName: "app/layout/anon/home/HeroDecoration.tsx",
-      lineNumber: 14,
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/modules/solver_homepage/HeroSection.tsx",
+    lineNumber: 9,
+    columnNumber: 5
+  }, this);
+}
+
+// app/assets/images/backgrounds/how_it_works_decoration.svg
+var how_it_works_decoration_default = "/build/_assets/how_it_works_decoration-QDZKIROR.svg";
+
+// app/modules/solver_homepage/HowItWorksSection.tsx
+var import_jsx_dev_runtime49 = require("react/jsx-dev-runtime");
+function HowItWorksSection() {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("section", { className: "text-black body-font max-w-7xl mx-auto w-full mt-20", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "w-full mx-auto max-w-6xl text-5xl text-start font-semibold tracking-tight leading-snug", children: [
+      "Find your ",
+      /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("span", { className: "text-blue-800", children: "dream opportunity" }, void 0, !1, {
+        fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+        lineNumber: 7,
+        columnNumber: 19
+      }, this),
+      " easily using our platform."
+    ] }, void 0, !0, {
+      fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+      lineNumber: 6,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("img", { className: "absolute left-[60%] top-1/4 animate-slide-y", src: hero_dot_default }, void 0, !1, {
-      fileName: "app/layout/anon/home/HeroDecoration.tsx",
-      lineNumber: 15,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("img", { className: "absolute left-[5%] top-1/3 animate-rotate-360", src: hero_triangle_default }, void 0, !1, {
-      fileName: "app/layout/anon/home/HeroDecoration.tsx",
-      lineNumber: 16,
+    /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "w-full flex flex-wrap mt-10 justify-center gap-5 bg-blue-800 rounded-7xl p-8 text-white", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "w-[275px] relative rounded-4xl bg-blue-600 flex flex-col p-10 hover:bg-white hover:text-black hover:-translate-y-5", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "absolute font-semibold text-5xl top-[30px] left-[30px]", children: "01" }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 11,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("img", { src: how_it_works_decoration_default, className: "absolute top-0 left-0 w-[150px] h-auto" }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 12,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "mt-[160px] w-full text-start font-semibold text-3xl", children: "Complete your profile" }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 13,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "mt-5", children: "Ensure that all information is up to date and accurate, so recruiters can find you easily." }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 16,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+        lineNumber: 10,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "w-[275px] relative rounded-4xl bg-blue-600 flex flex-col p-10 hover:bg-white hover:text-black hover:-translate-y-5", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "absolute font-semibold text-5xl top-[30px] left-[30px]", children: "02" }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 21,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("img", { src: how_it_works_decoration_default, className: "absolute top-0 left-0 w-[150px] h-auto" }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 22,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "mt-[160px] w-full text-start font-semibold text-3xl", children: "Upload documents" }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 23,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "mt-5", children: "We verify your documents and ensure that you are a real person, so recruiters can trust you." }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 26,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+        lineNumber: 20,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "w-[275px] relative rounded-4xl bg-blue-600 flex flex-col p-10 hover:bg-white hover:text-black hover:-translate-y-5", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "absolute font-semibold text-5xl top-[30px] left-[30px]", children: "03" }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 31,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("img", { src: how_it_works_decoration_default, className: "absolute top-0 left-0 w-[150px] h-auto" }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 32,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "mt-[160px] w-full text-start font-semibold text-3xl", children: "Skill Matching" }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 33,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "mt-5", children: "We match your skills with the right opportunities, so you can find the best fit." }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 36,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+        lineNumber: 30,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "w-[275px] relative rounded-4xl bg-blue-600 flex flex-col p-10 hover:bg-white hover:text-black hover:-translate-y-5", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "absolute font-semibold text-5xl top-[30px] left-[30px]", children: "04" }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 41,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("img", { src: how_it_works_decoration_default, className: "absolute top-0 left-0 w-[150px] h-auto" }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 42,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "mt-[160px] w-full text-start font-semibold text-3xl", children: "Schedule Interview" }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 43,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime49.jsxDEV)("div", { className: "mt-5", children: "You can schedule an interview with the recruiter to discuss the opportunity when they reach out to you." }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+          lineNumber: 46,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+        lineNumber: 40,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+      lineNumber: 9,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
-    fileName: "app/layout/anon/home/HeroDecoration.tsx",
+    fileName: "app/modules/solver_homepage/HowItWorksSection.tsx",
+    lineNumber: 5,
+    columnNumber: 5
+  }, this);
+}
+
+// app/modules/solver_homepage/LatestJobPosting.tsx
+var import_react44 = require("@remix-run/react"), import_jsx_dev_runtime50 = require("react/jsx-dev-runtime");
+function LatestJobsPosting({
+  job
+}) {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "w-[375px] bg-gray-100 border-none rounded-3xl p-5", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "flex flex-row gap-5", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("img", { src: job.logo, className: "w-auto h-[80px] max-w-[120px] border-none" }, void 0, !1, {
+        fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+        lineNumber: 11,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "flex flex-col my-auto", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "text-2xl font-bold", children: job.company }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+          lineNumber: 13,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "text-sm", children: job.postedOn }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+          lineNumber: 14,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+        lineNumber: 12,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+      lineNumber: 10,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "text-xl font-bold mt-5", children: job.title }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+      lineNumber: 17,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)("div", { className: "mt-2", children: job.location }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+      lineNumber: 20,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime50.jsxDEV)(import_react44.Link, { to: job.applicationUrl, className: "flex mt-10 px-5 border-blue-600 border-[1px] hover:bg-blue-700 hover:text-white text-blue-600 rounded-3xl p-3", children: "Apply now" }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+      lineNumber: 23,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/modules/solver_homepage/LatestJobPosting.tsx",
+    lineNumber: 9,
+    columnNumber: 5
+  }, this);
+}
+
+// app/modules/solver_homepage/LatestJobsSection.tsx
+var import_jsx_dev_runtime51 = require("react/jsx-dev-runtime"), latestJobs = [
+  {
+    logo: "https://ryercat.com/cdn/shop/files/LogoTagline_200x@2x.png?v=1667425643",
+    company: "Ryercat",
+    postedOn: "2 days ago",
+    title: "Formulation Scientist",
+    location: "Canada",
+    applicationUrl: "/register"
+  },
+  {
+    logo: "https://media.licdn.com/dms/image/C510BAQE7Eor0BAq0vA/company-logo_200_200/0/1519908858114?e=1701302400&v=beta&t=Ugg9PwN0_j2dt-X5r7Tjsa0Xuj1Xa_C2cYmOGYLAxq4",
+    company: "Phenomic AI",
+    postedOn: "2 days ago",
+    title: "Senior Data Scientist",
+    location: "Toronto",
+    applicationUrl: "/register"
+  },
+  {
+    logo: "https://www.scian.com/wp-content/themes/romandesign/images/logo.png",
+    company: "SCiAN Services",
+    postedOn: "2 days ago",
+    title: "Senior Biostatistician",
+    location: "Toronto",
+    applicationUrl: "/register"
+  }
+];
+function LatestJobsSection() {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("section", { className: "text-black body-font max-w-7xl mx-auto w-full mt-20", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "w-full text-center text-5xl font-semibold", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("span", { className: "text-blue-800", children: "Latest Jobs" }, void 0, !1, {
+        fileName: "app/modules/solver_homepage/LatestJobsSection.tsx",
+        lineNumber: 34,
+        columnNumber: 9
+      }, this),
+      " for you"
+    ] }, void 0, !0, {
+      fileName: "app/modules/solver_homepage/LatestJobsSection.tsx",
+      lineNumber: 33,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "w-full flex flex-wrap mt-10 justify-center gap-5", children: latestJobs.map((job) => /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)(LatestJobsPosting, { job }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/LatestJobsSection.tsx",
+      lineNumber: 39,
+      columnNumber: 13
+    }, this)) }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/LatestJobsSection.tsx",
+      lineNumber: 36,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/modules/solver_homepage/LatestJobsSection.tsx",
+    lineNumber: 32,
+    columnNumber: 5
+  }, this);
+}
+
+// app/modules/solver_homepage/RopeInSection.tsx
+var import_react45 = require("react");
+
+// app/assets/images/backgrounds/double_ring_side.svg
+var double_ring_side_default = "/build/_assets/double_ring_side-VLO7I5XT.svg";
+
+// app/modules/solver_homepage/RopeInSection.tsx
+var import_jsx_dev_runtime52 = require("react/jsx-dev-runtime");
+function RopeInSection() {
+  let [targetSelection, setTargetSelection] = (0, import_react45.useState)("solver");
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("section", { className: "text-black body-font max-w-7xl mx-auto w-full mt-20", children: /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "flex justify-center w-full gap-5", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "w-full flex flex-col md:w-[750px] text-white", children: [
+      targetSelection == "solver" ? /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "rounded-7xl text-4xl bg-gray-800 p-10", children: [
+        "Connect with ",
+        /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("span", { className: "text-yellow-600", children: "thousands of companies" }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/RopeInSection.tsx",
+          lineNumber: 15,
+          columnNumber: 111
+        }, this),
+        " that are looking for your expertise."
+      ] }, void 0, !0, {
+        fileName: "app/modules/solver_homepage/RopeInSection.tsx",
+        lineNumber: 15,
+        columnNumber: 43
+      }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "rounded-7xl text-4xl bg-gray-800 p-10", children: [
+        "Connect with ",
+        /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("span", { className: "text-yellow-600", children: "thousands of experts" }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/RopeInSection.tsx",
+          lineNumber: 17,
+          columnNumber: 28
+        }, this),
+        " that are looking to leverage their skills."
+      ] }, void 0, !0, {
+        fileName: "app/modules/solver_homepage/RopeInSection.tsx",
+        lineNumber: 16,
+        columnNumber: 22
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "rounded-7xl text-3xl bg-gray-800 p-10 mt-5 text-white", children: [
+        "Focus on what matters most: ",
+        /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("span", { className: "text-yellow-600", children: "your profile." }, void 0, !1, {
+          fileName: "app/modules/solver_homepage/RopeInSection.tsx",
+          lineNumber: 53,
+          columnNumber: 41
+        }, this),
+        " Using our proprietary algorithm, we match you with opportunities that are the best fit for your skills and experience."
+      ] }, void 0, !0, {
+        fileName: "app/modules/solver_homepage/RopeInSection.tsx",
+        lineNumber: 20,
+        columnNumber: 11
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/modules/solver_homepage/RopeInSection.tsx",
+      lineNumber: 13,
+      columnNumber: 9
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "w-[420px] relative text-white rounded-7xl text-4xl bg-gray-800 p-5", children: /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("img", { className: "absolute left-0 bottom-0 w-full h-auto", src: double_ring_side_default }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/RopeInSection.tsx",
+      lineNumber: 58,
+      columnNumber: 11
+    }, this) }, void 0, !1, {
+      fileName: "app/modules/solver_homepage/RopeInSection.tsx",
+      lineNumber: 57,
+      columnNumber: 9
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/modules/solver_homepage/RopeInSection.tsx",
+    lineNumber: 11,
+    columnNumber: 7
+  }, this) }, void 0, !1, {
+    fileName: "app/modules/solver_homepage/RopeInSection.tsx",
     lineNumber: 10,
     columnNumber: 5
   }, this);
 }
 
-// app/assets/images/hero/genetic_engineering.png
-var genetic_engineering_default = "/build/_assets/genetic_engineering-EPYTMLFJ.png";
-
-// app/layout/anon/home/HeroSection.tsx
-var import_jsx_dev_runtime51 = require("react/jsx-dev-runtime");
-function HeroSection3() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("section", { className: "flex flex-wrap w-full h-full mx-auto", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)(HeroDecoration, {}, void 0, !1, {
-      fileName: "app/layout/anon/home/HeroSection.tsx",
-      lineNumber: 8,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "w-full lg:w-1/2 flex flex-col", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("div", { className: "text-start text-4xl my-auto font-semibold", children: "A global platform for remote freelancing work in Biotech & Pharma sectors" }, void 0, !1, {
-        fileName: "app/layout/anon/home/HeroSection.tsx",
-        lineNumber: 10,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)(import_react43.Link, { to: "/register", className: "bg-purple-600 hover:bg-purple-800 px-10 rounded-md text-white text-center py-5 mt-10 w-[300px]", children: "Join Us" }, void 0, !1, {
-        fileName: "app/layout/anon/home/HeroSection.tsx",
-        lineNumber: 13,
-        columnNumber: 9
-      }, this)
-    ] }, void 0, !0, {
-      fileName: "app/layout/anon/home/HeroSection.tsx",
-      lineNumber: 9,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime51.jsxDEV)("img", { className: "w-full lg:w-1/2", src: genetic_engineering_default, alt: "hero" }, void 0, !1, {
-      fileName: "app/layout/anon/home/HeroSection.tsx",
-      lineNumber: 17,
-      columnNumber: 7
-    }, this)
-  ] }, void 0, !0, {
-    fileName: "app/layout/anon/home/HeroSection.tsx",
-    lineNumber: 7,
-    columnNumber: 5
-  }, this);
-}
-
 // app/routes/_index.tsx
-var import_jsx_dev_runtime52 = require("react/jsx-dev-runtime"), meta2 = () => [{ title: "Biosolver" }];
+var import_jsx_dev_runtime53 = require("react/jsx-dev-runtime"), meta2 = () => [{ title: "Biosolver" }];
 function Index() {
   let user = useOptionalUser();
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "p-10", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)(HeroSection3, {}, void 0, !1, {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "p-6", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(HeroSection3, {}, void 0, !1, {
       fileName: "app/routes/_index.tsx",
-      lineNumber: 14,
+      lineNumber: 18,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "w-full h-auto p-10 text-white rounded-lg mt-10 flex flex-row gap-5", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "w-full lg:w-1/2 bg-[url('assets/images/backgrounds/expert.jpg')] bg-cover bg-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "w-full h-full backdrop-brightness-50 p-10 flex flex-col", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("h1", { className: "text-4xl font-bold", children: "Be a Solver" }, void 0, !1, {
-          fileName: "app/routes/_index.tsx",
-          lineNumber: 18,
-          columnNumber: 13
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("p", { className: "text-xl mt-5", children: "Are you a Biotech/Pharma expert or student interested in remote freelancing work?" }, void 0, !1, {
-          fileName: "app/routes/_index.tsx",
-          lineNumber: 19,
-          columnNumber: 13
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)(import_react44.Link, { to: "/register", className: "text-center w-full rounded bg-purple-500 hover:bg-purple-700 text-white py-5 mt-5", children: "Join as a Solver" }, void 0, !1, {
-          fileName: "app/routes/_index.tsx",
-          lineNumber: 22,
-          columnNumber: 13
-        }, this)
-      ] }, void 0, !0, {
-        fileName: "app/routes/_index.tsx",
-        lineNumber: 17,
-        columnNumber: 11
-      }, this) }, void 0, !1, {
-        fileName: "app/routes/_index.tsx",
-        lineNumber: 16,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "w-full lg:w-1/2 bg-[url('assets/images/backgrounds/company.jpg')] bg-cover", children: /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("div", { className: "w-full h-full backdrop-brightness-50 p-10 flex flex-col", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("h1", { className: "text-4xl font-bold", children: "Hire a Solver" }, void 0, !1, {
-          fileName: "app/routes/_index.tsx",
-          lineNumber: 27,
-          columnNumber: 13
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)("p", { className: "text-xl mt-5", children: "Are you looking to hire a Biotech/Pharma expert or student for a remote freelancing work?" }, void 0, !1, {
-          fileName: "app/routes/_index.tsx",
-          lineNumber: 28,
-          columnNumber: 13
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)(import_react44.Link, { to: "/register", className: "text-center w-full rounded bg-purple-500 hover:bg-purple-700 text-white py-5 mt-5", children: "Join as a Seeker" }, void 0, !1, {
-          fileName: "app/routes/_index.tsx",
-          lineNumber: 31,
-          columnNumber: 13
-        }, this)
-      ] }, void 0, !0, {
-        fileName: "app/routes/_index.tsx",
-        lineNumber: 26,
-        columnNumber: 11
-      }, this) }, void 0, !1, {
-        fileName: "app/routes/_index.tsx",
-        lineNumber: 25,
-        columnNumber: 9
-      }, this)
-    ] }, void 0, !0, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(RopeInSection, {}, void 0, !1, {
       fileName: "app/routes/_index.tsx",
-      lineNumber: 15,
+      lineNumber: 19,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime52.jsxDEV)(CategoriesSection, {}, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(HowItWorksSection, {}, void 0, !1, {
       fileName: "app/routes/_index.tsx",
-      lineNumber: 35,
+      lineNumber: 20,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(LatestJobsSection, {}, void 0, !1, {
+      fileName: "app/routes/_index.tsx",
+      lineNumber: 21,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/_index.tsx",
-    lineNumber: 13,
+    lineNumber: 17,
     columnNumber: 5
   }, this);
 }
@@ -10644,8 +10832,8 @@ __export(login_exports, {
   loader: () => loader14,
   meta: () => meta3
 });
-var import_node22 = require("@remix-run/node"), import_react45 = require("@remix-run/react"), import_react46 = require("react");
-var import_jsx_dev_runtime53 = require("react/jsx-dev-runtime"), loader14 = async ({ request }) => await getUserId(request) ? (0, import_node22.redirect)("/dashboard") : (0, import_node22.json)({}), action16 = async ({ request }) => {
+var import_node22 = require("@remix-run/node"), import_react46 = require("@remix-run/react"), import_react47 = require("react");
+var import_jsx_dev_runtime54 = require("react/jsx-dev-runtime"), loader14 = async ({ request }) => await getUserId(request) ? (0, import_node22.redirect)("/dashboard") : (0, import_node22.json)({}), action16 = async ({ request }) => {
   let formData = await request.formData(), email = formData.get("email"), password = formData.get("password"), redirectTo = safeRedirect(formData.get("redirectTo"), "/dashboard"), remember = formData.get("remember");
   if (!validateEmail(email))
     return (0, import_node22.json)(
@@ -10675,12 +10863,12 @@ var import_jsx_dev_runtime53 = require("react/jsx-dev-runtime"), loader14 = asyn
 }, meta3 = () => [{ title: "Login" }];
 function LoginPage() {
   var _a, _b, _c, _d;
-  let [searchParams] = (0, import_react45.useSearchParams)(), redirectTo = searchParams.get("redirectTo") || "/dashboard", actionData = (0, import_react45.useActionData)(), emailRef = (0, import_react46.useRef)(null), passwordRef = (0, import_react46.useRef)(null);
-  return (0, import_react46.useEffect)(() => {
+  let [searchParams] = (0, import_react46.useSearchParams)(), redirectTo = searchParams.get("redirectTo") || "/dashboard", actionData = (0, import_react46.useActionData)(), emailRef = (0, import_react47.useRef)(null), passwordRef = (0, import_react47.useRef)(null);
+  return (0, import_react47.useEffect)(() => {
     var _a2, _b2, _c2, _d2;
     (_a2 = actionData == null ? void 0 : actionData.errors) != null && _a2.email ? (_b2 = emailRef.current) == null || _b2.focus() : (_c2 = actionData == null ? void 0 : actionData.errors) != null && _c2.password && ((_d2 = passwordRef.current) == null || _d2.focus());
-  }, [actionData]), /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(import_jsx_dev_runtime53.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "flex min-h-full flex-col justify-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "mx-auto w-full max-w-md px-8", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(import_react45.Link, { to: "/", className: "items-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("img", { className: "h-16 w-16 mx-auto", src: base_default, alt: "BioSolver Logo" }, void 0, !1, {
+  }, [actionData]), /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(import_jsx_dev_runtime54.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { className: "flex min-h-full flex-col justify-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { className: "mx-auto w-full max-w-md px-8", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(import_react46.Link, { to: "/", className: "items-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("img", { className: "h-16 w-16 mx-auto", src: base_default, alt: "BioSolver Logo" }, void 0, !1, {
       fileName: "app/routes/login.tsx",
       lineNumber: 85,
       columnNumber: 13
@@ -10689,9 +10877,9 @@ function LoginPage() {
       lineNumber: 84,
       columnNumber: 11
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(import_react45.Form, { method: "post", className: "space-y-6", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(
+    /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(import_react46.Form, { method: "post", className: "space-y-6", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(
           "label",
           {
             htmlFor: "email",
@@ -10707,8 +10895,8 @@ function LoginPage() {
           },
           this
         ),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "mt-1", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(
+        /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { className: "mt-1", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(
             "input",
             {
               ref: emailRef,
@@ -10731,7 +10919,7 @@ function LoginPage() {
             },
             this
           ),
-          (_b = actionData == null ? void 0 : actionData.errors) != null && _b.email ? /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "pt-1 text-red-700", id: "email-error", children: actionData.errors.email }, void 0, !1, {
+          (_b = actionData == null ? void 0 : actionData.errors) != null && _b.email ? /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { className: "pt-1 text-red-700", id: "email-error", children: actionData.errors.email }, void 0, !1, {
             fileName: "app/routes/login.tsx",
             lineNumber: 109,
             columnNumber: 19
@@ -10746,8 +10934,8 @@ function LoginPage() {
         lineNumber: 88,
         columnNumber: 13
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(
           "label",
           {
             htmlFor: "password",
@@ -10763,8 +10951,8 @@ function LoginPage() {
           },
           this
         ),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "mt-1", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(
+        /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { className: "mt-1", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(
             "input",
             {
               id: "password",
@@ -10785,7 +10973,7 @@ function LoginPage() {
             },
             this
           ),
-          (_d = actionData == null ? void 0 : actionData.errors) != null && _d.password ? /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "pt-1 text-red-700", id: "password-error", children: actionData.errors.password }, void 0, !1, {
+          (_d = actionData == null ? void 0 : actionData.errors) != null && _d.password ? /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { className: "pt-1 text-red-700", id: "password-error", children: actionData.errors.password }, void 0, !1, {
             fileName: "app/routes/login.tsx",
             lineNumber: 135,
             columnNumber: 19
@@ -10800,12 +10988,12 @@ function LoginPage() {
         lineNumber: 116,
         columnNumber: 13
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("input", { type: "hidden", name: "redirectTo", value: redirectTo }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("input", { type: "hidden", name: "redirectTo", value: redirectTo }, void 0, !1, {
         fileName: "app/routes/login.tsx",
         lineNumber: 142,
         columnNumber: 13
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(
         "button",
         {
           type: "submit",
@@ -10821,9 +11009,9 @@ function LoginPage() {
         },
         this
       ),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "flex items-center justify-between", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "flex items-center", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { className: "flex items-center justify-between", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { className: "flex items-center", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(
             "input",
             {
               id: "remember",
@@ -10840,7 +11028,7 @@ function LoginPage() {
             },
             this
           ),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(
+          /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(
             "label",
             {
               htmlFor: "remember",
@@ -10861,11 +11049,11 @@ function LoginPage() {
           lineNumber: 150,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)("div", { className: "text-center text-sm text-gray-500", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { className: "text-center text-sm text-gray-500", children: [
           "Don't have an account?",
           " ",
-          /* @__PURE__ */ (0, import_jsx_dev_runtime53.jsxDEV)(
-            import_react45.Link,
+          /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(
+            import_react46.Link,
             {
               className: "text-purple-500 underline",
               to: {
@@ -10919,16 +11107,16 @@ __export(notes_exports, {
   default: () => NotesPage,
   loader: () => loader15
 });
-var import_node23 = require("@remix-run/node"), import_react47 = require("@remix-run/react");
-var import_jsx_dev_runtime54 = require("react/jsx-dev-runtime"), loader15 = async ({ request }) => {
+var import_node23 = require("@remix-run/node"), import_react48 = require("@remix-run/react");
+var import_jsx_dev_runtime55 = require("react/jsx-dev-runtime"), loader15 = async ({ request }) => {
   let userId = await requireUserId(request), noteListItems = await getNoteListItems({ userId });
   return (0, import_node23.json)({ noteListItems });
 };
 function NotesPage() {
-  let data = (0, import_react47.useLoaderData)(), user = useUser();
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { className: "flex h-full min-h-screen flex-col", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("header", { className: "flex items-center justify-between bg-slate-800 p-4 text-white", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("h1", { className: "text-3xl font-bold", children: /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(import_react47.Link, { to: ".", children: "Notes" }, void 0, !1, {
+  let data = (0, import_react48.useLoaderData)(), user = useUser();
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "flex h-full min-h-screen flex-col", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("header", { className: "flex items-center justify-between bg-slate-800 p-4 text-white", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("h1", { className: "text-3xl font-bold", children: /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(import_react48.Link, { to: ".", children: "Notes" }, void 0, !1, {
         fileName: "app/routes/notes.tsx",
         lineNumber: 23,
         columnNumber: 11
@@ -10937,12 +11125,12 @@ function NotesPage() {
         lineNumber: 22,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("p", { children: user.email }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("p", { children: user.email }, void 0, !1, {
         fileName: "app/routes/notes.tsx",
         lineNumber: 25,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(import_react47.Form, { action: "/logout", method: "post", children: /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(import_react48.Form, { action: "/logout", method: "post", children: /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(
         "button",
         {
           type: "submit",
@@ -10967,24 +11155,24 @@ function NotesPage() {
       lineNumber: 21,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("main", { className: "flex h-full bg-white", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { className: "h-full w-80 border-r bg-gray-50", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(import_react47.Link, { to: "new", className: "block p-4 text-xl text-blue-500", children: "+ New Note" }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("main", { className: "flex h-full bg-white", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "h-full w-80 border-r bg-gray-50", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(import_react48.Link, { to: "new", className: "block p-4 text-xl text-blue-500", children: "+ New Note" }, void 0, !1, {
           fileName: "app/routes/notes.tsx",
           lineNumber: 38,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("hr", {}, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("hr", {}, void 0, !1, {
           fileName: "app/routes/notes.tsx",
           lineNumber: 42,
           columnNumber: 11
         }, this),
-        data.noteListItems.length === 0 ? /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("p", { className: "p-4", children: "No notes yet" }, void 0, !1, {
+        data.noteListItems.length === 0 ? /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("p", { className: "p-4", children: "No notes yet" }, void 0, !1, {
           fileName: "app/routes/notes.tsx",
           lineNumber: 45,
           columnNumber: 13
-        }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("ol", { children: data.noteListItems.map((note) => /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("li", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(
-          import_react47.NavLink,
+        }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("ol", { children: data.noteListItems.map((note) => /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("li", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(
+          import_react48.NavLink,
           {
             className: ({ isActive }) => `block border-b p-4 text-xl ${isActive ? "bg-white" : ""}`,
             to: note.id,
@@ -11015,7 +11203,7 @@ function NotesPage() {
         lineNumber: 37,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)("div", { className: "flex-1 p-6", children: /* @__PURE__ */ (0, import_jsx_dev_runtime54.jsxDEV)(import_react47.Outlet, {}, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)("div", { className: "flex-1 p-6", children: /* @__PURE__ */ (0, import_jsx_dev_runtime55.jsxDEV)(import_react48.Outlet, {}, void 0, !1, {
         fileName: "app/routes/notes.tsx",
         lineNumber: 65,
         columnNumber: 11
@@ -11037,7 +11225,7 @@ function NotesPage() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-EP77SPMO.js", imports: ["/build/_shared/chunk-YUUU2RAQ.js", "/build/_shared/chunk-YYAXLAGZ.js", "/build/_shared/chunk-HYDBX6IC.js", "/build/_shared/chunk-IU43IUTG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-P44D4T4H.js", imports: ["/build/_shared/chunk-DZY5WEHX.js", "/build/_shared/chunk-JVNGUFS4.js", "/build/_shared/chunk-7SDL4ZUQ.js", "/build/_shared/chunk-B45RVZ6Z.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-N7AIAAEP.js", imports: ["/build/_shared/chunk-463C22YY.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/calendar": { id: "routes/calendar", parentId: "root", path: "calendar", index: void 0, caseSensitive: void 0, module: "/build/routes/calendar-2HT3ZEXN.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/contact-us": { id: "routes/contact-us", parentId: "root", path: "contact-us", index: void 0, caseSensitive: void 0, module: "/build/routes/contact-us-TPYK572Q.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dashboard": { id: "routes/dashboard", parentId: "root", path: "dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/dashboard-JOWL3DE2.js", imports: ["/build/_shared/chunk-CMWXK6I4.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/documents": { id: "routes/documents", parentId: "root", path: "documents", index: void 0, caseSensitive: void 0, module: "/build/routes/documents-DDZFG3ZZ.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-seekers": { id: "routes/for-seekers", parentId: "root", path: "for-seekers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-seekers-442M3IG5.js", imports: ["/build/_shared/chunk-LZ74P7GG.js", "/build/_shared/chunk-463C22YY.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-solvers": { id: "routes/for-solvers", parentId: "root", path: "for-solvers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-solvers-S2LZFWOX.js", imports: ["/build/_shared/chunk-LZ74P7GG.js", "/build/_shared/chunk-463C22YY.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/healthcheck": { id: "routes/healthcheck", parentId: "root", path: "healthcheck", index: void 0, caseSensitive: void 0, module: "/build/routes/healthcheck-JO7RAI4L.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-6MSDSVDB.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-463C22YY.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/logout": { id: "routes/logout", parentId: "root", path: "logout", index: void 0, caseSensitive: void 0, module: "/build/routes/logout-S5LWYBEX.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/matches": { id: "routes/matches", parentId: "root", path: "matches", index: void 0, caseSensitive: void 0, module: "/build/routes/matches-3FDE2QYX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/messages": { id: "routes/messages", parentId: "root", path: "messages", index: void 0, caseSensitive: void 0, module: "/build/routes/messages-H3Y2ROQT.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes": { id: "routes/notes", parentId: "root", path: "notes", index: void 0, caseSensitive: void 0, module: "/build/routes/notes-PGUHZGDO.js", imports: ["/build/_shared/chunk-463C22YY.js", "/build/_shared/chunk-OLP4QJ4K.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.$noteId": { id: "routes/notes.$noteId", parentId: "routes/notes", path: ":noteId", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.$noteId-CSLD5S5N.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/notes._index": { id: "routes/notes._index", parentId: "routes/notes", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/notes._index-XD4RRL7B.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.new": { id: "routes/notes.new", parentId: "routes/notes", path: "new", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.new-MOYLCMXS.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/privacy-policy": { id: "routes/privacy-policy", parentId: "root", path: "privacy-policy", index: void 0, caseSensitive: void 0, module: "/build/routes/privacy-policy-WGH2JNOP.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile": { id: "routes/profile", parentId: "root", path: "profile", index: void 0, caseSensitive: void 0, module: "/build/routes/profile-BRGSPKCW.js", imports: ["/build/_shared/chunk-463C22YY.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile._index": { id: "routes/profile._index", parentId: "routes/profile", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/profile._index-WDOTFDLH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.certifications": { id: "routes/profile.certifications", parentId: "routes/profile", path: "certifications", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.certifications-7TDABOTK.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.degrees": { id: "routes/profile.degrees", parentId: "routes/profile", path: "degrees", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.degrees-HGUUSADG.js", imports: ["/build/_shared/chunk-SKIHJPQU.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-ON33C3SX.js", "/build/_shared/chunk-FLUXEY42.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.degrees.$degreeId": { id: "routes/profile.degrees.$degreeId", parentId: "routes/profile.degrees", path: ":degreeId", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.degrees.$degreeId-G3IIRMZP.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education": { id: "routes/profile.education", parentId: "routes/profile", path: "education", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education-MNHDCLFD.js", imports: ["/build/_shared/chunk-HTDZCSOQ.js", "/build/_shared/chunk-X7FIYIPL.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education.back": { id: "routes/profile.education.back", parentId: "routes/profile.education", path: "back", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education.back-NSAUNUMR.js", imports: ["/build/_shared/chunk-ON33C3SX.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education.degree.new": { id: "routes/profile.education.degree.new", parentId: "routes/profile.education", path: "degree/new", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education.degree.new-ZQUWQTBH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.personal": { id: "routes/profile.personal", parentId: "routes/profile", path: "personal", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.personal-3TVTLLKH.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.professional": { id: "routes/profile.professional", parentId: "routes/profile", path: "professional", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.professional-XDPQJWXD.js", imports: ["/build/_shared/chunk-HQIRS5RA.js", "/build/_shared/chunk-FLUXEY42.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.professional.$experienceId": { id: "routes/profile.professional.$experienceId", parentId: "routes/profile.professional", path: ":experienceId", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.professional.$experienceId-E3LDQSHR.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.single": { id: "routes/profile.single", parentId: "routes/profile", path: "single", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.single-UAPOXCXR.js", imports: ["/build/_shared/chunk-OLP4QJ4K.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.skills": { id: "routes/profile.skills", parentId: "routes/profile", path: "skills", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.skills-TCRBEE2W.js", imports: ["/build/_shared/chunk-HTDZCSOQ.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.work": { id: "routes/profile.work", parentId: "routes/profile", path: "work", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.work-54OI5DGJ.js", imports: ["/build/_shared/chunk-J3YHMR5C.js", "/build/_shared/chunk-7SDL4ZUQ.js", "/build/_shared/chunk-B45RVZ6Z.js", "/build/_shared/chunk-HTDZCSOQ.js", "/build/_shared/chunk-KCLKX6RL.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/register": { id: "routes/register", parentId: "root", path: "register", index: void 0, caseSensitive: void 0, module: "/build/routes/register-X5TJYXZD.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-463C22YY.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/reports": { id: "routes/reports", parentId: "root", path: "reports", index: void 0, caseSensitive: void 0, module: "/build/routes/reports-XNV3LFFP.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/seeker.dashboard": { id: "routes/seeker.dashboard", parentId: "root", path: "seeker/dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/seeker.dashboard-67273DVE.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/skills.hard": { id: "routes/skills.hard", parentId: "root", path: "skills/hard", index: void 0, caseSensitive: void 0, module: "/build/routes/skills.hard-L6P7T3UD.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/solver.application": { id: "routes/solver.application", parentId: "root", path: "solver/application", index: void 0, caseSensitive: void 0, module: "/build/routes/solver.application-AJGN5QXM.js", imports: ["/build/_shared/chunk-J3YHMR5C.js", "/build/_shared/chunk-463C22YY.js", "/build/_shared/chunk-SKIHJPQU.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-ON33C3SX.js", "/build/_shared/chunk-HQIRS5RA.js", "/build/_shared/chunk-FLUXEY42.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-X7FIYIPL.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/terms-and-conditions": { id: "routes/terms-and-conditions", parentId: "root", path: "terms-and-conditions", index: void 0, caseSensitive: void 0, module: "/build/routes/terms-and-conditions-QKWGD4G5.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "f09fb198", hmr: void 0, url: "/build/manifest-F09FB198.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-EP77SPMO.js", imports: ["/build/_shared/chunk-YUUU2RAQ.js", "/build/_shared/chunk-YYAXLAGZ.js", "/build/_shared/chunk-HYDBX6IC.js", "/build/_shared/chunk-IU43IUTG.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-C245UWAI.js", imports: ["/build/_shared/chunk-DZY5WEHX.js", "/build/_shared/chunk-JVNGUFS4.js", "/build/_shared/chunk-7SDL4ZUQ.js", "/build/_shared/chunk-B45RVZ6Z.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-FQCGVV2W.js", imports: ["/build/_shared/chunk-CCKZM5HW.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/calendar": { id: "routes/calendar", parentId: "root", path: "calendar", index: void 0, caseSensitive: void 0, module: "/build/routes/calendar-2HT3ZEXN.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/contact-us": { id: "routes/contact-us", parentId: "root", path: "contact-us", index: void 0, caseSensitive: void 0, module: "/build/routes/contact-us-TPYK572Q.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/dashboard": { id: "routes/dashboard", parentId: "root", path: "dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/dashboard-VELTGKKT.js", imports: ["/build/_shared/chunk-CMWXK6I4.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/documents": { id: "routes/documents", parentId: "root", path: "documents", index: void 0, caseSensitive: void 0, module: "/build/routes/documents-DDZFG3ZZ.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-seekers": { id: "routes/for-seekers", parentId: "root", path: "for-seekers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-seekers-NORGH6T7.js", imports: ["/build/_shared/chunk-UTT7TENP.js", "/build/_shared/chunk-CCKZM5HW.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/for-solvers": { id: "routes/for-solvers", parentId: "root", path: "for-solvers", index: void 0, caseSensitive: void 0, module: "/build/routes/for-solvers-ZRBWRX5S.js", imports: ["/build/_shared/chunk-UTT7TENP.js", "/build/_shared/chunk-CCKZM5HW.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/healthcheck": { id: "routes/healthcheck", parentId: "root", path: "healthcheck", index: void 0, caseSensitive: void 0, module: "/build/routes/healthcheck-JO7RAI4L.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/login": { id: "routes/login", parentId: "root", path: "login", index: void 0, caseSensitive: void 0, module: "/build/routes/login-ZOI3TM25.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-CCKZM5HW.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/logout": { id: "routes/logout", parentId: "root", path: "logout", index: void 0, caseSensitive: void 0, module: "/build/routes/logout-S5LWYBEX.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/matches": { id: "routes/matches", parentId: "root", path: "matches", index: void 0, caseSensitive: void 0, module: "/build/routes/matches-3FDE2QYX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/messages": { id: "routes/messages", parentId: "root", path: "messages", index: void 0, caseSensitive: void 0, module: "/build/routes/messages-H3Y2ROQT.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes": { id: "routes/notes", parentId: "root", path: "notes", index: void 0, caseSensitive: void 0, module: "/build/routes/notes-4A5OE3OB.js", imports: ["/build/_shared/chunk-OLP4QJ4K.js", "/build/_shared/chunk-CCKZM5HW.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.$noteId": { id: "routes/notes.$noteId", parentId: "routes/notes", path: ":noteId", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.$noteId-CSLD5S5N.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !0 }, "routes/notes._index": { id: "routes/notes._index", parentId: "routes/notes", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/notes._index-XD4RRL7B.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/notes.new": { id: "routes/notes.new", parentId: "routes/notes", path: "new", index: void 0, caseSensitive: void 0, module: "/build/routes/notes.new-MOYLCMXS.js", imports: ["/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/privacy-policy": { id: "routes/privacy-policy", parentId: "root", path: "privacy-policy", index: void 0, caseSensitive: void 0, module: "/build/routes/privacy-policy-WGH2JNOP.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile": { id: "routes/profile", parentId: "root", path: "profile", index: void 0, caseSensitive: void 0, module: "/build/routes/profile-IJ4ZD5LC.js", imports: ["/build/_shared/chunk-CCKZM5HW.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile._index": { id: "routes/profile._index", parentId: "routes/profile", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/profile._index-WDOTFDLH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.certifications": { id: "routes/profile.certifications", parentId: "routes/profile", path: "certifications", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.certifications-7TDABOTK.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.degrees": { id: "routes/profile.degrees", parentId: "routes/profile", path: "degrees", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.degrees-6TO2UFPF.js", imports: ["/build/_shared/chunk-SKIHJPQU.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-ON33C3SX.js", "/build/_shared/chunk-ZKPZBVFQ.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.degrees.$degreeId": { id: "routes/profile.degrees.$degreeId", parentId: "routes/profile.degrees", path: ":degreeId", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.degrees.$degreeId-G3IIRMZP.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education": { id: "routes/profile.education", parentId: "routes/profile", path: "education", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education-MNHDCLFD.js", imports: ["/build/_shared/chunk-HTDZCSOQ.js", "/build/_shared/chunk-X7FIYIPL.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education.back": { id: "routes/profile.education.back", parentId: "routes/profile.education", path: "back", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education.back-NSAUNUMR.js", imports: ["/build/_shared/chunk-ON33C3SX.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.education.degree.new": { id: "routes/profile.education.degree.new", parentId: "routes/profile.education", path: "degree/new", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.education.degree.new-ZQUWQTBH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.personal": { id: "routes/profile.personal", parentId: "routes/profile", path: "personal", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.personal-3TVTLLKH.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.professional": { id: "routes/profile.professional", parentId: "routes/profile", path: "professional", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.professional-SPERVWKD.js", imports: ["/build/_shared/chunk-HQIRS5RA.js", "/build/_shared/chunk-ZKPZBVFQ.js", "/build/_shared/chunk-PI6H7ZJD.js", "/build/_shared/chunk-KCLKX6RL.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.professional.$experienceId": { id: "routes/profile.professional.$experienceId", parentId: "routes/profile.professional", path: ":experienceId", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.professional.$experienceId-E3LDQSHR.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.single": { id: "routes/profile.single", parentId: "routes/profile", path: "single", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.single-UAPOXCXR.js", imports: ["/build/_shared/chunk-OLP4QJ4K.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-X7FIYIPL.js", "/build/_shared/chunk-WLTRNBV5.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.skills": { id: "routes/profile.skills", parentId: "routes/profile", path: "skills", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.skills-TCRBEE2W.js", imports: ["/build/_shared/chunk-HTDZCSOQ.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/profile.work": { id: "routes/profile.work", parentId: "routes/profile", path: "work", index: void 0, caseSensitive: void 0, module: "/build/routes/profile.work-CFBF5QKQ.js", imports: ["/build/_shared/chunk-NAXTNZ6C.js", "/build/_shared/chunk-7SDL4ZUQ.js", "/build/_shared/chunk-B45RVZ6Z.js", "/build/_shared/chunk-HTDZCSOQ.js", "/build/_shared/chunk-KCLKX6RL.js"], hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/register": { id: "routes/register", parentId: "root", path: "register", index: void 0, caseSensitive: void 0, module: "/build/routes/register-NARVVQ2Y.js", imports: ["/build/_shared/chunk-CMWXK6I4.js", "/build/_shared/chunk-CCKZM5HW.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/reports": { id: "routes/reports", parentId: "root", path: "reports", index: void 0, caseSensitive: void 0, module: "/build/routes/reports-XNV3LFFP.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/seeker.dashboard": { id: "routes/seeker.dashboard", parentId: "root", path: "seeker/dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/seeker.dashboard-67273DVE.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/skills.hard": { id: "routes/skills.hard", parentId: "root", path: "skills/hard", index: void 0, caseSensitive: void 0, module: "/build/routes/skills.hard-L6P7T3UD.js", imports: void 0, hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/solver.application": { id: "routes/solver.application", parentId: "root", path: "solver/application", index: void 0, caseSensitive: void 0, module: "/build/routes/solver.application-6CFVH2IT.js", imports: ["/build/_shared/chunk-NAXTNZ6C.js", "/build/_shared/chunk-SKIHJPQU.js", "/build/_shared/chunk-YL3FPXEX.js", "/build/_shared/chunk-ON33C3SX.js", "/build/_shared/chunk-HQIRS5RA.js", "/build/_shared/chunk-ZKPZBVFQ.js", "/build/_shared/chunk-CCKZM5HW.js", "/build/_shared/chunk-YFYYAG3U.js", "/build/_shared/chunk-X7FIYIPL.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/terms-and-conditions": { id: "routes/terms-and-conditions", parentId: "root", path: "terms-and-conditions", index: void 0, caseSensitive: void 0, module: "/build/routes/terms-and-conditions-QKWGD4G5.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, version: "8e1a8002", hmr: void 0, url: "/build/manifest-8E1A8002.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public\\build", future = { unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, v2_errorBoundary: !0, v2_headers: !0, v2_meta: !0, v2_normalizeFormMethod: !0, v2_routeConvention: !0 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {

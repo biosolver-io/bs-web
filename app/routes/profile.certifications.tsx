@@ -1,5 +1,5 @@
 
-import { ActionArgs, LoaderArgs, json, redirect } from "@remix-run/node";
+import { ActionArgs, LoaderArgs, json, redirect, unstable_composeUploadHandlers, unstable_createMemoryUploadHandler, unstable_parseMultipartFormData } from "@remix-run/node";
 import { useActionData, useFetcher, useLoaderData, useSearchParams } from "@remix-run/react"
 import { useEffect, useState } from "react";
 import assessmentFormats from "~/assets/data/assessmentFormats";
@@ -15,9 +15,15 @@ import LabelledTextInput from "~/components/LabelledInput"
 import { prisma } from "~/db.server";
 import { requireUserId } from "~/session.server";
 import { Accomplishment } from "~/types.client";
+import { supabaseStorageUploaderHandler } from "~/upload-handler.server";
+import { readFilePathFromFormData } from "~/utils";
 
 export const action = async ({ request }: ActionArgs) => {
-  const body = await request.formData();
+  const userId = await requireUserId(request)
+  const body = await unstable_parseMultipartFormData(request, unstable_composeUploadHandlers(
+    supabaseStorageUploaderHandler(userId),
+    unstable_createMemoryUploadHandler(),
+  ));
   const actionType = body.get('action')
   if (actionType === 'addCertificate') {
     const newCertification = await prisma.certification.create({
@@ -44,6 +50,7 @@ export const action = async ({ request }: ActionArgs) => {
         name: body.get('name') as string,
         description: body.get('description') as string,
         issuingAuthority: body.get('issuingAuthority') as string,
+        certificate: readFilePathFromFormData(body, 'certificate'),
         issueYear: isNaN(issueYear) ? null : issueYear,
         issueMonth: isNaN(issueMonth) ? null : issueMonth,
         expirationYear: isNaN(expirationYear) ? null : expirationYear,

@@ -1,5 +1,5 @@
 
-import { ActionArgs, LoaderArgs, json, redirect } from "@remix-run/node";
+import { ActionArgs, LoaderArgs, json, redirect, unstable_composeUploadHandlers, unstable_createMemoryUploadHandler, unstable_parseMultipartFormData } from "@remix-run/node";
 import { useActionData, useFetcher, useLoaderData, useSearchParams } from "@remix-run/react"
 import { useEffect, useState } from "react";
 import assessmentFormats from "~/assets/data/assessmentFormats";
@@ -15,9 +15,15 @@ import LabelledTextInput from "~/components/LabelledInput"
 import { prisma } from "~/db.server";
 import { requireUserId } from "~/session.server";
 import { Accomplishment } from "~/types.client";
+import { supabaseStorageUploaderHandler } from "~/upload-handler.server";
+import { readFilePathFromFormData } from "~/utils";
 
 export const action = async ({ request }: ActionArgs) => {
-  const body = await request.formData();
+  const userId = await requireUserId(request)
+  const body = await unstable_parseMultipartFormData(request, unstable_composeUploadHandlers(
+    supabaseStorageUploaderHandler(userId),
+    unstable_createMemoryUploadHandler(),
+  ));
   const actionType = body.get('action')
   if (actionType === 'addDegree') {
     const newDegree = await prisma.degree.create({
@@ -33,28 +39,30 @@ export const action = async ({ request }: ActionArgs) => {
       newDegree
     })
   } else if (actionType === 'saveDegree') {
-    const dataToUpdate = {
-      level: body.get('type') as string,
-      major: body.get('major') as string,
-      school: body.get('school') as string,
-      country: body.get('country') as string,
-      stateOrCity: body.get('cityOrState') as string,
-      startYear: parseInt(body.get('startYear') as string),
-      startMonth: parseInt(body.get('startMonth') as string),
-      endYear: parseInt(body.get('endYear') as string),
-      endMonth: parseInt(body.get('endMonth') as string),
-      assessmentFormat: body.get('assessmentFormat') as string,
-      grade: body.get('grade') as string,
-      hasEca: body.get('hasEca') as string === 'Yes' ? true : false,
-      ecaAuthority: body.get('ecaAuthority') as string,
-      isTemp: false
-    }
-    console.log(dataToUpdate)
     await prisma.degree.update({
       where: {
         id: body.get('degreeId') as string
       },
-      data: dataToUpdate
+      data: {
+        level: body.get('type') as string,
+        major: body.get('major') as string,
+        school: body.get('school') as string,
+        country: body.get('country') as string,
+        stateOrCity: body.get('cityOrState') as string,
+        startYear: parseInt(body.get('startYear') as string),
+        startMonth: parseInt(body.get('startMonth') as string),
+        endYear: parseInt(body.get('endYear') as string),
+        endMonth: parseInt(body.get('endMonth') as string),
+        assessmentFormat: body.get('assessmentFormat') as string,
+        grade: body.get('grade') as string,
+        hasEca: body.get('hasEca') as string === 'Yes' ? true : false,
+        ecaAuthority: body.get('ecaAuthority') as string,
+        ecaCertificate: readFilePathFromFormData(body, 'ecaCertificate'),
+        thesis: readFilePathFromFormData(body, 'thesis'),
+        marksheet: readFilePathFromFormData(body, 'marksheet'),
+        degreeCertificate: readFilePathFromFormData(body, 'degreeCertificate'),
+        isTemp: false
+      }
     })
     return redirect('/profile/degrees')
   } else {
