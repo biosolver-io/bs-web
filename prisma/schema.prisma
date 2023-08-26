@@ -36,6 +36,8 @@ model User {
   avatar String?
   resume String?
   dateOfBirth DateTime?
+  videoSummaryUrl String?
+  
   sourceType String?
   source String?
 
@@ -53,6 +55,21 @@ model User {
   referralCodes ReferralCode[]
   workStylePreferences WorkStylePreference[]
   rolesOfInterest RoleOfInterest[]
+  skills UserSkill[]
+  feedbacks UserFeedback[]
+}
+
+model UserFeedback {
+  id    String @id @default(cuid())
+
+  feedback String?
+  type String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String
 }
 
 model WorkStylePreference {
@@ -292,8 +309,20 @@ model JobPosting {
   organizationId String
 }
 
-model Skill {
+model UserSkill {
   id    String @id @default(cuid())
+  level String?
+  yearsOfExperience Int?
+  lastUsedYear Int?
+  lastUsedMonth Int?
+  proofOfSkill String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
   name String
   description  String?  
   type String?

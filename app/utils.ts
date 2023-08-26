@@ -81,3 +81,10 @@ export function cx(...args: unknown[]) {
 export function readFilePathFromFormData(formData: FormData, name: string): string | null {
   return (formData.get(name) as Blob).size > 0 ? formData.get(name) as string : null
 }
+
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+export function monthAsText(month: number): string {
+  return monthNames[month]
+}

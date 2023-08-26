@@ -16,4 +16,4 @@ export type Certification = Prisma.CertificationGetPayload<{}>;
 
 export type Accomplishment = Prisma.AccomplishmentGetPayload<{}>;
 
-export type Skill = Prisma.SkillGetPayload<{}>;
+export type Skill = Prisma.UserSkillGetPayload<{}>;

@@ -1,16 +1,25 @@
 import { Degree } from "~/types.client";
 import AccomplishmentCard from "./AccomplishmentCard";
+import { monthAsText } from "~/utils";
 
 export default function DegreeCard({ degree }: { degree: Degree }) {
   return (
-    <div className="mb-4 border-gray-500 border-solid rounded-md p-5 border-2">
-      <h2 className="text-2xl font-bold">{degree.level}</h2>
-      <h3 className="text-lg font-bold">{degree.major}</h3>
-      <h3 className="text-lg font-bold">{degree.country}</h3>
-      <h3 className="text-lg font-bold">{degree.school}</h3>
-      <h3 className="text-lg font-bold">{degree.startYear}</h3>
-      <h3 className="text-lg font-bold">{degree.startMonth}</h3>
-      <h3 className="text-lg font-bold">{degree.stateOrCity}</h3>
+    <div className="mb-4 shadow-sm p-5">
+      <div className="flex w-full justify-between">
+        <h3 className="text-xl font-bold">{degree.level}</h3>
+        {degree.startMonth && degree.startYear &&
+          <div className="text-lg">{
+            !degree.endMonth || !degree.endYear ? `${degree.startMonth}, ${degree.startYear} - Present` :
+              `${monthAsText(degree.startMonth)}, ${degree.startYear} - ${monthAsText(degree.endMonth)}, ${degree.endYear}`
+          }</div>
+        }
+      </div>
+      <div className="text-lg text-start w-full">
+        {degree.major}
+      </div>
+      <div className="text-lg text-start w-full">{
+        !degree.country ? `${degree.school}` : `${degree.school}, ${degree.country}`
+      }</div>
       {
         degree.accomplishments.map((accomplishment) => (
           <AccomplishmentCard accomplishment={accomplishment} />

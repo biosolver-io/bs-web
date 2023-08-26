@@ -25,7 +25,7 @@ export const action = async ({ request }: ActionArgs) => {
     unstable_createMemoryUploadHandler(),
   ));
   const actionType = body.get('action')
-  if (actionType === 'addCertificate') {
+  if (actionType === 'addCertification') {
     const newCertification = await prisma.certification.create({
       data: {
         name: '',
@@ -36,7 +36,7 @@ export const action = async ({ request }: ActionArgs) => {
     return json({
       newCertification
     })
-  } else if (actionType === 'saveCertificate') {
+  } else if (actionType === 'saveCertification') {
     const issueYear = parseInt(body.get('issueYear') as string)
     const issueMonth = parseInt(body.get('issueMonth') as string)
     const expirationYear = parseInt(body.get('expiryYear') as string)
@@ -47,7 +47,7 @@ export const action = async ({ request }: ActionArgs) => {
         id: body.get('certificationId') as string
       },
       data: {
-        name: body.get('name') as string,
+        name: body.get('title') as string,
         description: body.get('description') as string,
         issuingAuthority: body.get('issuingAuthority') as string,
         certificate: readFilePathFromFormData(body, 'certificate'),
@@ -59,7 +59,7 @@ export const action = async ({ request }: ActionArgs) => {
         isTemp: false
       }
     })
-    return redirect('/profile/degrees')
+    return redirect('/solver/application')
   } else {
     throw new Error('Invalid action type')
   }

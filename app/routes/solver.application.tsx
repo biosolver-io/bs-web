@@ -15,6 +15,7 @@ import years from "~/assets/data/years"
 import yesNos from "~/assets/data/yesNos"
 import AccomplishmentCard from "~/components/AccomplishmentCard"
 import AccomplishmentForm from "~/components/AccomplishmentForm"
+import CertificationCard from "~/components/CertificationCard"
 import ComboSearch from "~/components/ComboSearch"
 import DegreeCard from "~/components/DegreeCard"
 import LabelledDropdown from "~/components/LabelledDropdown"
@@ -78,7 +79,7 @@ export const action = async ({ request }: ActionArgs) => {
     const marksheetPath = form.get("marksheet") as string;
     const degreeCertificatePath = form.get("degreeCertificate") as string;
     const resumePath = form.get("resume") as string;
-    
+
     return 'files received';
   } catch (e) {
     return { error: e };
@@ -106,6 +107,8 @@ export default function SeekerApplication() {
   const certificationFetcher = useFetcher()
   const [isAddingCertification, setIsAddingCertification] = useState(false)
   const [certificationBeingAdded, setCertificationBeingAdded] = useState<string | null>(null)
+
+  const miscInfoFetcher = useFetcher()
 
   useEffect(() => {
     setIsAddingDegree(degreeFetcher.data?.newDegree?.id ? true : false)
@@ -238,7 +241,7 @@ export default function SeekerApplication() {
             name="currency"
             placeholder="Select your local currency"
             options={currencyCodes.map(currencyCode => ({ value: currencyCode.code, label: currencyCode.name, name: currencyCode.name }))}
-          />          
+          />
           <LabelledFileInput
             label="Resume"
             name="resume"
@@ -249,7 +252,7 @@ export default function SeekerApplication() {
       </section>
       <TitleDivider title="Social Information" />
       <section className='py-5'>
-        <socialInformationFetcher.Form action="/profile/personal" method="post">
+        <socialInformationFetcher.Form action="/profile/personal" method="post" encType="multipart/form-data">
           <LabelledTextInput
             label="LinkedIn URL"
             name="linkedinUrl"
@@ -432,8 +435,11 @@ export default function SeekerApplication() {
       <TitleDivider title="Certifications" />
       <section className='py-5'>
         {
-          isAddingCertification && <certificationFetcher.Form action="/profile/certifications" method="post" className="p-5 bordered border-[1px] border-gray-400 rounded-sm shadow-sm">
-            <input name="certificationId" type="hidden" value={certificationFetcher.data?.newCertification.id} />
+          certifications.map(certification => <CertificationCard key={certification.id} certification={certification} />)
+        }
+        {
+          isAddingCertification && certificationBeingAdded && <certificationFetcher.Form action="/profile/certifications" method="post" className="p-5 bordered border-[1px] border-gray-400 rounded-sm shadow-sm" encType="multipart/form-data">
+            <input name="certificationId" type="hidden" value={certificationBeingAdded} />
             <LabelledTextInput
               name="title"
               label="Title"
@@ -505,9 +511,9 @@ export default function SeekerApplication() {
           </certificationFetcher.Form>
         }
         {
-          <certificationFetcher.Form action="/profile/certifications" method="post">
-            <input name="action" type="hidden" value="addCertificate" />
-            <button type="submit" className={cx("flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", isAddingCertification ? 'hidden' : '')} disabled={isAddingDegree}>Add Certification</button>
+          <certificationFetcher.Form action="/profile/certifications" method="post" encType="multipart/form-data">
+            <input name="action" type="hidden" value="addCertification" />
+            <button type="submit" className={cx("flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", isAddingCertification ? 'hidden' : '')} disabled={isAddingCertification}>Add Certification</button>
           </certificationFetcher.Form>
         }
       </section>
@@ -517,7 +523,7 @@ export default function SeekerApplication() {
           workExperiences.map(experience => <WorkExperienceCard key={experience.id} experience={experience} />)
         }
         {
-          isAddingWorkExperience && experienceBeingAdded && <workExperienceFetcher.Form action="/profile/professional" method="post" className="p-5 bordered border-[1px] border-gray-400 rounded-sm shadow-sm" key={experienceBeingAdded}>
+          isAddingWorkExperience && experienceBeingAdded && <workExperienceFetcher.Form action="/profile/professional" method="post" className="p-5 bordered border-[1px] border-gray-400 rounded-sm shadow-sm" key={experienceBeingAdded} encType="multipart/form-data">
             <input name="workExperienceId" type="hidden" value={experienceBeingAdded} />
             <LabelledTextInput
               name="title"
@@ -642,7 +648,7 @@ export default function SeekerApplication() {
           </workExperienceFetcher.Form>
         }
         {
-          <workExperienceFetcher.Form action="/profile/professional" method="post">
+          <workExperienceFetcher.Form action="/profile/professional" method="post" encType="multipart/form-data">
             <input name="action" type="hidden" value="addWorkExperience" />
             <button type="submit" className={cx("flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md", isAddingWorkExperience ? 'hidden' : '')} disabled={isAddingWorkExperience}>Add Experience</button>
           </workExperienceFetcher.Form>
@@ -653,44 +659,47 @@ export default function SeekerApplication() {
           }} key={Date.now().toString()} />
         }
       </section>
-      <TitleDivider title="Hard Skills" />
-      <section className='py-5'>
-        <MultiSelect
-          name="hardSkills"
-          options={skills.map(skill => {
-            return { label: skill.name, value: skill.name, name: skill.name }
-          })} />
-      </section>
-      <TitleDivider title="Soft Skills" />
-      <section className='py-5'>
-        <MultiSelect
-          name="softSkills"
-          options={skills.map(skill => {
-            return { label: skill.name, value: skill.name, name: skill.name }
-          })} />
-      </section>
-      <TitleDivider title="References" />
-      <section className='py-5'>
+      <miscInfoFetcher.Form action="/profile/misc" method="post">
+        <TitleDivider title="Hard Skills" />
+        <section className='py-5'>
+          <MultiSelect
+            name="hardSkills"
+            options={skills.map(skill => {
+              return { label: skill.name, value: skill.name, name: skill.name }
+            })} />
+        </section>
+        <TitleDivider title="Soft Skills" />
+        <section className='py-5'>
+          <MultiSelect
+            name="softSkills"
+            options={skills.map(skill => {
+              return { label: skill.name, value: skill.name, name: skill.name }
+            })} />
+        </section>
+        <TitleDivider title="References" />
+        <section className='py-5'>
 
-      </section>
-      <TitleDivider title="Video Summary" />
-      <section className='py-5'>
-        <LabelledTextInput
-          label="Video URL"
-          name="videoUrl"
-          placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-          description="Please create a brief video talking about the most interesting/impressive projects that you worked on (max 5 min). Upload that into YouTube (you may keep it unlisted) and share the link with us."
-        />
-      </section>
-      <TitleDivider title="Feedback" />
-      <section className='py-5'>
-        <LabelledTextInput
-          label="Feedback"
-          name="feedback"
-          placeholder="Please tell us what you liked or disliked about this form"
-          multiline={true}
-        />
-      </section>
+        </section>
+        <TitleDivider title="Video Summary" />
+        <section className='py-5'>
+          <LabelledTextInput
+            label="Video URL"
+            name="videoSummaryUrl"
+            placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+            description="Please create a brief video talking about the most interesting/impressive projects that you worked on (max 5 min). Upload that into YouTube (you may keep it unlisted) and share the link with us."
+          />
+        </section>
+        <TitleDivider title="Feedback" />
+        <section className='py-5'>
+          <LabelledTextInput
+            label="Feedback"
+            name="feedback"
+            placeholder="Please tell us what you liked or disliked about this form"
+            multiline={true}
+          />
+        </section>
+        <button type="submit" className="flex mt-5 bg-blue-500 text-white px-5 py-2 rounded-md">Save</button>
+      </miscInfoFetcher.Form>
     </div>
   )
 }
