@@ -20,7 +20,7 @@ export default function Index() {
       <HeroSection />
       <RopeInSection />
       <HowItWorksSection />
-      <LatestJobsSection />
+      {/* <LatestJobsSection /> */}
       <JobCategoriesSection />
       <FullTimeJobCategoriesSection />
     </div>
